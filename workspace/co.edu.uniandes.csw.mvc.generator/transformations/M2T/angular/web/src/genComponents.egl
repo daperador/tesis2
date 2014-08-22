@@ -1,0 +1,6 @@
+define(['components/crudComponent'], function() {
+    
+    app = angular.module('[%=mod.name.toLowerCase()%]', ['crud','ngResource']);
+    
+    return app;
+});

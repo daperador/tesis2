@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="ASCII"?>
+<mvc:MVCModel
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:mvc="http://co.edu.uniandes.csw.mvc/1.0">
+  <annotations/>
+</mvc:MVCModel>

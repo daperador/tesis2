@@ -1,0 +1,48 @@
+[%
+	var cv = ControllerView.all.selectOne(cv | cv.view = listView);
+	var mod = cv.models.get(0);
+%]
+<div ng-controller="[%=mod.name.toLowerCase()%]Controller">
+    <div id="[%=listView.name%]" ng-show="!showForm">
+        <div class="panel panel-default">
+            <table class="table striped">
+                <thead>
+                    <tr>
+[%for (attr in mod.rootEntity.attributes){%]    
+	                	<th>[%=attr.name%]</th>
+[%}%]
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="[%=mod.name.toLowerCase()%] in [%=mod.name.toLowerCase()%]s">
+[%for (attr in mod.rootEntity.attributes){%]    
+	                	 <td>{{[%=mod.name.toLowerCase()%].[%=attr.name%]}}</td>
+[%}%]                    <td>
+[%for (action in listView.rootComponent.components.select(c | c.isTypeOf (UIActions))){%]
+							<a ng-click="[%=action.name%]([%=mod.name.toLowerCase()%])">[%=action.triggerEvent.name%]</a> |
+[%}%]
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="[%=formView.name%]" ng-show="showForm">
+        <div class="form-group">
+            <form role="form" id="[%=formView.rootComponent.name%]">
+            	[%for (c in formView.rootComponent.components){%]
+            		[%if (c.name = 'id'){%]
+            	<input type="hidden" name="id" ng-model="form[%=mod.rootEntity.name%].id"/>
+            		[%} else{ %]
+            	<div class="form-group" >
+                    <label for="[%=c.name%]">[%=c.name%]</label>
+                    <input type="text" class="form-control" id="[%=c.name%]" name="[%=c.name%]" placeholder="Enter value" ng-model="form[%=mod.name%].[%=c.value.name%]"/>	
+                </div>	
+            		[%}%]
+            	[%}%]
+            </form>
+        </div>
+    </div>
+</div>

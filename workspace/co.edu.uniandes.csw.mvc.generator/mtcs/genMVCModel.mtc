@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.mtcflow.model:MTC xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.mtcflow.model="http://com.mtcflow.mtc/1.0" validateConformance="false">
+  <metamodels name="UML" URI="http://www.eclipse.org/uml2/4.0.0/UML" alias="UML"/>
+  <metamodels name="MVC" file="MVC.ecore" alias="MVC"/>
+  <models name="UMLModel" file="model.uml" metamodel="//@metamodels.0"/>
+  <models name="MVCModel" file="genFromUML/MVCGenerated.xmi" metamodel="//@metamodels.1"/>
+  <inputModels model="//@models.0" alias="UML" transformation="//@transformations.0"/>
+  <transformations xsi:type="com.mtcflow.model:M2MTransformation" name="UML -> MVC" file="uml2mvc.etl"/>
+  <outputModels alias="MVC" model="//@models.1" transformation="//@transformations.0"/>
+</com.mtcflow.model:MTC>

@@ -1,0 +1,54 @@
+[% import "../lib/Utils.eol";  %]
+[% for(view in View.all){ %]
+<script type="text/template" id="[%=view.name.toLowerFirst() %]">
+	[%if(view.rootComponent.type='form'){%]
+	<div class="form-group">
+		<form role="form" id="<%= componentId %>-[%=aClass.name.toLowerFirst() %]Form">
+    	[%for(attr in view.rootComponent.childs){%]
+			<div class="form-group" >
+		[% if (attr.type ='Boolean') {%]
+	    		<label>
+    	  			<input id="[%=attr.name.toLowerFirst()%]" name="[%=attr.name.toLowerFirst()%]" value="true" type="checkbox" <%= [%=aClass.name.toLowerFirst() %].get('[%=attr.name.toLowerFirst()%]')?'checked':'' %>> [%=attr.name%]
+    			</label>
+		[% } else if (attr.type ='Date') {%]
+				<label for="[%=attr.name.toLowerFirst()%]">[%=attr.name%]</label>
+    			<input type="text" data-converter="date" data-date-format="dd/mm/yyyy" class="form-control" id="[%=attr.name.toLowerFirst()%]"  name="[%=attr.name.toLowerFirst()%]" placeholder="Enter value" />
+    		<%= '<scr'+'ipt>' %>
+        	$('#[%=attr.name.toLowerFirst()%]').datepicker({autoclose:true});
+        	$('#[%=attr.name.toLowerFirst()%]').datepicker('setDate',new Date(<%= [%=aClass.name.toLowerFirst() %].get('[%=attr.name.toLowerFirst()%]') %>));
+    		<%= '</scr'+'ipt>' %>
+		[% } else { %]
+				<label for="[%=attr.name.toLowerFirst()%]">[%=attr.name%]</label>
+    			<input type="text" class="form-control" id="[%=attr.name.toLowerFirst()%]" name="[%=attr.name.toLowerFirst()%]" placeholder="Enter value" value="<%= [%=aClass.name.toLowerFirst() %].get('[%=attr.name.toLowerFirst()%]') %>"/>	
+		[%}%]
+			</div>
+		
+		[%}%]
+		
+    	</form>
+    	
+	</div>
+	[%} else if(view.rootComponent.type='form'){%]
+	<div class="panel panel-default">
+    	<table class="table striped">
+	    	<thead>
+	    		<tr>
+	  			[%for (attr in view.rootComponent.childs) {%]
+			 		<th>[%=attr.name%]</th>
+				[%}%]
+	    			<th>Actions</th>
+	    		</tr>
+	    	</thead>
+	    	<tbody>
+	    		<% _.each([%=aClass.name.toLowerFirst() %]s, function([%=aClass.name.toLowerFirst() %]) { %>
+	    		<tr>
+	  			[% for (attr in aClass.getAllAttributes()->select(at | at.name<>'id' )) {%]
+					<td><%= htmlEncode([%=aClass.name.toLowerFirst() %].getDisplay('[%=attr.name.toLowerFirst()%]')) %></td>
+				[%}%]
+	    			<td>
+	    	</tbody>
+	    </table>
+    </div>
+	[%}%]
+</script>
+[%}%]

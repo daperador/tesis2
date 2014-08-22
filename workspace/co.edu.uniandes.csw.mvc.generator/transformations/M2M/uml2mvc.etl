@@ -1,0 +1,183 @@
+import "lib/Utils.eol";
+
+rule Model2MVCModel
+transform um : UML!Model to mm : MVC!MVCModel {
+	mm.name = um.name;
+	mm.version = '0.1'; 
+	mm.models.addAll(um.packagedElement.select(c | c.type.name = 'Class').equivalent('Class2Model').asSequence());
+	
+	mm.events.addAll (generateEvents());
+	
+	for (class in um.packagedElement.select(c | c.type.name = 'Class')){
+		mm.views.add(class.class2FormView());
+		mm.views.add(class.class2ListView());
+		mm.controllers.add(class.class2Controller());
+	}
+	
+	
+}
+
+
+rule Class2Model 
+	transform c : UML!Class
+	to m : MVC!Model {
+	
+	m.name = c.name;
+	m.rootEntity = new MVC!Entity;
+	m.rootEntity.name = c.name + 'Entity';
+	for(attr in c.ownedAttribute){
+	   if (attr.association.isUndefined()){
+		   m.rootEntity.attributes.add(attr.equivalent());
+		}
+	 }
+}
+
+
+
+rule Property2Attribute 
+	transform p : UML!Property
+	to a : MVC!Attribute{
+	
+	guard : p.association.isUndefined()
+	
+	a.name = p.name;
+	a.type = p.type.name;	
+	
+}
+
+
+
+operation UML!Class class2FormView () : MVC!View{
+	var v = new MVC!View;
+	v.name = self.name + 'FormView';
+	v.rootComponent = new MVC!UILayout;
+	v.rootComponent.columns = 1;
+	v.rootComponent.orientation = 'vertical';
+	v.rootComponent.name = self.name + 'Form';
+	v.rootComponent.type = 'form';
+	for (p in self.ownedAttribute){
+		 if (p.association.isUndefined()){
+		   v.rootComponent.components.add(p.property2Input());
+		}
+	}
+	return v;
+}
+
+operation UML!Class class2ListView () : MVC!View{
+	var v = new MVC!View;
+	v.name = self.name + 'ListView';
+	v.rootComponent = new MVC!UILayout;
+	v.rootComponent.columns = 1;
+	v.rootComponent.orientation = 'horizontal';
+	v.rootComponent.name = self.name + 'List';
+	v.rootComponent.type = 'table';
+	
+	var a = new MVC!UIActions;
+	a.name = 'edit' + self.name;
+	a.triggerEvent = MVC!Event.all.selectOne(e | e.name = 'Edit');
+	v.rootComponent.components.add(a);
+	
+	
+	a = new MVC!UIActions;
+	a.name = 'delete' + self.name;
+	a.triggerEvent = MVC!Event.all.selectOne(e | e.name = 'Delete');
+	v.rootComponent.components.add(a);
+	
+	return v;
+
+}
+
+operation UML!Property property2Input () : MVC!UIInput {
+	var i = new MVC!UIInput;
+	i.name = self.name;
+	switch (self.type.name){
+		case "Date": i.type = 'date';
+		case "Boolean": i.type = 'boolean';
+		default: i.type = 'text';
+	}
+	i.value = self.equivalent();
+	return i;
+}
+
+operation UML!Class class2Controller() : MVC!Controller{
+	var c = new MVC!Controller;
+	c.name = self.name + 'Controller';
+	
+	var action = new MVC!Action;
+	action.name = 'save'+self.name;
+	c.actions.add(action);
+	
+	action = new MVC!Action;
+	action.name = 'delete'+self.name;
+	c.actions.add(action);
+	
+	action = new MVC!Action;
+	action.name = 'get'+self.name + 's';
+	c.actions.add(action);
+	
+	action = new MVC!Action;
+	action.name = 'edit'+self.name;
+	c.actions.add(action);
+	
+	action = new MVC!Action;
+	action.name = 'create'+self.name;
+	c.actions.add(action);
+	
+	action = new MVC!Action;
+	action.name = 'list'+self.name;
+	c.actions.add(action);
+	
+	var cv = new MVC!ControllerView;
+	cv.view = MVC!View.all.selectOne(v | v.name = self.name + 'FormView');
+	cv.models.add (MVC!Model.all.selectOne(m | m.name = self.name));
+	c.views.add(cv);
+	
+	cv = new MVC!ControllerView;
+	cv.view = MVC!View.all.selectOne(v | v.name = self.name + 'ListView');
+	cv.models.add (MVC!Model.all.selectOne(m | m.name = self.name));
+	c.views.add(cv);
+	
+	
+	var ea = new MVC!EventAction;
+	ea.action = c.actions.selectOne(a | a.name = 'create' + self.name);
+	ea.events.add(MVC!Event.all.selectOne(e | e.name = 'Create'));
+	c.eventActions.add(ea);
+	
+	ea = new MVC!EventAction;
+	ea.action = c.actions.selectOne(a | a.name = 'save' + self.name);
+	ea.events.add(MVC!Event.all.selectOne(e | e.name = 'Save'));
+	c.eventActions.add(ea);
+	
+	ea = new MVC!EventAction;
+	ea.action = c.actions.selectOne(a | a.name = 'list' + self.name);
+	ea.events.add(MVC!Event.all.selectOne(e | e.name = 'List'));
+	c.eventActions.add(ea);
+	
+	return c;
+}
+
+function generateEvents () : Set {
+	
+	var events = new Set();
+	var event = new MVC!Event;
+	event.name = 'Save';
+	events.add(event);
+	
+	event = new MVC!Event;
+	event.name = 'Edit';
+	events.add(event);
+	
+	event = new MVC!Event;
+	event.name = 'Delete';
+	events.add(event);
+	
+	event = new MVC!Event;
+	event.name = 'Create';
+	events.add(event);
+	
+	event = new MVC!Event;
+	event.name = 'List';
+	events.add(event);
+	
+	return events;
+}

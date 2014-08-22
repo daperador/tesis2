@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mvc="http://co.edu.uniandes.csw.mvc/1.0">
+  <mvc:Entity name="User">
+    <attributes name="id" type="Long"/>
+    <attributes name="userName" type="String"/>
+    <attributes name="firstName" type="String"/>
+    <attributes name="lastName" type="String"/>
+    <attributes name="birthDate" type="Date"/>
+    <attributes name="enable" type="Boolean"/>
+    <attributes name="documentType" type="DocumentType"/>
+    <attributes name="address" type="Address"/>
+    <attributes name="sport" type="Sport"/>
+    <attributes name="docNumber" type="String"/>
+    <attributes name="role" type="Role"/>
+  </mvc:Entity>
+  <mvc:Entity name="Address">
+    <attributes name="id" type="Long"/>
+    <attributes name="street" type="String"/>
+    <attributes name="aveneu" type="String"/>
+    <attributes name="city" type="City"/>
+  </mvc:Entity>
+  <mvc:Entity name="Sport">
+    <attributes name="id" type="Long"/>
+    <attributes name="name" type="String"/>
+    <attributes name="minAge" type="Integer"/>
+    <attributes name="maxAge" type="Integer"/>
+  </mvc:Entity>
+  <mvc:Entity name="DocumentType">
+    <attributes name="id" type="Long"/>
+    <attributes name="name" type="String"/>
+    <attributes name="length" type="Integer"/>
+  </mvc:Entity>
+  <mvc:Entity name="Role">
+    <attributes name="id" type="Long"/>
+    <attributes name="name" type="String"/>
+    <attributes name="description" type="String"/>
+  </mvc:Entity>
+  <mvc:Entity name="City">
+    <attributes name="id" type="Long"/>
+    <attributes name="name" type="String"/>
+    <attributes name="population" type="Integer"/>
+    <attributes name="country" type="Country"/>
+  </mvc:Entity>
+  <mvc:Entity name="Country">
+    <attributes name="id" type="Long"/>
+    <attributes name="name" type="String"/>
+    <attributes name="population" type="Integer"/>
+  </mvc:Entity>
+</xmi:XMI>

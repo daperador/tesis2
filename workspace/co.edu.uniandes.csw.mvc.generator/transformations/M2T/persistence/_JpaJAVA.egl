@@ -1,0 +1,47 @@
+[% import "../lib/Utils.eol";  %]
+
+package [%=package%].persistence;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+import [%=package%].logic.dto.[%=mod.name%]DTO;
+import [%=package%].persistence.api._I[%=mod.name%]Persistence;
+import [%=package%].persistence.converter.[%=mod.name%]Converter;
+import [%=package%].persistence.entity.[%=mod.rootEntity.name%];
+
+public abstract class _[%=mod.name%]Persistence implements _I[%=mod.name%]Persistence {
+
+	@PersistenceContext(unitName="[%=app.name%]PU")
+	protected EntityManager entityManager;
+	
+	public [%=mod.name%]DTO create[%=mod.name.toUpperFirst()%]([%=mod.name%]DTO [%=mod.name.toLowerFirst()%]) {
+		[%=mod.rootEntity.name%] entity=[%=mod.name%]Converter.persistenceDTO2Entity([%=mod.name.toLowerFirst()%]);
+		entityManager.persist(entity);
+		return [%=mod.name%]Converter.entity2PersistenceDTO(entity);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<[%=mod.name%]DTO> get[%=mod.name%]s() {
+		Query q = entityManager.createQuery("select u from [%=mod.rootEntity.name%] u");
+		return q.getResultList();
+	}
+
+	public [%=mod.name%]DTO get[%=mod.name%](Long id) {
+		return [%=mod.name%]Converter.entity2PersistenceDTO(entityManager.find([%=mod.rootEntity.name%].class, id));
+	}
+
+	public void delete[%=mod.name%](Long id) {
+		[%=mod.rootEntity.name%] entity=entityManager.find([%=mod.rootEntity.name%].class, id);
+		entityManager.remove(entity);
+	}
+
+	public void update[%=mod.name%]([%=mod.name%]DTO detail) {
+		[%=mod.rootEntity.name%] entity=entityManager.merge([%=mod.name%]Converter.persistenceDTO2Entity(detail));
+		[%=mod.name%]Converter.entity2PersistenceDTO(entity);
+	}
+
+}

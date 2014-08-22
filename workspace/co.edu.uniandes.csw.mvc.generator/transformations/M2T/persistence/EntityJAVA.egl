@@ -1,0 +1,10 @@
+[% import "../lib/Utils.eol";  %]
+
+package [%=package%].persistence.entity;
+
+import javax.persistence.Entity;
+
+@Entity
+public class [%=mod.rootEntity.name%] extends _[%=mod.rootEntity.name%] {
+ 	
+}

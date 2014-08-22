@@ -1,0 +1,8 @@
+[% import "../lib/Utils.eol";  %]
+
+[%
+for (e in Entity.all) { 
+	genFile('_Model','src/model/_'+e.name.toLowerFirst()+'Model.js',e);
+	genFile('Model','src/model/'+e.name.toLowerFirst()+'Model.js',e);
+}
+%]

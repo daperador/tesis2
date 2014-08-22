@@ -1,0 +1,14 @@
+[% import "../lib/Utils.eol";  %]
+define(['../model/_[%=aClass.name.toLowerFirst()%]Model'], function() {
+    App.Model.[%=aClass.name.toUpperFirst()%]Model = App.Model._[%=aClass.name.toUpperFirst()%]Model.extend({
+        
+    });
+
+    App.Model.[%=aClass.name.toUpperFirst() %]List = Backbone.Collection.extend({
+        model: App.Model.[%=aClass.name.toUpperFirst() %]Model,
+        initialize: function() {
+        }
+    });
+    return App.Model.[%=aClass.name.toUpperFirst() %]Model;
+});
+

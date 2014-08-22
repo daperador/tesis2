@@ -1,0 +1,36 @@
+[% import "../lib/Utils.eol";  %]
+
+package [%=package%].persistence.entity;
+
+import java.util.Date;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
+public abstract class _[%=mod.rootEntity.name%] {
+
+ 	[% for (attr in mod.rootEntity.attributes) { %]
+	[% if (attr.name='id') {%]
+	@Id
+	@GeneratedValue(generator = "[%=mod.rootEntity.name%]")
+	[%}%]
+	[%if (attr.type='Date') {%]
+	@Temporal(TemporalType.DATE)
+	[%}%]
+	private [%=attr.type%] [%=attr.name.toLowerFirst()%];
+	[%}%]
+
+ 	[% for (attr in mod.rootEntity.attributes) { %]
+	public [%=attr.type%] get[%=attr.name.toUpperFirst()%](){
+		return [%=attr.name.toLowerFirst()%];
+	}
+	
+	public void set[%=attr.name.toUpperFirst()%]([%=attr.type%] [%=attr.name.toLowerFirst()%]){
+		this.[%=attr.name.toLowerFirst()%] = [%=attr.name.toLowerFirst()%];
+	}
+	[%} %]
+}

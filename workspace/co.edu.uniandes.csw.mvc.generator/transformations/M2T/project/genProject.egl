@@ -1,0 +1,19 @@
+[%
+for (app in MVCModel.all){
+	var t : Template;
+	t := TemplateFactory.load('genPom.egl');
+ 	t.populate('app',app);
+ 	t.generate(app.name +'/pom.xml');
+ 	
+ 	t := TemplateFactory.load('genWebXml.egl');
+ 	t.populate('app',app);
+ 	t.generate(app.name + '/src/main/webapp/WEB-INF/web.xml');
+ 	
+ 	t := TemplateFactory.load('BeansXML.egl');
+ 	t.generate(app.name + '/src/main/webapp/WEB-INF/beans.xml');
+ 	
+ 	t := TemplateFactory.load('PersistenceXML.egl');
+ 	t.populate('app',app);
+ 	t.generate(app.name +'/src/main/resources/META-INF/Persistence.xml');
+}
+%]

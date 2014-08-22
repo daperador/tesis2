@@ -1,0 +1,35 @@
+[% import "../lib/Utils.eol";  %]
+
+package [%=package%].logic.ejb;
+import java.util.List;
+import javax.inject.Inject;
+
+import [%=package%].logic.dto.[%=mod.name%]DTO;
+import [%=package%].logic.api._I[%=mod.name%]LogicService;
+import [%=package%].persistence.api.I[%=mod.name%]Persistence;
+
+public abstract class _[%=mod.name%]LogicService implements _I[%=mod.name%]LogicService {
+
+	@Inject
+	protected I[%=mod.name%]Persistence persistance;
+
+	public [%=mod.name%]DTO create[%=mod.name%]([%=mod.name%]DTO [%=mod.name.toLowerFirst()%]){
+		return persistance.create[%=mod.name%]( [%=mod.name.toLowerFirst()%]); 
+    }
+
+	public List<[%=mod.name%]DTO> get[%=mod.name%]s(){
+		return persistance.get[%=mod.name%]s(); 
+	}
+
+	public [%=mod.name%]DTO get[%=mod.name%](Long id){
+		return persistance.get[%=mod.name%](id); 
+	}
+
+	public void delete[%=mod.name%](Long id){
+	    persistance.delete[%=mod.name%](id); 
+	}
+
+	public void update[%=mod.name%]([%=mod.name%]DTO [%=mod.name.toLowerFirst()%]){
+	    persistance.update[%=mod.name%]([%=mod.name.toLowerFirst()%]); 
+	}	
+}

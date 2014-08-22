@@ -1,0 +1,64 @@
+[% import "../lib/Utils.eol";  %]
+
+[%
+for(app in MVCModel.all){
+	for (mod in app.models){
+		
+		var package := 'co.edu.uniandes.mvc.generator.' + app.name.toLowerCase();
+		var path := app.name.toLowerCase() +'/src/main/java/co/edu/uniandes/mvc/generator/' + app.name.toLowerCase() + '/persistence';
+		var parentPath := app.name.toLowerCase() +'/src/main/java/co/edu/uniandes/mvc/generator/' + app.name.toLowerCase();
+		
+		var t : Template;
+		t := TemplateFactory.load('_EntityJAVA.egl');
+	 	t.populate('mod',mod);
+	 	t.populate('package',package);
+	 	t.generate(path +'/entity/_'+ mod.rootEntity.name + '.java');
+	 	
+	 	t := TemplateFactory.load('EntityJAVA.egl');
+	 	t.populate('mod',mod);
+	 	t.populate('package',package);
+	 	t.generate(path +'/entity/'+ mod.rootEntity.name + '.java');
+	 	
+	 	t := TemplateFactory.load('_JPAJava.egl');
+	 	t.populate('mod',mod);
+	 	t.populate('package',package);
+	 	t.populate('app',app);
+	 	t.generate(path +'/_'+ mod.name + 'Persistence.java');
+	 	
+	 	t := TemplateFactory.load('JPAJava.egl');
+	 	t.populate('mod',mod);
+	 	t.populate('package',package);
+	 	t.generate(path +'/'+ mod.name + 'Persistence.java');
+	 	
+		t := TemplateFactory.load('_ConverterJAVA.egl');
+	 	t.populate('mod',mod);
+	 	t.populate('package',package);
+	 	t.generate(path +'/converter/_'+ mod.name + 'Converter.java');
+	 	
+	 	t := TemplateFactory.load('ConverterJAVA.egl');
+	 	t.populate('mod',mod);
+	 	t.populate('package',package);
+	 	t.generate(path +'/converter/'+ mod.name + 'Converter.java');
+	 	
+	 	t := TemplateFactory.load('_DtoJava.egl');
+	 	t.populate('mod',mod);
+	 	t.populate('package',package);
+	 	t.generate(parentPath +'/logic/dto/_'+ mod.name + 'DTO.java');
+	 	
+	 	t := TemplateFactory.load('DtoJava.egl');
+	 	t.populate('mod',mod);
+	 	t.populate('package',package);
+	 	t.generate(parentPath +'/logic/dto/'+ mod.name + 'DTO.java');
+	 	
+	 	t := TemplateFactory.load('_InterfaceJAVA.egl');
+	 	t.populate('mod',mod);
+	 	t.populate('package',package);
+	 	t.generate(path +'/api/_I'+ mod.name + 'Persistence.java');
+	 	
+	 	t := TemplateFactory.load('InterfaceJAVA.egl');
+	 	t.populate('mod',mod);
+	 	t.populate('package',package);
+	 	t.generate(path +'/api/I'+ mod.name + 'Persistence.java');
+	}
+}
+%]

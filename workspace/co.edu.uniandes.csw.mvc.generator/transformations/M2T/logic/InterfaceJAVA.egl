@@ -1,0 +1,7 @@
+[% import "../lib/Utils.eol";  %]
+
+package [%=package%].logic.api;
+
+public interface I[%=mod.name%]LogicService extends _I[%=mod.name%]LogicService {
+
+}

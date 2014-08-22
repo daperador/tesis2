@@ -1,0 +1,7 @@
+{
+    "displayName": "[%=mod.name%]",
+    "view": {
+        "url": "views/[%=mod.name.toLowerCase()%]View.html",
+        "name": "[%=mod.name%]"
+    }
+}

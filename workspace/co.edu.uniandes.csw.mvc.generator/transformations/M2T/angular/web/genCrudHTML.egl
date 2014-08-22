@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Crud Example</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/datepicker.css">
+        
+        <script type="text/javascript" src="js/vendor/angular.js"></script>
+        <script type="text/javascript" src="js/vendor/angular-resource.js"></script>
+        <script type="text/javascript" src="js/vendor/jquery-1.9.1.js"></script>
+        <script data-main="src/main[%=mod.name%]" src="js/vendor/require.js"></script>
+    </head>
+    <body>
+        
+        <div class="container" ng-controller="crudController">
+            <div ng-repeat="view in model.views" ng-include="view.url"></div>
+        </div>
+    </body>
+</html>

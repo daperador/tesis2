@@ -1,0 +1,16 @@
+[% import "../lib/Utils.eol";  %]
+
+package [%=package%].persistence;
+
+import javax.ejb.Stateless;
+import javax.enterprise.inject.Default;
+
+import [%=package%].persistence.api.I[%=mod.name%]Persistence;
+import javax.ejb.LocalBean;
+
+@Default
+@Stateless 
+@LocalBean
+public class [%=mod.name%]Persistence extends _[%=mod.name%]Persistence  implements I[%=mod.name%]Persistence {
+
+}

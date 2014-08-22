@@ -1,0 +1,8 @@
+[% import "../lib/Utils.eol";  %]
+
+[%
+	for(e in MVCModel.all){
+		//genFile('_View','view/_'+e.name.toLowerFirst()+'Templates',e);
+		genFile('View','src/view/Templates.html',e);
+	}
+%]

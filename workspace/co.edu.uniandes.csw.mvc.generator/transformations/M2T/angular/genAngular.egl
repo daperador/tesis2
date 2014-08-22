@@ -1,0 +1,42 @@
+[%for (app in MVCModel.all) {
+  	for(_model in app.models){
+		var t : Template;
+		t := TemplateFactory.load('web/genIndex.egl');
+ 		t.populate('app', app);
+ 		t.populate('_model', _model);
+ 	 	t.generate(app.name + '/src/main/webapp/index.html');
+ 	 	
+ 	 	
+ 	 	t := TemplateFactory.load('web/genViews.egl');
+ 	 	--t.populate('_model', _model);
+ 	 	t.populate('formView', app.views.selectOne(v | v.name = _model.name + 'FormView'));
+ 	 	t.populate('listView', app.views.selectOne(v | v.name = _model.name + 'ListView'));
+ 	 	t.generate(app.name + '/src/main/webapp/views/'+_model.name.toLowerCase()+'View.html');
+ 	 	
+ 	 	t := TemplateFactory.load('web/src/genComponents.egl');
+ 	 	t.populate('mod', _model);
+ 	 	t.generate(app.name + '/src/main/webapp/src/components/' + _model.name.toLowerCase() + 'Component.js');
+ 	 	
+ 	 	t := TemplateFactory.load('web/src/genConfig.egl');
+ 	 	t.populate('mod', _model);
+ 	 	t.generate(app.name +'/src/main/webapp/src/components/config/'+_model.name.toLowerCase() +'Config.json');
+ 	 	
+ 	 	t := TemplateFactory.load('web/src/genControllers.egl');
+ 	 	t.populate('controller', app.controllers.selectOne(c | c.name = _model.name + 'Controller'));
+ 	 	t.generate(app.name +'/src/main/webapp/src/controllers/' + _model.name.toLowerCase() + 'Controller.js');
+ 	 	
+ 	 	t := TemplateFactory.load('web/src/genModels.egl');
+ 	 	t.populate('mod', _model);
+ 	 	t.populate('_model', _model);
+ 	 	t.populate('app', app);
+ 	 	t.generate(app.name + '/src/main/webapp/src/models/' + _model.name.toLowerCase() + 'Model.js');
+ 	 	
+ 	 	t := TemplateFactory.load('web/src/genMain.egl');
+ 	 	t.populate('mod', _model);
+ 	 	t.generate(app.name +'/src/main/webapp/src/main'+_model.name+'.js');
+ 	 	
+ 	 	t := TemplateFactory.load('web/genCrudHTML.egl');
+ 	 	t.populate('mod', _model);
+ 	 	t.generate(app.name +'/src/main/webapp/'+_model.name.toLowerCase()+'.html');
+	}
+}%]

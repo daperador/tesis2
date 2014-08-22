@@ -1,0 +1,25 @@
+[% import "../lib/Utils.eol";  %]
+
+package [%=package%].logic.dto;
+
+import java.util.Date;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement 
+public abstract class _[%=mod.name%]DTO {
+
+[% for(property in mod.rootEntity.attributes) {%]
+	private [%=property.type%] [%=property.name%];
+[% } %]
+
+[%for (property in mod.rootEntity.attributes) {%]
+	public [%=property.type%] get[%=property.name.toUpperFirst()%]() {
+		return [%=property.name%];
+	}
+ 
+	public void set[%=property.name.toUpperFirst()%]([%=property.type%] [%=property.name.toLowerCase()%]) {
+		this.[%=property.name%] = [%=property.name.toLowerCase()%];
+	}
+[% } %]	
+}

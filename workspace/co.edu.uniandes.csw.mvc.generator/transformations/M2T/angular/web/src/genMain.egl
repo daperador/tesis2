@@ -1,0 +1,17 @@
+componentName = '[%=mod.name.toLowerCase()%]';
+
+modules = [
+        'components/crudComponent',
+        'components/[%=mod.name.toLowerCase()%]Component',
+        'controllers/crudController',
+        'controllers/toolbarController',
+        'controllers/messagesController',
+        'controllers/[%=mod.name.toLowerCase()%]Controller'
+        ];
+
+require(modules, 
+    function() {
+        'use strict';
+        angular.bootstrap(document, ['crud','[%=mod.name.toLowerCase()%]']);
+    }
+);

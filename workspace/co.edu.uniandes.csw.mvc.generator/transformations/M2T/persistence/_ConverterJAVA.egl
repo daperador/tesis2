@@ -1,0 +1,45 @@
+[% import "../lib/Utils.eol";  %]
+
+package [%=package%].persistence.converter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import [%=package%].logic.dto.[%=mod.name%]DTO;
+import [%=package%].persistence.entity.[%=mod.rootEntity.name%];
+
+public abstract class _[%=mod.name%]Converter {
+
+
+	public static [%=mod.name%]DTO entity2PersistenceDTO([%=mod.rootEntity.name%] entity){
+		[%=mod.name%]DTO dto = new [%=mod.name%]DTO();
+		[% for (attr in mod.rootEntity.attributes) {%]
+			dto.set[%=attr.name.toUpperFirst()%](entity.get[%=attr.name.toUpperFirst()%]());
+		[% } %]
+		return dto;
+	}
+	
+	public static [%=mod.rootEntity.name%] persistenceDTO2Entity([%=mod.name%]DTO dto){
+		[%=mod.rootEntity.name%] entity=new [%=mod.rootEntity.name%]();
+		[% for (attr in mod.rootEntity.attributes) { %]
+		entity.set[%=attr.name.toUpperFirst()%](dto.get[%=attr.name.toUpperFirst()%]());
+		[% }%]
+		return entity;
+	}
+	
+	public static List<[%=mod.name%]DTO> entity2PersistenceDTOList(List<[%=mod.rootEntity.name%]> entities){
+		List<[%=mod.name%]DTO> dtos=new ArrayList<[%=mod.name%]DTO>();
+		for([%=mod.rootEntity.name%] entity:entities){
+			dtos.add(entity2PersistenceDTO(entity));
+		}
+		return dtos;
+	}
+	
+	public static List<[%=mod.rootEntity.name%]> persistenceDTO2EntityList(List<[%=mod.name%]DTO> dtos){
+		List<[%=mod.rootEntity.name%]> entities=new ArrayList<[%=mod.rootEntity.name%]>();
+		for([%=mod.name%]DTO dto:dtos){
+			entities.add(persistenceDTO2Entity(dto));
+		}
+		return entities;
+	}
+}

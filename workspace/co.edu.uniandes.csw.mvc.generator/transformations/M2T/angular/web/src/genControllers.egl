@@ -1,0 +1,87 @@
+[%
+	var mod = controller.views.get(0).models.get(0);
+%]
+define(['components/[%=mod.name.toLowerCase()%]Component', 'models/[%=mod.name.toLowerCase()%]Model'], function([%=mod.name.toLowerCase()%]Component) {
+    [%=mod.name.toLowerCase()%]Component.controller('[%=mod.name.toLowerCase()%]Controller', ['$scope', '$rootScope', '[%=mod.name%]', function($scope, $rootScope, [%=mod.name%]) {
+
+            $scope.form[%=mod.name%] = new [%=mod.name%]();
+            $scope.showForm = false;
+[%
+	for (action in controller.actions){
+		if (action.name = 'get' + mod.name + 's'){
+%]
+			$scope.[%=action.name%] = function() {
+                $scope.[%=mod.name.toLowerCase()%]s = [%=mod.name%].query();
+                console.log($scope.[%=mod.name.toLowerCase()%]s);
+            };
+[%		} else if (action.name = 'delete' + mod.name) { %]
+		   $scope.[%=action.name%] = function([%=mod.name.toLowerCase()%]) {
+                [%=mod.name.toLowerCase()%].$delete(function (){$scope.get[%=mod.name%]s();});
+           }; 
+[%		} else if (action.name = 'edit' + mod.name){%] 
+			 $scope.[%=action.name%] = function([%=mod.name.toLowerCase()%]) {
+                $rootScope.$emit('pre-[%=mod.name.toLowerCase()%]-edit');   
+                $scope.form[%=mod.name%] = [%=mod.name.toLowerCase()%];
+                $scope.showForm = true;
+            };  
+[%		} else if (action.name = 'save' + mod.name) {%]      
+			$scope.save = function(callback) {
+                try{
+                    console.log($scope.form[%=mod.name%]);
+                    if(!$scope.form[%=mod.name%].id)
+                        $scope.form[%=mod.name%].$save(function (){callback.success($scope.form[%=mod.name%]);});
+                    else
+                        $scope.form[%=mod.name%].$update(function (){callback.success($scope.form[%=mod.name%]);});
+                    
+                    
+                }catch (error){
+                    callback.error(error);
+                }
+            }; 
+            
+            $scope.[%=action.name%] = function(params) {
+                $rootScope.$emit('pre-[%=mod.name.toLowerCase()%]-save');
+                $scope.save({
+                    success: function(model) {
+                        $rootScope.$emit('post-[%=mod.name.toLowerCase()%]-save');
+                    },
+                    error: function(error) {
+                        $rootScope.$emit('error', {event: '[%=mod.name.toLowerCase()%]-save', error: error});
+                    }
+                });
+
+            };
+[%		} else if (action.name = 'create' + mod.name){%]
+			$scope.[%=action.name%] = function(params) {
+                $rootScope.$emit('pre-[%=mod.name.toLowerCase()%]-create');
+                $scope.form[%=mod.name%] = new [%=mod.name%]();
+                $scope.showForm = true;
+                $rootScope.$emit('post-[%=mod.name.toLowerCase()%]-create');
+            };
+[%		} else if (action.name = 'list' + mod.name){%]
+			$scope.[%=action.name%] = function(params) {
+                $rootScope.$emit('pre-[%=mod.name.toLowerCase()%]-list');
+                $scope.get[%=mod.name%]s();
+                $scope.showForm = false;
+            };
+[%		} else {%]
+			 $scope.[%=action.name%] = function([%=mod.name.toLowerCase()%]) {
+                //TBD;
+           }; 
+[%		}%]                              
+[%	}%]
+
+[% 
+	for (ea in controller.eventActions){
+   		for (event in ea.events){
+%]
+			$rootScope.$on('[%=mod.name.toLowerCase()%]-[%=event.name.toLowerCase()%]', function(event, params) {
+                $scope.[%=ea.action.name%](params);
+            });	
+[%
+	}
+	}%]
+            
+            $scope.list[%=mod.name%]();
+        }]);
+});

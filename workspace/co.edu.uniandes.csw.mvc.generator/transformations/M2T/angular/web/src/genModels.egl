@@ -1,0 +1,16 @@
+define(['components/[%=mod.name.toLowerCase()%]Component'], function([%=mod.name.toLowerCase()%]Component) {
+    [%=mod.name.toLowerCase()%]Component.factory('[%=mod.name%]', ['$resource', function($resource) {
+
+            var [%=_model.name%] = $resource(
+                    '/[%=app.name.toLowerCase()%]/webresources/[%=_model.name%]/:id',
+                    {id: '@id'},
+                    {update: {method: 'PUT'}}
+            );
+            [%for (attr in _model.rootEntity.attributes){%]
+            [%=_model.name%].[%=attr.name%] = '';
+            [%}%]
+
+            return [%=_model.name%];
+
+        }]);
+});

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Crud Example</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/datepicker.css">
+        
+       
+    </head>
+    <body>
+        <div class="container">
+        	
+        	[%for (mod in app.models){%]
+            <li><a href="./[%=mod.name.toLowerCase()%].html">[%=mod.name%]</a></li>
+            [%}%]
+        </div>
+       
+    </body>
+</html>

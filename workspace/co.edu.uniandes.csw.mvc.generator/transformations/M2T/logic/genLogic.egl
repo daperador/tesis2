@@ -1,0 +1,35 @@
+[% import "../lib/Utils.eol";  %]
+
+[%
+for(app in MVCModel.all){
+	for (mod in app.models){
+		
+		var package := 'co.edu.uniandes.mvc.generator.' + app.name.toLowerCase();
+		var path := app.name.toLowerCase() +'/src/main/java/co/edu/uniandes/mvc/generator/' + app.name.toLowerCase() + '/logic';
+		var parentPath := app.name.toLowerCase() +'/src/main/java/co/edu/uniandes/mvc/generator/' + app.name.toLowerCase();
+		
+		var t : Template;
+		t := TemplateFactory.load('_InterfaceJAVA.egl');
+	 	t.populate('mod',mod);
+	 	t.populate('package',package);
+	 	t.generate(path +'/api/_I'+ mod.name + 'LogicService.java');
+	 	
+	 	t := TemplateFactory.load('InterfaceJAVA.egl');
+	 	t.populate('mod',mod);
+	 	t.populate('package',package);
+	 	t.generate(path +'/api/I'+ mod.name + 'LogicService.java');
+	 	
+	 	t := TemplateFactory.load('_EjbJAVA.egl');
+	 	t.populate('mod',mod);
+	 	t.populate('package',package);
+	 	t.generate(path +'/ejb/_'+ mod.name + 'LogicService.java');
+	 	
+	 	t := TemplateFactory.load('EjbJAVA.egl');
+	 	t.populate('mod',mod);
+	 	t.populate('package',package);
+	 	t.generate(path +'/ejb/'+ mod.name + 'LogicService.java');
+	 	
+	 	
+	}
+}
+%]

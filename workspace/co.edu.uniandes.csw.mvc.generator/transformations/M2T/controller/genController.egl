@@ -1,0 +1,8 @@
+[% import "../lib/Utils.eol";  %]
+
+[%
+	for(e in Controller.all){
+		genFile('_Controller','src/controller/_'+e.name.toLowerFirst()+'Controller.js',e);
+		genFile('Controller','src/controller/'+e.name.toLowerFirst()+'Controller.js',e);
+	}
+%]

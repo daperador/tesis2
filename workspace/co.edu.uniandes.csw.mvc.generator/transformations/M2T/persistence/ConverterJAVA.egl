@@ -1,0 +1,10 @@
+[% import "../lib/Utils.eol";  %]
+
+package [%=package%].persistence.converter;
+
+import [%=package%].logic.dto.[%=mod.name%]DTO;
+import [%=package%].persistence.entity.[%=mod.rootEntity.name%];
+
+public class [%=mod.name%]Converter extends _[%=mod.name%]Converter {
+
+}

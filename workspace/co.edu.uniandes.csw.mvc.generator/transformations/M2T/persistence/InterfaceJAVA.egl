@@ -1,0 +1,7 @@
+[% import "../lib/Utils.eol";  %]
+
+package [%=package%].persistence.api;
+
+public interface I[%=mod.name%]Persistence extends _I[%=mod.name%]Persistence {
+
+}

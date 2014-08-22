@@ -1,0 +1,51 @@
+[% import "../lib/Utils.eol";  %]
+define([''], function([%=aClass.name.toLowerFirst() %]Model) {
+    App.Controller._[%=aClass.name.toUpperFirst() %] = Backbone.View.extend({
+        initialize: function(options) {
+            this.modelClass = options.modelClass;
+            this.listModelClass = options.listModelClass;
+            
+            [%for(template in aClass.views){%]
+            this.[%=template.view.name.toLowerFirst()%] = _.template($('#[%=template.view.name.toLowerFirst() %]').html());
+            [%}%]
+            
+            if (!options || !options.componentId) {
+                this.componentId = _.random(0, 100) + "";
+            }else{
+				this.componentId = options.componentId;
+		    }
+            var self = this;
+            
+            [%for(action in aClass.actions){%]
+            Backbone.on(this.componentId + '-' + '[%=aClass.name.toLowerFirst() %]-[%=action.name%]', function(params) {
+                self.[%=action.name%](params);
+            });
+            [%}%]
+            if(self.postInit){
+            	self.postInit();
+            }
+        },
+        
+        [%for(action in aClass.actions){%]
+        [%=action.name%]: function() {
+            //impl
+        },
+        [%}%]
+        
+        [%for(template in aClass.views){%]
+        _render[%=template.view.name.toUpperFirst()%]: function() {
+            var self = this;
+            this.$el.slideUp("fast", function() {
+                [%if(template.view.type='list'){%]
+                self.$el.html(self.[%=template.view.name.toLowerFirst()%]({[%=aClass.name.toLowerFirst() %]s: self.[%=aClass.name.toLowerFirst() %]ModelList.models, componentId: self.componentId, showEdit : self.showEdit , showDelete : self.showDelete}));
+                [%} else if(template.view.type='list'){%]
+                self.$el.html(self.editTemplate({[%=aClass.name.toLowerFirst() %]: self.current[%=aClass.name.toUpperFirst() %]Model, componentId: self.componentId , showEdit : self.showEdit , showDelete : self.showDelete}));
+                
+                [%}%]
+                self.$el.slideDown("fast");
+            });
+        },
+        [%}%]
+    });
+    return App.Controller._[%=aClass.name.toUpperFirst() %]Controller;
+});

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_otsxIGJwEeOObuZsZSEbqQ" name="model">
+  <packagedElement xmi:type="uml:Package" xmi:id="_unX6QGJwEeOObuZsZSEbqQ" name="MemberSubsystem">
+    <packagedElement xmi:type="uml:Actor" xmi:id="_wlZGIGJwEeOObuZsZSEbqQ" name="User"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_3jVvsGJwEeOObuZsZSEbqQ" name="Create"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_4evA8GJwEeOObuZsZSEbqQ" name="Update"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_5-NPoGJwEeOObuZsZSEbqQ" name="Delete"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_8aRpcGJwEeOObuZsZSEbqQ" name="List"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="__QKRcGJwEeOObuZsZSEbqQ" name="A_user_create" memberEnd="__QKRcWJwEeOObuZsZSEbqQ __QKRdGJwEeOObuZsZSEbqQ">
+      <ownedEnd xmi:type="uml:Property" xmi:id="__QKRcWJwEeOObuZsZSEbqQ" name="user" type="_wlZGIGJwEeOObuZsZSEbqQ" association="__QKRcGJwEeOObuZsZSEbqQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__QKRcmJwEeOObuZsZSEbqQ" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__QKRc2JwEeOObuZsZSEbqQ" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:type="uml:Property" xmi:id="__QKRdGJwEeOObuZsZSEbqQ" name="create" type="_3jVvsGJwEeOObuZsZSEbqQ" association="__QKRcGJwEeOObuZsZSEbqQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__QKRdWJwEeOObuZsZSEbqQ" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__QKRdmJwEeOObuZsZSEbqQ" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_Q28h8GJxEeOObuZsZSEbqQ" name="A_user_update" memberEnd="_Q28h8WJxEeOObuZsZSEbqQ _Q28h9GJxEeOObuZsZSEbqQ">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_Q28h8WJxEeOObuZsZSEbqQ" name="user" type="_wlZGIGJwEeOObuZsZSEbqQ" association="_Q28h8GJxEeOObuZsZSEbqQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Q28h8mJxEeOObuZsZSEbqQ" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Q28h82JxEeOObuZsZSEbqQ" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_Q28h9GJxEeOObuZsZSEbqQ" name="update" type="_4evA8GJwEeOObuZsZSEbqQ" association="_Q28h8GJxEeOObuZsZSEbqQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Q28h9WJxEeOObuZsZSEbqQ" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Q28h9mJxEeOObuZsZSEbqQ" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_RfiL8GJxEeOObuZsZSEbqQ" name="A_user_delete" memberEnd="_RfiL8WJxEeOObuZsZSEbqQ _RfiL9GJxEeOObuZsZSEbqQ">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_RfiL8WJxEeOObuZsZSEbqQ" name="user" type="_wlZGIGJwEeOObuZsZSEbqQ" association="_RfiL8GJxEeOObuZsZSEbqQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RfiL8mJxEeOObuZsZSEbqQ" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_RfiL82JxEeOObuZsZSEbqQ" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_RfiL9GJxEeOObuZsZSEbqQ" name="delete" type="_5-NPoGJwEeOObuZsZSEbqQ" association="_RfiL8GJxEeOObuZsZSEbqQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RfiL9WJxEeOObuZsZSEbqQ" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_RfiL9mJxEeOObuZsZSEbqQ" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_SLc2wGJxEeOObuZsZSEbqQ" name="A_user_list" memberEnd="_SLc2wWJxEeOObuZsZSEbqQ _SLc2xGJxEeOObuZsZSEbqQ">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_SLc2wWJxEeOObuZsZSEbqQ" name="user" type="_wlZGIGJwEeOObuZsZSEbqQ" association="_SLc2wGJxEeOObuZsZSEbqQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_SLc2wmJxEeOObuZsZSEbqQ" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_SLc2w2JxEeOObuZsZSEbqQ" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_SLc2xGJxEeOObuZsZSEbqQ" name="list" type="_8aRpcGJwEeOObuZsZSEbqQ" association="_SLc2wGJxEeOObuZsZSEbqQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_SLc2xWJxEeOObuZsZSEbqQ" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_SLc2xmJxEeOObuZsZSEbqQ" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>

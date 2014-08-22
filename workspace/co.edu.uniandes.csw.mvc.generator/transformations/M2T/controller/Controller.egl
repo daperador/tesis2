@@ -1,0 +1,7 @@
+[% import "../lib/Utils.eol";  %]
+define(['controller/_[%=aClass.name.toLowerFirst() %]'], function() {
+    App.Controller.[%=aClass.name.toUpperFirst() %] = App.Controller._[%=aClass.name.toUpperFirst() %].extend({
+
+    });
+    return App.Controller.[%=aClass.name.toUpperFirst() %]Controller;
+}); 

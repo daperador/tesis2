@@ -1,0 +1,7 @@
+[% import "../lib/Utils.eol";  %]
+
+package [%=package%].logic.dto;
+
+public class [%=mod.name%]DTO extends _[%=mod.name%]DTO {
+
+}

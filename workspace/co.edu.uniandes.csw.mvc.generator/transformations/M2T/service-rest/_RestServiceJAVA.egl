@@ -1,0 +1,51 @@
+[% import "../lib/Utils.eol";  %]
+package [%=package%].service;
+
+import java.util.List;
+
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.inject.Inject;
+
+import [%=package%].logic.api.I[%=mod.name%]LogicService;
+import [%=package%].logic.dto.[%=mod.name%]DTO;
+
+
+public abstract class _[%=mod.name%]Service {
+
+	@Inject
+	protected I[%=mod.name%]LogicService [%=mod.name.toLowerFirst()%]LogicService;
+	
+	@POST
+	public [%=mod.name%]DTO create[%=mod.name%]([%=mod.name%]DTO [%=mod.name.toLowerFirst() %]){
+		return [%=mod.name.toLowerFirst()%]LogicService.create[%=mod.name%]([%=mod.name.toLowerFirst() %]);
+	}
+	
+	@DELETE
+	@Path("{id}")
+	public void delete[%=mod.name%](@PathParam("id") Long id){
+		[%=mod.name.toLowerFirst()%]LogicService.delete[%=mod.name%](id);
+	}
+	
+	@GET
+	public List<[%=mod.name%]DTO> get[%=mod.name%]s(){
+		return [%=mod.name.toLowerFirst()%]LogicService.get[%=mod.name%]s();
+	}
+	
+	@GET
+	@Path("{id}")
+	public [%=mod.name%]DTO get[%=mod.name%](@PathParam("id") Long id){
+		return [%=mod.name.toLowerFirst()%]LogicService.get[%=mod.name%](id);
+	}
+	
+	@PUT
+    @Path("{id}")
+	public void update[%=mod.name%](@PathParam("id") Long id, [%=mod.name%]DTO [%=mod.name.toLowerFirst() %]){
+		[%=mod.name.toLowerFirst()%]LogicService.update[%=mod.name%]([%=mod.name.toLowerFirst() %]);
+	}
+	
+}

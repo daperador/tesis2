@@ -1,0 +1,11 @@
+var annotableClass = ANNOTATIONS!EClass.all.selectOne(c | c.name = 'Annotable');
+
+for(cls in TOANNOTATE!EClass){
+  if(not cls.extendsAnnotable()){
+    cls.getESuperTypes().add(annotableClass);
+  }
+}
+
+function EClass extendsAnnotable() : Boolean{
+  return self.getEAllSuperTypes().includes(annotableClass);
+}

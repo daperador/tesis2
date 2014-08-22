@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="" modelDirectory="/co.edu.uniandes.csw.mvc.generator/src"
+    modelPluginID="co.edu.uniandes.csw.mvc.generator" modelName="Mvc" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="6.0" copyrightFields="false">
+  <foreignModel>MVC.ecore</foreignModel>
+  <genPackages prefix="Mvc" disposableProviderFactory="true" ecorePackage="MVC.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="MVC.ecore#//AssociationType"/>
+    <genClasses ecoreClass="MVC.ecore#//Model">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MVC.ecore#//Model/rootEntity"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MVC.ecore#//Model/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MVC.ecore#//Model/associations"/>
+    </genClasses>
+    <genClasses ecoreClass="MVC.ecore#//Entity">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MVC.ecore#//Entity/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MVC.ecore#//Entity/attributes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MVC.ecore#//Entity/extends"/>
+    </genClasses>
+    <genClasses ecoreClass="MVC.ecore#//Attribute">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MVC.ecore#//Attribute/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MVC.ecore#//Attribute/type"/>
+    </genClasses>
+    <genClasses ecoreClass="MVC.ecore#//Association">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MVC.ecore#//Association/source"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MVC.ecore#//Association/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MVC.ecore#//Association/containment"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MVC.ecore#//Association/lowerBound"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MVC.ecore#//Association/upperBound"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MVC.ecore#//Association/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MVC.ecore#//Association/target"/>
+    </genClasses>
+    <genClasses ecoreClass="MVC.ecore#//View">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MVC.ecore#//View/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MVC.ecore#//View/rootComponent"/>
+    </genClasses>
+    <genClasses ecoreClass="MVC.ecore#//UIComponent">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MVC.ecore#//UIComponent/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MVC.ecore#//UIComponent/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MVC.ecore#//UIComponent/childs"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MVC.ecore#//UIComponent/layout"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MVC.ecore#//UIComponent/events"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MVC.ecore#//UIComponent/id"/>
+    </genClasses>
+    <genClasses ecoreClass="MVC.ecore#//MVCModel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MVC.ecore#//MVCModel/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MVC.ecore#//MVCModel/models"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MVC.ecore#//MVCModel/views"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MVC.ecore#//MVCModel/events"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MVC.ecore#//MVCModel/version"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MVC.ecore#//MVCModel/controllers"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MVC.ecore#//MVCModel/components"/>
+    </genClasses>
+    <genClasses ecoreClass="MVC.ecore#//Controller">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MVC.ecore#//Controller/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MVC.ecore#//Controller/actions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MVC.ecore#//Controller/views"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MVC.ecore#//Controller/eventActions"/>
+    </genClasses>
+    <genClasses ecoreClass="MVC.ecore#//Event">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MVC.ecore#//Event/name"/>
+    </genClasses>
+    <genClasses ecoreClass="MVC.ecore#//Action">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MVC.ecore#//Action/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MVC.ecore#//Action/preExecutionEvent"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MVC.ecore#//Action/postExecutionEvent"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MVC.ecore#//Action/triggerEvents"/>
+    </genClasses>
+    <genClasses ecoreClass="MVC.ecore#//ControllerView">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MVC.ecore#//ControllerView/view"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MVC.ecore#//ControllerView/models"/>
+    </genClasses>
+    <genClasses ecoreClass="MVC.ecore#//Component">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MVC.ecore#//Component/controllers"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MVC.ecore#//Component/name"/>
+    </genClasses>
+    <genClasses ecoreClass="MVC.ecore#//EventAction">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MVC.ecore#//EventAction/action"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MVC.ecore#//EventAction/events"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

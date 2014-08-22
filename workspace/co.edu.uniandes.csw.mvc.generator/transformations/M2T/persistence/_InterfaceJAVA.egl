@@ -1,0 +1,17 @@
+[% import "../lib/Utils.eol";  %]
+
+package [%=package%].persistence.api;
+
+import java.util.List; 
+
+import [%=package%].logic.dto.[%=mod.name%]DTO;
+
+public interface _I[%=mod.name%]Persistence {
+
+	public [%=mod.name%]DTO create[%=mod.name%]([%=mod.name%]DTO detail);
+	public List<[%=mod.name%]DTO> get[%=mod.name%]s();
+	public [%=mod.name%]DTO get[%=mod.name%](Long id);
+	public void delete[%=mod.name%](Long id);
+	public void update[%=mod.name%]([%=mod.name%]DTO detail);
+	
+}

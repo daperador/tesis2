@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="ASCII"?>
+<mvc:MVCModel
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:mvc="http://co.edu.uniandes.csw.mvc/1.0"
+    name="UserCRUDModel">
+  <annotations/>
+  <models name="UserModel">
+    <rootEntity
+        name="User">
+      <attributes
+          name="name"
+          type="String"/>
+      <attributes
+          name="id"
+          type="Long"/>
+    </rootEntity>
+  </models>
+  <views name="ToolbarView">
+    <rootComponent
+        name="ToolbarComponent"
+        type="toolbar"
+        layout=""
+        id="">
+      <childs
+          name="btnSave"
+          type="button"
+          events="//@events.1"/>
+      <childs
+          name="btnCreate"
+          type="button"
+          events="//@events.0"/>
+    </rootComponent>
+  </views>
+  <views name="UserEditView">
+    <rootComponent
+        name="userForm"
+        type="form"
+        layout="name-group"
+        id="name">
+      <childs
+          name="name"
+          type="inputText"
+          layout="name"
+          id="name"/>
+      <childs
+          name="userName"
+          type="inputText"
+          layout=""
+          id="userName"/>
+    </rootComponent>
+  </views>
+  <views name="UserListView"
+      model="//@models.0">
+    <rootComponent
+        name="UserListComponent"
+        type="Table">
+      <childs
+          name="btnEdit"
+          type="link"
+          events="//@events.3"/>
+      <childs
+          name="btnDelete"
+          type="link"
+          events="//@events.2"/>
+    </rootComponent>
+  </views>
+  <events name="Create"/>
+  <events name="Save"/>
+  <events name="Delete"/>
+  <events name="Edit"/>
+  <controllers
+      name="UserController">
+    <actions
+        name="create"
+        triggerEvents="//@events.0"/>
+    <views view="//@views.1"
+        models="//@models.0"/>
+  </controllers>
+  <components
+      controllers="//@controllers.0"
+      name="UserComponent"/>
+</mvc:MVCModel>
