@@ -1,0 +1,16 @@
+[% import "../lib/Utils.eol";  %]
+
+[%
+	genFileEGL('css/bootstrap.css','css/bootstrap.css');
+	genFileEGL('css/bootstrap.min.css','css/bootstrap.min.css');
+	genFileEGL('css/simple-sidebar.css','css/simple-sidebar.css');
+	genFileEGL('fonts/glyphicons-halflings-regular.eot','fonts/glyphicons-halflings-regular.eot');
+	genFileEGL('fonts/glyphicons-halflings-regular.svg','fonts/glyphicons-halflings-regular.svg');
+	genFileEGL('fonts/glyphicons-halflings-regular.ttf','fonts/glyphicons-halflings-regular.ttf');
+	genFileEGL('fonts/glyphicons-halflings-regular.woff','fonts/glyphicons-halflings-regular.woff');
+	genFileEGL('js/bootstrap.js','js/bootstrap.js');
+	genFileEGL('js/bootstrap.min.js','js/bootstrap.min.js');
+	genFileEGL('js/jquery-1.9.0.js','js/jquery-1.9.0.js');
+	genFileEGL('index.html','index.html');
+	genFileEGL('prueba.json','prueba.json');
+%]

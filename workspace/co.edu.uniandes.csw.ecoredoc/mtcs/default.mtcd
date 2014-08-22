@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<viewpoint:DAnalysis xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style" xmi:id="_OsjoYGzBEeOXMKeF0gOF6g" selectedViews="_yXJz0HTpEeO7kd1RfsmAcw" version="8.1.1">
+  <models href="default.mtc#/"/>
+  <ownedViews xsi:type="viewpoint:DRepresentationContainer" xmi:id="_yXJz0HTpEeO7kd1RfsmAcw" initialized="true">
+    <ownedRepresentations xsi:type="diagram:DSemanticDiagram" xmi:id="_GwhFIHWkEeOHkLQMMBSUFQ" name="Default">
+      <ownedAnnotationEntries xmi:id="_GwhsMHWkEeOHkLQMMBSUFQ" source="GMF_DIAGRAMS">
+        <data xsi:type="notation:Diagram" xmi:id="_GwhsMXWkEeOHkLQMMBSUFQ" type="Sirius" element="_GwhFIHWkEeOHkLQMMBSUFQ" measurementUnit="Pixel">
+          <children xmi:id="_NY8WACU9EeSh_ImKAb7fmA" type="2001" element="_NYLhACU9EeSh_ImKAb7fmA">
+            <children xmi:id="_NZB1kCU9EeSh_ImKAb7fmA" type="5002">
+              <layoutConstraint xsi:type="notation:Location" xmi:id="_NZB1kSU9EeSh_ImKAb7fmA" y="5"/>
+            </children>
+            <children xmi:id="_NZFf8CU9EeSh_ImKAb7fmA" type="3003" element="_NYRAkCU9EeSh_ImKAb7fmA">
+              <styles xsi:type="notation:ShapeStyle" xmi:id="_NZFf8SU9EeSh_ImKAb7fmA" fontName="Segoe UI"/>
+              <layoutConstraint xsi:type="notation:Bounds" xmi:id="_NZFf8iU9EeSh_ImKAb7fmA"/>
+            </children>
+            <styles xsi:type="notation:ShapeStyle" xmi:id="_NY8WASU9EeSh_ImKAb7fmA" fontName="Segoe UI" fontHeight="10"/>
+            <layoutConstraint xsi:type="notation:Bounds" xmi:id="_NY8WAiU9EeSh_ImKAb7fmA" x="210" y="270" width="90" height="110"/>
+          </children>
+          <children xmi:id="_NZDqwCU9EeSh_ImKAb7fmA" type="2001" element="_NYfqECU9EeSh_ImKAb7fmA">
+            <children xmi:id="_NZER0CU9EeSh_ImKAb7fmA" type="5002">
+              <layoutConstraint xsi:type="notation:Location" xmi:id="_NZER0SU9EeSh_ImKAb7fmA" y="5"/>
+            </children>
+            <children xmi:id="_NZGHACU9EeSh_ImKAb7fmA" type="3003" element="_NYgRICU9EeSh_ImKAb7fmA">
+              <styles xsi:type="notation:ShapeStyle" xmi:id="_NZGHASU9EeSh_ImKAb7fmA" fontName="Segoe UI"/>
+              <layoutConstraint xsi:type="notation:Bounds" xmi:id="_NZGHAiU9EeSh_ImKAb7fmA"/>
+            </children>
+            <styles xsi:type="notation:ShapeStyle" xmi:id="_NZDqwSU9EeSh_ImKAb7fmA" fontName="Segoe UI" fontHeight="10"/>
+            <layoutConstraint xsi:type="notation:Bounds" xmi:id="_NZDqwiU9EeSh_ImKAb7fmA" x="210" y="85" width="90" height="110"/>
+          </children>
+          <children xmi:id="_QmIqwCU9EeSh_ImKAb7fmA" type="2001" element="_Ql298CU9EeSh_ImKAb7fmA">
+            <children xmi:id="_QmJR0CU9EeSh_ImKAb7fmA" type="5002">
+              <layoutConstraint xsi:type="notation:Location" xmi:id="_QmJR0SU9EeSh_ImKAb7fmA" y="5"/>
+            </children>
+            <children xmi:id="_QmJR0iU9EeSh_ImKAb7fmA" type="3003" element="_Ql3lACU9EeSh_ImKAb7fmA">
+              <styles xsi:type="notation:ShapeStyle" xmi:id="_QmJR0yU9EeSh_ImKAb7fmA" fontName="Segoe UI"/>
+              <layoutConstraint xsi:type="notation:Bounds" xmi:id="_QmJR1CU9EeSh_ImKAb7fmA"/>
+            </children>
+            <styles xsi:type="notation:ShapeStyle" xmi:id="_QmIqwSU9EeSh_ImKAb7fmA" fontName="Segoe UI" fontHeight="10"/>
+            <layoutConstraint xsi:type="notation:Bounds" xmi:id="_QmIqwiU9EeSh_ImKAb7fmA" x="465" y="295" width="160" height="50"/>
+          </children>
+          <children xmi:id="_aM9PgCVHEeST-c7eNwieXA" type="2001" element="_aMq7oCVHEeST-c7eNwieXA">
+            <children xmi:id="_aM_rwCVHEeST-c7eNwieXA" type="5002">
+              <layoutConstraint xsi:type="notation:Location" xmi:id="_aM_rwSVHEeST-c7eNwieXA" y="5"/>
+            </children>
+            <children xmi:id="_aNA54CVHEeST-c7eNwieXA" type="3003" element="_aMrisCVHEeST-c7eNwieXA">
+              <styles xsi:type="notation:ShapeStyle" xmi:id="_aNA54SVHEeST-c7eNwieXA" fontName="Segoe UI"/>
+              <layoutConstraint xsi:type="notation:Bounds" xmi:id="_aNA54iVHEeST-c7eNwieXA"/>
+            </children>
+            <styles xsi:type="notation:ShapeStyle" xmi:id="_aM9PgSVHEeST-c7eNwieXA" fontName="Segoe UI" fontHeight="10"/>
+            <layoutConstraint xsi:type="notation:Bounds" xmi:id="_aM9PgiVHEeST-c7eNwieXA" x="470" y="365" width="160" height="50"/>
+          </children>
+          <children xmi:id="_pT4HICVOEeST-c7eNwieXA" type="2003" element="_pTsg8CVOEeST-c7eNwieXA">
+            <children xmi:id="_pT4uMCVOEeST-c7eNwieXA" type="5007"/>
+            <children xmi:id="_pURIsCVOEeST-c7eNwieXA" type="7004">
+              <children xmi:id="_prO3MCVOEeST-c7eNwieXA" type="3010" element="_prGUUCVOEeST-c7eNwieXA">
+                <layoutConstraint xsi:type="notation:Location" xmi:id="_prO3MSVOEeST-c7eNwieXA"/>
+              </children>
+              <styles xsi:type="notation:SortingStyle" xmi:id="_pURIsSVOEeST-c7eNwieXA"/>
+              <styles xsi:type="notation:FilteringStyle" xmi:id="_pURIsiVOEeST-c7eNwieXA"/>
+            </children>
+            <styles xsi:type="notation:ShapeStyle" xmi:id="_pT4HISVOEeST-c7eNwieXA" fontName="Segoe UI" fontHeight="11"/>
+            <layoutConstraint xsi:type="notation:Bounds" xmi:id="_pT4HIiVOEeST-c7eNwieXA" x="30" y="25"/>
+          </children>
+          <styles xsi:type="notation:DiagramStyle" xmi:id="_GwhsMnWkEeOHkLQMMBSUFQ"/>
+          <edges xmi:id="_NZWlsCU9EeSh_ImKAb7fmA" type="4001" element="_NYuTkCU9EeSh_ImKAb7fmA" source="_NY8WACU9EeSh_ImKAb7fmA" target="_NZDqwCU9EeSh_ImKAb7fmA">
+            <children xmi:id="_NZYa4CU9EeSh_ImKAb7fmA" type="6001">
+              <layoutConstraint xsi:type="notation:Bounds" xmi:id="_NZYa4SU9EeSh_ImKAb7fmA" y="-10"/>
+            </children>
+            <children xmi:id="_NZZB8CU9EeSh_ImKAb7fmA" type="6002">
+              <layoutConstraint xsi:type="notation:Bounds" xmi:id="_NZZB8SU9EeSh_ImKAb7fmA" y="10"/>
+            </children>
+            <children xmi:id="_NZZpACU9EeSh_ImKAb7fmA" type="6003">
+              <layoutConstraint xsi:type="notation:Bounds" xmi:id="_NZZpASU9EeSh_ImKAb7fmA" y="10"/>
+            </children>
+            <styles xsi:type="notation:ConnectorStyle" xmi:id="_NZWlsSU9EeSh_ImKAb7fmA" routing="Rectilinear" jumpLinkStatus="Above"/>
+            <styles xsi:type="notation:FontStyle" xmi:id="_NZWlsiU9EeSh_ImKAb7fmA" fontName="Segoe UI" fontHeight="7"/>
+            <bendpoints xsi:type="notation:RelativeBendpoints" xmi:id="_NZWlsyU9EeSh_ImKAb7fmA" points="[92, 176, 92, 176]$[122, 206, 122, 206]"/>
+            <sourceAnchor xsi:type="notation:IdentityAnchor" xmi:id="_NZkBECU9EeSh_ImKAb7fmA" id="(0.5,0.5)"/>
+            <targetAnchor xsi:type="notation:IdentityAnchor" xmi:id="_NZkoICU9EeSh_ImKAb7fmA" id="(0.5,0.5)"/>
+          </edges>
+          <edges xmi:id="_g0UUICU-EeSh_ImKAb7fmA" type="4001" element="_g0Hf0CU-EeSh_ImKAb7fmA" source="_NY8WACU9EeSh_ImKAb7fmA" target="_QmIqwCU9EeSh_ImKAb7fmA">
+            <children xmi:id="_g0ViQCU-EeSh_ImKAb7fmA" type="6001">
+              <layoutConstraint xsi:type="notation:Bounds" xmi:id="_g0ViQSU-EeSh_ImKAb7fmA" y="-10"/>
+            </children>
+            <children xmi:id="_g0ViQiU-EeSh_ImKAb7fmA" type="6002">
+              <layoutConstraint xsi:type="notation:Bounds" xmi:id="_g0ViQyU-EeSh_ImKAb7fmA" y="10"/>
+            </children>
+            <children xmi:id="_g0ViRCU-EeSh_ImKAb7fmA" type="6003">
+              <layoutConstraint xsi:type="notation:Bounds" xmi:id="_g0ViRSU-EeSh_ImKAb7fmA" y="10"/>
+            </children>
+            <styles xsi:type="notation:ConnectorStyle" xmi:id="_g0UUISU-EeSh_ImKAb7fmA" routing="Rectilinear" jumpLinkStatus="Above"/>
+            <styles xsi:type="notation:FontStyle" xmi:id="_g0UUIiU-EeSh_ImKAb7fmA" fontName="Segoe UI"/>
+            <bendpoints xsi:type="notation:RelativeBendpoints" xmi:id="_g0UUIyU-EeSh_ImKAb7fmA" points="[14, 2, -245, 8]$[179, 2, -80, 8]"/>
+            <sourceAnchor xsi:type="notation:IdentityAnchor" xmi:id="_g0ViRiU-EeSh_ImKAb7fmA" id="(0.8444444444444444,0.509090909090909)"/>
+          </edges>
+          <edges xmi:id="_e4iN0CVHEeST-c7eNwieXA" type="4001" element="_e4QhACVHEeST-c7eNwieXA" source="_NY8WACU9EeSh_ImKAb7fmA" target="_aM9PgCVHEeST-c7eNwieXA">
+            <children xmi:id="_e4jb8CVHEeST-c7eNwieXA" type="6001">
+              <layoutConstraint xsi:type="notation:Bounds" xmi:id="_e4jb8SVHEeST-c7eNwieXA" y="-10"/>
+            </children>
+            <children xmi:id="_e4jb8iVHEeST-c7eNwieXA" type="6002">
+              <layoutConstraint xsi:type="notation:Bounds" xmi:id="_e4jb8yVHEeST-c7eNwieXA" y="10"/>
+            </children>
+            <children xmi:id="_e4kDACVHEeST-c7eNwieXA" type="6003">
+              <layoutConstraint xsi:type="notation:Bounds" xmi:id="_e4kDASVHEeST-c7eNwieXA" y="10"/>
+            </children>
+            <styles xsi:type="notation:ConnectorStyle" xmi:id="_e4iN0SVHEeST-c7eNwieXA" routing="Rectilinear" jumpLinkStatus="Above"/>
+            <styles xsi:type="notation:FontStyle" xmi:id="_e4iN0iVHEeST-c7eNwieXA" fontName="Segoe UI"/>
+            <bendpoints xsi:type="notation:RelativeBendpoints" xmi:id="_e4iN0yVHEeST-c7eNwieXA" points="[16, 2, -189, -27]$[191, 27, -14, -2]"/>
+            <sourceAnchor xsi:type="notation:IdentityAnchor" xmi:id="_e4kDAiVHEeST-c7eNwieXA" id="(0.8222222222222222,0.7909090909090909)"/>
+            <targetAnchor xsi:type="notation:IdentityAnchor" xmi:id="_e4kDAyVHEeST-c7eNwieXA" id="(0.0875,0.34)"/>
+          </edges>
+        </data>
+      </ownedAnnotationEntries>
+      <ownedDiagramElements xsi:type="diagram:DNode" xmi:id="_NYLhACU9EeSh_ImKAb7fmA" name="metamodel" outgoingEdges="_NYuTkCU9EeSh_ImKAb7fmA _g0Hf0CU-EeSh_ImKAb7fmA _e4QhACVHEeST-c7eNwieXA" width="9" height="11" resizeKind="NSEW">
+        <target href="default.mtc#//@models.0"/>
+        <semanticElements href="default.mtc#//@models.0"/>
+        <decorations xmi:id="_NYjUcCU9EeSh_ImKAb7fmA">
+          <description xsi:type="description:MappingBasedDecoration" href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='ModelArtifact']"/>
+        </decorations>
+        <decorations xmi:id="_NYqpMCU9EeSh_ImKAb7fmA">
+          <description xsi:type="description:MappingBasedDecoration" href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='Corner']"/>
+        </decorations>
+        <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+        <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+        <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+        <ownedStyle xsi:type="diagram:Square" xmi:id="_NYRAkCU9EeSh_ImKAb7fmA" labelSize="10" showIcon="false" iconPath="/com.mtcflow.diagram/icons/model.png" borderSize="2" borderSizeComputationExpression="2" labelPosition="node" width="9" height="11">
+          <labelColor xmi:id="_NYRAkSU9EeSh_ImKAb7fmA"/>
+          <description xsi:type="style:SquareDescription" href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@nodeMappings[name='artifact_model']/@style"/>
+          <borderColor xmi:id="_NYRAkiU9EeSh_ImKAb7fmA" red="209" green="209" blue="209"/>
+          <color xmi:id="_NYRAkyU9EeSh_ImKAb7fmA" red="255" green="255" blue="255"/>
+        </ownedStyle>
+        <actualMapping href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@nodeMappings[name='artifact_model']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xsi:type="diagram:DNode" xmi:id="_NYfqECU9EeSh_ImKAb7fmA" name="Ecore" incomingEdges="_NYuTkCU9EeSh_ImKAb7fmA" width="9" height="11" resizeKind="NSEW">
+        <target href="default.mtc#//@metamodels.0"/>
+        <semanticElements href="default.mtc#//@metamodels.0"/>
+        <decorations xmi:id="_NYrQQCU9EeSh_ImKAb7fmA">
+          <description xsi:type="description:MappingBasedDecoration" href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='Corner']"/>
+        </decorations>
+        <decorations xmi:id="_NYrQQSU9EeSh_ImKAb7fmA">
+          <description xsi:type="description:MappingBasedDecoration" href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='MetamodelArtifact']"/>
+        </decorations>
+        <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+        <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+        <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+        <ownedStyle xsi:type="diagram:Square" xmi:id="_NYgRICU9EeSh_ImKAb7fmA" labelSize="10" showIcon="false" iconPath="/com.mtcflow.diagram/icons/model.png" borderSize="2" borderSizeComputationExpression="2" labelPosition="node" width="9" height="11">
+          <labelColor xmi:id="_NYgRISU9EeSh_ImKAb7fmA"/>
+          <description xsi:type="style:SquareDescription" href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@nodeMappings[name='artifact_metamodel']/@style"/>
+          <borderColor xmi:id="_NYgRIiU9EeSh_ImKAb7fmA" red="209" green="209" blue="209"/>
+          <color xmi:id="_NYgRIyU9EeSh_ImKAb7fmA" red="255" green="255" blue="255"/>
+        </ownedStyle>
+        <actualMapping href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@nodeMappings[name='artifact_metamodel']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xsi:type="diagram:DEdge" xmi:id="_NYuTkCU9EeSh_ImKAb7fmA" name="conforms" sourceNode="_NYLhACU9EeSh_ImKAb7fmA" targetNode="_NYfqECU9EeSh_ImKAb7fmA">
+        <target href="default.mtc#//@models.0"/>
+        <ownedStyle xmi:id="_NYxW4CU9EeSh_ImKAb7fmA" sourceArrow="OutputFillClosedArrow" targetArrow="OutputClosedArrow" size="2" routingStyle="manhattan">
+          <description xsi:type="style:EdgeStyleDescription" href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@edgeMappings[name='Metamodel']/@style"/>
+          <strokeColor xmi:id="_NYxW4SU9EeSh_ImKAb7fmA" red="209" green="209" blue="209"/>
+          <centerLabelStyle xmi:id="_NYxW4iU9EeSh_ImKAb7fmA" labelSize="7" showIcon="false">
+            <labelColor xmi:id="_NYxW4yU9EeSh_ImKAb7fmA"/>
+          </centerLabelStyle>
+        </ownedStyle>
+        <actualMapping xsi:type="description:EdgeMapping" href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@edgeMappings[name='Metamodel']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xsi:type="diagram:DNode" xmi:id="_Ql298CU9EeSh_ImKAb7fmA" name="ecoredoc" tooltipText="Double click to open the related file" incomingEdges="_g0Hf0CU-EeSh_ImKAb7fmA" width="16" height="5" resizeKind="EAST_WEST">
+        <target href="default.mtc#//@transformations.0"/>
+        <semanticElements href="default.mtc#//@transformations.0"/>
+        <decorations xmi:id="_QmGOgCU9EeSh_ImKAb7fmA">
+          <description xsi:type="description:MappingBasedDecoration" href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='Transformation%20Gear']"/>
+        </decorations>
+        <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+        <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+        <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+        <ownedStyle xsi:type="diagram:Square" xmi:id="_Ql3lACU9EeSh_ImKAb7fmA" labelSize="10" iconPath="/com.mtcflow.diagram/images/m2t.png" labelAlignment="LEFT" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" width="16" height="5">
+          <labelColor xmi:id="_Ql3lASU9EeSh_ImKAb7fmA"/>
+          <description xsi:type="style:SquareDescription" href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@nodeMappings[name='M2TTransformation']/@style"/>
+          <borderColor xmi:id="_Ql3lAiU9EeSh_ImKAb7fmA"/>
+          <color xmi:id="_Ql3lAyU9EeSh_ImKAb7fmA" red="255" green="255" blue="255"/>
+        </ownedStyle>
+        <actualMapping href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@nodeMappings[name='M2TTransformation']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xsi:type="diagram:DNode" xmi:id="_aMq7oCVHEeST-c7eNwieXA" name="bootstrap" tooltipText="Double click to open the related file" incomingEdges="_e4QhACVHEeST-c7eNwieXA" width="16" height="5" resizeKind="EAST_WEST">
+        <target href="default.mtc#//@transformations.1"/>
+        <semanticElements href="default.mtc#//@transformations.1"/>
+        <decorations xmi:id="_aMy3cCVHEeST-c7eNwieXA">
+          <description xsi:type="description:MappingBasedDecoration" href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='Transformation%20Gear']"/>
+        </decorations>
+        <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+        <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+        <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+        <ownedStyle xsi:type="diagram:Square" xmi:id="_aMrisCVHEeST-c7eNwieXA" labelSize="10" iconPath="/com.mtcflow.diagram/images/m2t.png" labelAlignment="LEFT" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" width="16" height="5">
+          <labelColor xmi:id="_aMrisSVHEeST-c7eNwieXA"/>
+          <description xsi:type="style:SquareDescription" href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@nodeMappings[name='M2TTransformation']/@style"/>
+          <borderColor xmi:id="_aMrisiVHEeST-c7eNwieXA"/>
+          <color xmi:id="_aMrisyVHEeST-c7eNwieXA" red="255" green="255" blue="255"/>
+        </ownedStyle>
+        <actualMapping href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@nodeMappings[name='M2TTransformation']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xsi:type="diagram:DEdge" xmi:id="_g0Hf0CU-EeSh_ImKAb7fmA" name="IN" sourceNode="_NYLhACU9EeSh_ImKAb7fmA" targetNode="_Ql298CU9EeSh_ImKAb7fmA">
+        <target href="default.mtc#//@inputModels.0"/>
+        <semanticElements href="default.mtc#//@inputModels.0"/>
+        <ownedStyle xmi:id="_g0It8CU-EeSh_ImKAb7fmA" targetArrow="InputFillClosedArrow" size="3" routingStyle="manhattan">
+          <description xsi:type="style:EdgeStyleDescription" href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@edgeMappings[name='Input%20Model']/@style"/>
+          <strokeColor xmi:id="_g0It8SU-EeSh_ImKAb7fmA"/>
+          <centerLabelStyle xmi:id="_g0It8iU-EeSh_ImKAb7fmA" labelSize="9" showIcon="false">
+            <labelColor xmi:id="_g0It8yU-EeSh_ImKAb7fmA"/>
+          </centerLabelStyle>
+        </ownedStyle>
+        <actualMapping xsi:type="description:EdgeMapping" href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@edgeMappings[name='Input%20Model']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xsi:type="diagram:DEdge" xmi:id="_e4QhACVHEeST-c7eNwieXA" name="IN" sourceNode="_NYLhACU9EeSh_ImKAb7fmA" targetNode="_aMq7oCVHEeST-c7eNwieXA">
+        <target href="default.mtc#//@inputModels.1"/>
+        <semanticElements href="default.mtc#//@inputModels.1"/>
+        <ownedStyle xmi:id="_e4QhASVHEeST-c7eNwieXA" targetArrow="InputFillClosedArrow" size="3" routingStyle="manhattan">
+          <description xsi:type="style:EdgeStyleDescription" href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@edgeMappings[name='Input%20Model']/@style"/>
+          <strokeColor xmi:id="_e4QhAiVHEeST-c7eNwieXA"/>
+          <centerLabelStyle xmi:id="_e4QhAyVHEeST-c7eNwieXA" labelSize="9" showIcon="false">
+            <labelColor xmi:id="_e4QhBCVHEeST-c7eNwieXA"/>
+          </centerLabelStyle>
+        </ownedStyle>
+        <actualMapping xsi:type="description:EdgeMapping" href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@edgeMappings[name='Input%20Model']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xsi:type="diagram:DNodeList" xmi:id="_pTsg8CVOEeST-c7eNwieXA" name="Configuration">
+        <target href="default.mtc#//@configurations"/>
+        <semanticElements href="default.mtc#//@configurations"/>
+        <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+        <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+        <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+        <ownedStyle xsi:type="diagram:FlatContainerStyle" xmi:id="_pTuWICVOEeST-c7eNwieXA" labelSize="11" iconPath="/com.mtcflow.diagram/icons/configuration.png" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid">
+          <labelColor xmi:id="_pTuWISVOEeST-c7eNwieXA"/>
+          <description xsi:type="style:FlatContainerStyleDescription" href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@containerMappings[name='Configuration']/@style"/>
+          <borderColor xmi:id="_pTuWIiVOEeST-c7eNwieXA"/>
+          <backgroundColor xmi:id="_pTuWIyVOEeST-c7eNwieXA" red="255" green="255" blue="255"/>
+          <foregroundColor xmi:id="_pTuWJCVOEeST-c7eNwieXA" red="194" green="239" blue="255"/>
+        </ownedStyle>
+        <actualMapping href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@containerMappings[name='Configuration']"/>
+        <ownedElements xmi:id="_prGUUCVOEeST-c7eNwieXA" name="output">
+          <target href="default.mtc#//@configurations/@variables.0"/>
+          <semanticElements href="default.mtc#//@configurations/@variables.0"/>
+          <ownedStyle xsi:type="diagram:Square" xmi:id="_prGUUSVOEeST-c7eNwieXA" labelSize="11" labelFormat="bold_italic" iconPath="/com.mtcflow.diagram/icons/variable.png" labelAlignment="LEFT">
+            <labelColor xmi:id="_prGUUiVOEeST-c7eNwieXA"/>
+            <description xsi:type="style:SquareDescription" href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@containerMappings[name='Configuration']/@subNodeMappings[name='Variable']/@style"/>
+            <borderColor xmi:id="_prGUUyVOEeST-c7eNwieXA"/>
+            <color xmi:id="_prGUVCVOEeST-c7eNwieXA" red="255" green="255" blue="255"/>
+          </ownedStyle>
+          <actualMapping href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@containerMappings[name='Configuration']/@subNodeMappings[name='Variable']"/>
+        </ownedElements>
+      </ownedDiagramElements>
+      <description href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']"/>
+      <filterVariableHistory xmi:id="_GwhFIXWkEeOHkLQMMBSUFQ"/>
+      <activatedLayers href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer"/>
+      <activatedLayers href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@additionalLayers[name='Validation']"/>
+      <target href="default.mtc#/"/>
+    </ownedRepresentations>
+    <viewpoint href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']"/>
+  </ownedViews>
+</viewpoint:DAnalysis>

@@ -1,0 +1,18 @@
+[% import "lib/Utils.eol";  %]
+[
+[%  var last=EPackage.all.last();
+	EPackage.all.println();
+	for(p in EPackage.all){%]
+{
+	"name":"[%=p.name%]",
+	"url":"[%=p.name%]", 
+	"classes":[
+	[%	var lastc=p.getEClassifiers().last();
+		for(c in p.getEClassifiers()){%]
+		{"name":"[%=c.name%]", "url":"[%=p.name%]/classes/[%=c.name%].html"}[%if(lastc<>c){%],[%}%]
+		
+	[%}%]
+	]
+}[%if(last<>p){%],[%}%]
+[%}%]
+]

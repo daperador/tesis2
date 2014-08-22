@@ -1,0 +1,56 @@
+[% import "lib/Utils.eol";  %]
+
+<div>
+	<div class="panel panel-default">
+	  <div class="panel-body">
+	    <h1>[%= aClass.type.name %]: [%= aClass.name %]</h1>
+	    <div>
+	    	[%	for(ann in aClass.getEAnnotations()){
+	    			if(ann.source=='doc'){
+	    				for(det in ann.details){
+	    	%]
+	    	<div class="row">
+	    		<div class="col-md-3 col-lg-2 annotation-key">[%=det.key%]</div>
+	    		<div class="col-md-9 col-lg-10 annotation-value">[%=det.value%]</div>
+	    	</div>
+	    	[%}}}%]
+	    </div>
+	    <br/>
+	    <table class="class-diag">
+	    	<tr>
+	    		<th>[%= aClass.name %]</th>
+	    	</tr>
+	    	<tr>
+	    		<td>
+	    			[%for(attr in aClass.getELiterals()){%]
+	    			<p>[%=attr.name%]:[%=attr.type.name%]</p>
+	    			[%}%]
+	    		</td>
+	    	</tr>
+	    </table>
+	    <br/>
+	    
+	    <div class="panel panel-default">
+		  <div class="panel-heading">Fields</div>
+		  <div class="panel-body">
+		  	[%for(attr in aClass.getELiterals()){%]
+				<div class="panel panel-success">
+					<div class="panel-heading">
+						[%=attr.name%]:[%=attr.type.name%]
+					</div>
+					[%	for(ann in attr.getEAnnotations()){
+			    			if(ann.source=='doc'){
+			    				for(det in ann.details){
+			    	%]
+			    	<div class="row">
+			    		<div class="col-md-3 col-lg-2 annotation-key">[%=det.key%]</div>
+			    		<div class="col-md-9 col-lg-10 annotation-value">[%=det.value%]</div>
+			    	</div>
+			    	[%}}}%]
+				</div>
+			[%}%]
+		  </div>
+		</div>
+	  </div>
+	</div>
+</div>

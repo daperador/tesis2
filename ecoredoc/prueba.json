@@ -1,0 +1,8 @@
+[{
+	"name":"metamodelo 1",
+	"classes":[
+		{"name":"Action", "url":"classes/Action.html"},
+		{"name":"Annotable", "url":"classes/Annotable.html"}
+	]
+},
+]

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="iso8859-1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Simple Sidebar - Start Bootstrap Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	
+	<script>
+		function classLoader(){
+			$.getJSON( "config.json", function( data ) {
+				
+				for(var i=0;i<data.length;i++){
+					var html='';
+					html=html+( '<div><span class="package-sidebar"> <a href="#" onclick="show(this)" content="'+data[i].url+'">'+data[i].name+'</a></span><ul class="sidebar-nav">' );
+					for(var j=0;j<data[i].classes.length;j++){
+						html=html+( '<li><a href="#" onclick="show(this)" content="'+data[i].classes[j].url+'">'+data[i].classes[j].name+'</a></li>' );
+					}
+					html=html+'</ul></div>';
+					$( "#sidebar-wrapper" ).append(html);
+				}
+			});
+		}
+		function show(link){
+			$("#content").load( link.getAttribute("content"));
+		}
+	</script>
+</head>
+
+<body onload="classLoader()">
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+            	<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+            	<hr>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div id="content">
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+</body>
+
+</html>

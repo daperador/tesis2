@@ -1,0 +1,84 @@
+[% import "lib/Utils.eol";  %]
+<div>
+	<div class="panel panel-default">
+	  <div class="panel-body">
+	    <h1>[%= aClass.type.name %]: [%= aClass.name %] [%if(not aClass.eSuperTypes.isEmpty()){%] extends [%for(sup in aClass.eSuperTypes){%]<a href="#" onclick="show(this)" content="[%=sup.getEPackage().name+'/classes/'+sup.name+'.html'%]">[%=sup.name%]</a>,[%}}%]</h1>
+	    <div>
+	    	[%	for(ann in aClass.getEAnnotations()){
+	    			if(ann.source=='doc'){
+	    				for(det in ann.details){
+	    	%]
+	    	<div class="row">
+	    		<div class="col-md-3 col-lg-2 annotation-key">[%=det.key.parseHTML()%]:</div>
+	    		<div class="col-md-9 col-lg-10 annotation-value">[%=det.value.parseHTML()%]</div>
+	    	</div>
+	    	[%}}}%]
+	    </div>
+	    <br/>
+	    <table class="class-diag">
+	    	<tr>
+	    		<th>[%= aClass.name %]</th>
+	    	</tr>
+	    	<tr>
+	    		<td>
+	    			[%for(attr in aClass.getEAllAttributes()){%]
+	    			<p>[%=attr.name%]:[%=attr.type.name%]</p>
+	    			[%}%]
+	    			<hr/>
+	    		</td>
+	    	</tr>
+	    	<tr>
+	    		<td>
+	    			[%for(ref in aClass.getEAllReferences()){%]
+	    			<p>[%=ref.name%]:[%=ref.eReferenceType.name%]</p>
+	    			[%}%]
+	    		</td>
+	    	</tr>
+	    </table>
+	    <br/>
+	    
+	    <div class="panel panel-default">
+		  <div class="panel-heading">Fields</div>
+		  <div class="panel-body">
+		  	[%for(attr in aClass.getEAllAttributes()){%]
+				<div class="panel panel-success">
+					<div class="panel-heading">
+						[%=attr.name%]:[%=attr.type.name%]
+					</div>
+					[%	for(ann in attr.getEAnnotations()){
+			    			if(ann.source=='doc'){
+			    				for(det in ann.details){
+			    	%]
+			    	<div class="row">
+			    		<div class="col-md-3 col-lg-2 annotation-key">[%=det.key.parseHTML()%]:</div>
+			    		<div class="col-md-9 col-lg-10 annotation-value">[%=det.value.parseHTML()%]</div>
+			    	</div>
+			    	[%}}}%]
+				</div>
+			[%}%]
+		  </div>
+		</div>
+		<div class="panel panel-default">
+		  <div class="panel-heading">Associations</div>
+		  <div class="panel-body">
+		    [%for(ref in aClass.eAllReferences){%]
+				<div class="panel panel-success">
+					<div class="panel-heading">
+						[%=ref.name%]:<a href="#" onclick="show(this)" content="[%=ref.getEReferenceType().getEPackage().name+'/classes/'+ref.getEReferenceType().name+'.html'%]">[%=ref.getEReferenceType().name%]</a>
+					</div>
+					[%	for(ann in ref.getEAnnotations()){
+			    			if(ann.source=='doc'){
+			    				for(det in ann.details){
+			    	%]
+			    	<div class="row">
+			    		<div class="col-md-3 col-lg-2 annotation-key">[%=det.key%]</div>
+			    		<div class="col-md-9 col-lg-10 annotation-value">[%=det.value%]</div>
+			    	</div>
+			    	[%}}}%]
+				</div>
+			[%}%]
+		  </div>
+		</div>
+	  </div>
+	</div>
+</div>

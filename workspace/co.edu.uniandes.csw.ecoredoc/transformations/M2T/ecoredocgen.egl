@@ -1,0 +1,16 @@
+[% import "lib/Utils.eol";  %]
+
+[%
+genFile('configJSON','config.json',EPackage);
+
+for(p in EPackage.all){
+	for (e in p.getEClassifiers()) {
+		if(e.type<>null and e.type.name=='EClass'){
+			genFile('claseHTML',p.name+'/classes/'+e.name+'.html',e);
+		}
+		if(e.type<>null and e.type.name=='EEnum'){
+			genFile('enumHTML',p.name+'/classes/'+e.name+'.html',e);
+		}
+	}
+}
+%]
