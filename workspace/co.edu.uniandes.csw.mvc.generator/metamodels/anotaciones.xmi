@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="ASCII"?>
+<annotate:Package xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:annotate="http://co.edu.uniandes.csw.mvc.annotate/1.0" name="prueba1">
+  <annotations annotationType="//@annotationTypes.0"/>
+  <annotationTypes name="Prueba" context="assdfasd">
+    <attributes name="a"/>
+  </annotationTypes>
+</annotate:Package>

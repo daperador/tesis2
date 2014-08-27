@@ -112,10 +112,9 @@
   </views>
   <controllers
       name="listaUsuarioCtrl">
+    <annotations annotationType="anotaciones.xmi#//@annotationTypes.0"/>
     <actions
-        name="listar">
-      <annotations annotationType="anotacion1.xmi#//@annotationTypes.0"/>
-    </actions>
+        name="listar"/>
     <actions
         name="editar"/>
     <actions
