@@ -11,7 +11,9 @@
         name="Usuario">
       <attributes
           name="nombre"
-          type="String"/>
+          type="String">
+        <annotations/>
+      </attributes>
       <attributes
           name="login"
           type="String"/>
@@ -110,17 +112,25 @@
           type="button"/>
     </rootComponent>
   </views>
+  <events name="list-usuario"/>
   <controllers
       name="listaUsuarioCtrl">
-    <annotations annotationType="anotaciones.xmi#//@annotationTypes.0"/>
     <actions
-        name="listar"/>
+        name="listar">
+      <annotations>
+        <annotationType
+            href="anotacion1.xmi#//@annotationTypes.2"/>
+      </annotations>
+    </actions>
     <actions
         name="editar"/>
     <actions
         name="eliminar"/>
     <views view="//@views.0"
         models="//@models.0"/>
+    <eventActions
+        action="//@controllers.0/@actions.0"
+        events="//@events.0"/>
   </controllers>
   <controllers
       name="editarUsuarioCtrl">

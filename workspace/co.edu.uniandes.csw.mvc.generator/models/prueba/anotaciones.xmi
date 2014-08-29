@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ASCII"?>
+<annotate:Package xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:annotate="http://co.edu.uniandes.csw.mvc.annotate/1.0" name="CrudActions">
+  <annotations annotationType="//@annotationTypes.0"/>
+  <annotationTypes name="Create" context=""/>
+  <annotationTypes name="Save"/>
+  <annotationTypes name="List"/>
+  <annotationTypes name="Cancel"/>
+  <annotationTypes name="Edit"/>
+  <annotationTypes name="Delete"/>
+</annotate:Package>
