@@ -1,0 +1,34 @@
+[% import "../../lib/Utils.eol";  %]
+
+define(['model/[%=aClass.name.toLowerFirst() %]Model'], function([%=aClass.name.toLowerFirst() %]Model) {
+    App.Controller._[%=aClass.name.toUpperFirst() %]Controller = Backbone.View.extend({
+        initialize: function(options) {
+            this.modelClass = options.modelClass;
+            this.views={};
+            [%for(view in aClass.views.view){%]
+            this.views.[%=view.name%]Template = _.template($('#[%=view.name.toLowerFirst() %]').html());
+            [%}%]
+            var self = this;
+            if(self.postInit){
+            	self.postInit(options);
+            }
+        },
+        [%for(action in aClass.actions){%]
+        [%=action.name%]: function() {
+            [%for(ann in action.annotations){%]
+			//[%=ann.annotationType.name%]
+			[%}%]
+        },
+        [%}%]
+        [%for(view in aClass.views.view){%]
+        _render[%=view.name%]: function() {
+            var self = this;
+            this.$el.slideUp("fast", function() {
+                self.$el.html(_self.views.[%=view.name%]);
+                self.$el.slideDown("fast");
+            });
+        },
+        [%}%]
+    });
+    return App.Controller._[%=aClass.name.toUpperFirst() %]Controller;
+});

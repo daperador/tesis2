@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <com.mtcflow.model:MTC xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.mtcflow.model="http://com.mtcflow.mtc/1.1">
-  <metamodels name="prueba" URI="MVC.ecore" alias="prueba" autoregister="false"/>
+  <metamodels name="prueba" URI="MVC.ecore" alias="prueba"/>
   <metamodels name="anotaciones" URI="Annotateit.ecore" alias="anotaciones"/>
   <models name="usuarios" URI="prueba/usuarios.xmi" metamodels="//@metamodels.0"/>
   <models name="anotaciones" URI="prueba/anotaciones.xmi" metamodels="//@metamodels.1"/>

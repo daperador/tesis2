@@ -1,0 +1,9 @@
+[% import "../lib/Utils.eol";  %]
+
+[%for(control in Controller.all){
+	genFile('web/controller','src/controller/'+control.name+'.js',control);
+}%]
+
+[%for(entity in Entity.all){
+	genFile('web/model','src/model/'+entity.name+'.js',entity);
+}%]
