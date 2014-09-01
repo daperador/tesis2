@@ -1,0 +1,6 @@
+<div id="messages" ng-controller="messagesController">
+    <div class="alert alert-{{model.type}}" ng-show="model.showMessage">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true" ng-show="model.dismissable">&times;</button>
+        {{model.message}}
+    </div>
+</div>
