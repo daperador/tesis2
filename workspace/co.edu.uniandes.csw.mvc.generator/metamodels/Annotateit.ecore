@@ -11,6 +11,8 @@
         eType="#//AnnotationType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
         eType="#//AnnotationTypeAttribute" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
+        eType="#//AnnotationAttribute" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Package" eSuperTypes="#//Annotable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="types" upperBound="-1"
@@ -39,8 +41,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="AnnotationAttribute">
     <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
         eType="#//AnnotationTypeAttribute"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="annotation" lowerBound="1"
-        eType="#//Annotation"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//AnnotationAttributeValue"
         containment="true"/>
   </eClassifiers>
