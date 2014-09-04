@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ASCII"?>
+<annotate:Package xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:annotate="http://co.edu.uniandes.csw.mvc.annotate/1.0" name="validaciones">
+  <annotations annotationType="//@annotationTypes.0">
+    <attributes attribute="//@annotationTypes.0/@attributes.0">
+      <value xsi:type="annotate:SimpleValue" value="true"/>
+    </attributes>
+  </annotations>
+  <types name="boolean"/>
+  <annotationTypes name="obligatoriedad" context="">
+    <attributes type="//@types.0" name="value"/>
+  </annotationTypes>
+</annotate:Package>
