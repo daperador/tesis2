@@ -453,7 +453,7 @@
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_osLoQCU-EeSjr8OY0PLeiw" type="4003" source="_MHuCrCNkEeSq5pNxFv2ruQ" target="_MHupyCNkEeSq5pNxFv2ruQ">
     <children xmi:type="notation:DecorationNode" xmi:id="_osLoQyU-EeSjr8OY0PLeiw" type="6002">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_osLoRCU-EeSjr8OY0PLeiw" y="40"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_osLoRCU-EeSjr8OY0PLeiw" x="6" y="25"/>
     </children>
     <children xmi:type="notation:DecorationNode" xmi:id="_osLoRSU-EeSjr8OY0PLeiw" type="6004">
       <layoutConstraint xmi:type="notation:Location" xmi:id="_osLoRiU-EeSjr8OY0PLeiw" y="60"/>
@@ -464,7 +464,7 @@
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_osNdcCU-EeSjr8OY0PLeiw" type="4003" source="_MHuCrCNkEeSq5pNxFv2ruQ" target="_MHvQ1iNkEeSq5pNxFv2ruQ">
     <children xmi:type="notation:DecorationNode" xmi:id="_osOEgCU-EeSjr8OY0PLeiw" type="6002">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_osOEgSU-EeSjr8OY0PLeiw" y="40"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_osOEgSU-EeSjr8OY0PLeiw" x="17" y="30"/>
     </children>
     <children xmi:type="notation:DecorationNode" xmi:id="_osOEgiU-EeSjr8OY0PLeiw" type="6004">
       <layoutConstraint xmi:type="notation:Location" xmi:id="_osOEgyU-EeSjr8OY0PLeiw" y="60"/>
@@ -508,14 +508,14 @@
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_osWnYCU-EeSjr8OY0PLeiw" type="4002" source="_MHupyCNkEeSq5pNxFv2ruQ" target="_MHs0jCNkEeSq5pNxFv2ruQ">
     <children xmi:type="notation:DecorationNode" xmi:id="_osXOcCU-EeSjr8OY0PLeiw" type="6001">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_osXOcSU-EeSjr8OY0PLeiw" y="40"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_osXOcSU-EeSjr8OY0PLeiw" x="-4" y="15"/>
     </children>
     <children xmi:type="notation:DecorationNode" xmi:id="_osXOciU-EeSjr8OY0PLeiw" type="6003">
       <layoutConstraint xmi:type="notation:Location" xmi:id="_osXOcyU-EeSjr8OY0PLeiw" y="60"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_osWnYSU-EeSjr8OY0PLeiw" fontName="Segoe UI"/>
     <element xmi:type="ecore:EReference" href="MVC.ecore#//ControllerView/view"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_osWnYiU-EeSjr8OY0PLeiw" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_osWnYiU-EeSjr8OY0PLeiw" points="[49, 20, -264, -156]$[155, 63, -158, -113]$[266, 143, -47, -33]"/>
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_osZDoCU-EeSjr8OY0PLeiw" type="4002" source="_MHupyCNkEeSq5pNxFv2ruQ" target="_MHqYQCNkEeSq5pNxFv2ruQ">
     <children xmi:type="notation:DecorationNode" xmi:id="_osZDoyU-EeSjr8OY0PLeiw" type="6001">

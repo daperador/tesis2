@@ -295,7 +295,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_rHF7lC7uEeSDkccF_ikoUg" x="-5" y="17"/>
     </children>
     <children xmi:type="notation:DecorationNode" xmi:id="_rHF7lS7uEeSDkccF_ikoUg" type="6004">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_rHF7li7uEeSDkccF_ikoUg" y="60"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_rHF7li7uEeSDkccF_ikoUg" x="-20" y="46"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_rHF7kS7uEeSDkccF_ikoUg" fontName="Segoe UI"/>
     <element xmi:type="ecore:EReference" href="Annotateit.ecore#//AnnotationAttribute/value"/>
