@@ -161,12 +161,17 @@ function Class getSharedEntities(){
 
 function genFile(templName : String, targetFile: String, class: Any){
  var templateName : Template;
+ var formatter : new Native("org.eclipse.epsilon.egl.formatter.language.JavaFormatter");
  templateName := TemplateFactory.load(templName+'.egl');
  templateName.populate('aClass', class);
- if(not "_".isSubstringOf(templName)){ 
-   templateName.generate(targetFile,false,false);
- }else{
-  templateName.generate(targetFile);
- }
+ templateName.setFormatter(formatter);
+ templateName.generate(targetFile);
+ 
+ --if(not "_".isSubstringOf(templName)){ 
+ --  templateName.generate(targetFile,false,false);
+ --}else{
+ -- templateName.generate(targetFile);
+ --}
+
 }
 

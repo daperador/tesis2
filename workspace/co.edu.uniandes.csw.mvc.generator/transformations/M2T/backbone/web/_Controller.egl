@@ -1,0 +1,193 @@
+[% import "../../lib/Utils.eol";  %]
+define(['model/[%=aClass.name.toLowerFirst() %]Model'], function([%=aClass.name.toLowerFirst() %]Model) {
+    App.Controller._[%=aClass.name.toUpperFirst() %]Controller = Backbone.View.extend({
+        initialize: function(options) {
+            this.modelClass = options.modelClass;
+            this.listModelClass = options.listModelClass;
+            this.showEdit = true;
+            this.showDelete = true;
+            this.editTemplate = _.template($('#[%=aClass.name.toLowerFirst() %]').html());
+            this.listTemplate = _.template($('#[%=aClass.name.toLowerFirst() %]List').html());
+            if (!options || !options.componentId) {
+                this.componentId = _.random(0, 100) + "";
+            }else{
+				this.componentId = options.componentId;
+		    }
+            var self = this;
+            [*-
+            Backbone.on(this.componentId + '-' + '[%=aClass.name.toLowerFirst() %]-create', function(params) {
+                self.create(params);
+            });
+            Backbone.on(this.componentId + '-' + '[%=aClass.name.toLowerFirst() %]-list', function(params) {
+                self.list(params);
+            });
+            Backbone.on(this.componentId + '-' + '[%=aClass.name.toLowerFirst() %]-edit', function(params) {
+                self.edit(params);
+            });
+            Backbone.on(this.componentId + '-' + '[%=aClass.name.toLowerFirst() %]-delete', function(params) {
+                self.destroy(params);
+            });
+            Backbone.on(this.componentId + '-' + 'post-[%=aClass.name.toLowerFirst() %]-delete', function(params) {
+                self.list(params);
+            });
+            Backbone.on(this.componentId + '-' + '[%=aClass.name.toLowerFirst() %]-save', function(params) {
+                self.save(params);
+            });
+            *]
+            if(self.postInit){
+            	self.postInit(options);
+            }
+        },
+        create: function() {
+            if (App.Utils.eventExists(this.componentId + '-' +'instead-[%=aClass.name.toLowerFirst() %]-create')) {
+                Backbone.trigger(this.componentId + '-' + 'instead-[%=aClass.name.toLowerFirst() %]-create', {view: this});
+            } else {
+                Backbone.trigger(this.componentId + '-' + 'pre-[%=aClass.name.toLowerFirst() %]-create', {view: this});
+                this.current[%=aClass.name.toUpperFirst() %]Model = new this.modelClass({componentId: this.componentId});
+                this._renderEdit();
+                Backbone.trigger(this.componentId + '-' + 'post-[%=aClass.name.toLowerFirst() %]-create', {view: this});
+            }
+        },
+        list: function(params) {
+            if (params) {
+                var data = params.data;
+            }
+            if (App.Utils.eventExists(this.componentId + '-' +'instead-[%=aClass.name.toLowerFirst() %]-list')) {
+                Backbone.trigger(this.componentId + '-' + 'instead-[%=aClass.name.toLowerFirst() %]-list', {view: this, data: data});
+            } else {
+                Backbone.trigger(this.componentId + '-' + 'pre-[%=aClass.name.toLowerFirst() %]-list', {view: this, data: data});
+                var self = this;
+				if(!this.[%=aClass.name.toLowerFirst() %]ModelList){
+                 this.[%=aClass.name.toLowerFirst() %]ModelList = new this.listModelClass();
+				}
+                this.[%=aClass.name.toLowerFirst() %]ModelList.fetch({
+                    data: data,
+                    success: function() {
+                        self._renderList();
+                        Backbone.trigger(self.componentId + '-' + 'post-[%=aClass.name.toLowerFirst() %]-list', {view: self});
+                    },
+                    error: function(mode, error) {
+                        Backbone.trigger(self.componentId + '-' + 'error', {event: '[%=aClass.name.toLowerFirst() %]-list', view: self, error: error});
+                    }
+                });
+            }
+        },
+        edit: function(params) {
+            var id = params.id;
+            var data = params.data;
+            if (App.Utils.eventExists(this.componentId + '-' +'instead-[%=aClass.name.toLowerFirst() %]-edit')) {
+                Backbone.trigger(this.componentId + '-' + 'instead-[%=aClass.name.toLowerFirst() %]-edit', {view: this, id: id, data: data});
+            } else {
+                Backbone.trigger(this.componentId + '-' + 'pre-[%=aClass.name.toLowerFirst() %]-edit', {view: this, id: id, data: data});
+                if (this.[%=aClass.name.toLowerFirst() %]ModelList) {
+                    this.current[%=aClass.name.toUpperFirst() %]Model = this.[%=aClass.name.toLowerFirst() %]ModelList.get(id);
+                    this.current[%=aClass.name.toUpperFirst() %]Model.set('componentId',this.componentId); 
+                    this._renderEdit();
+                    Backbone.trigger(this.componentId + '-' + 'post-[%=aClass.name.toLowerFirst() %]-edit', {view: this, id: id, data: data});
+                } else {
+                    var self = this;
+                    this.current[%=aClass.name.toUpperFirst() %]Model = new this.modelClass({id: id});
+                    this.current[%=aClass.name.toUpperFirst() %]Model.fetch({
+                        data: data,
+                        success: function() {
+                            self.current[%=aClass.name.toUpperFirst() %]Model.set('componentId',self.componentId); 
+                            self._renderEdit();
+                            Backbone.trigger(self.componentId + '-' + 'post-[%=aClass.name.toLowerFirst() %]-edit', {view: this, id: id, data: data});
+                        },
+                        error: function() {
+                            Backbone.trigger(self.componentId + '-' + 'error', {event: '[%=aClass.name.toLowerFirst() %]-edit', view: self, id: id, data: data, error: error});
+                        }
+                    });
+                }
+            }
+        },
+        destroy: function(params) {
+            var id = params.id;
+            var self = this;
+            if (App.Utils.eventExists(this.componentId + '-' +'instead-[%=aClass.name.toLowerFirst() %]-delete')) {
+                Backbone.trigger(this.componentId + '-' + 'instead-[%=aClass.name.toLowerFirst() %]-delete', {view: this, id: id});
+            } else {
+                Backbone.trigger(this.componentId + '-' + 'pre-[%=aClass.name.toLowerFirst() %]-delete', {view: this, id: id});
+                var deleteModel;
+                if (this.[%=aClass.name.toLowerFirst() %]ModelList) {
+                    deleteModel = this.[%=aClass.name.toLowerFirst() %]ModelList.get(id);
+                } else {
+                    deleteModel = new this.modelClass({id: id});
+                }
+                deleteModel.destroy({
+                    success: function() {
+                        Backbone.trigger(self.componentId + '-' + 'post-[%=aClass.name.toLowerFirst() %]-delete', {view: self, model: deleteModel});
+                    },
+                    error: function() {
+                        Backbone.trigger(self.componentId + '-' + 'error', {event: '[%=aClass.name.toLowerFirst() %]-delete', view: self, error: error});
+                    }
+                });
+            }
+        },
+		[% if (aClass.attribute->select(attr | attr.ownedComment->size()>0)->size()>0){%]
+		_loadRequiredComponentsData: function(callBack) {
+            var self = this;
+            var listReady = _.after([%=aClass.attribute->select(attr | attr.ownedComment->size()>0)->size()%], function(){
+                callBack();
+            }); 
+            var listDataReady = function(componentName, model, aliasModel){
+            if(aliasModel){
+                self[aliasModel] = model;
+            } else {
+            	self[componentName] = model;
+            }    
+                listReady();
+            };
+			[% for (at in aClass.attribute){ %]
+				[% if (at.ownedComment->size()>0) {%]
+				App.Utils.getComponentList('[%=at.ownedComment.second().body.toLowerFirst()%]Component',listDataReady,'[%=at.ownedComment.first().body.toLowerFirst()%]Component');
+				[%}%]
+			[%}%]
+        },
+		[%}%]
+        save: function() {
+            var self = this;
+            var model = $('#' + this.componentId + '-[%=aClass.name.toLowerFirst() %]Form').serializeObject();
+            [% for (attr in aClass.getAllAttributes()->select(at | at.name<>'id' and at.type.name='Boolean')) {%] 
+			 if(!model.[%=attr.name.toLowerFirst()%]){
+			 	model.[%=attr.name.toLowerFirst()%]=false
+			 } 
+			[%}%]
+            if (App.Utils.eventExists(this.componentId + '-' +'instead-[%=aClass.name.toLowerFirst() %]-save')) {
+                Backbone.trigger(this.componentId + '-' + 'instead-[%=aClass.name.toLowerFirst() %]-save', {view: this, model : model});
+                 Backbone.trigger(this.componentId + '-' + 'post-[%=aClass.name.toLowerFirst() %]-save', {view: this, model : model});
+            } else {
+                Backbone.trigger(this.componentId + '-' + 'pre-[%=aClass.name.toLowerFirst() %]-save', {view: this, model : model});
+                this.current[%=aClass.name.toUpperFirst() %]Model.set(model);
+                this.current[%=aClass.name.toUpperFirst() %]Model.save({},
+                        {
+                            success: function(model) {
+                                Backbone.trigger(self.componentId + '-' + 'post-[%=aClass.name.toLowerFirst() %]-save', {model: self.current[%=aClass.name.toUpperFirst() %]Model});
+                            },
+                            error: function(error) {
+                                Backbone.trigger(self.componentId + '-' + 'error', {event: '[%=aClass.name.toLowerFirst() %]-save', view: self, error: error});
+                            }
+                        });
+            }
+        },
+        _renderList: function() {
+            var self = this;
+            this.$el.slideUp("fast", function() {
+                self.$el.html(self.listTemplate({[%=aClass.name.toLowerFirst() %]s: self.[%=aClass.name.toLowerFirst() %]ModelList.models, componentId: self.componentId, showEdit : self.showEdit , showDelete : self.showDelete}));
+                self.$el.slideDown("fast");
+            });
+        },
+        _renderEdit: function() {
+            var self = this;
+            this.$el.slideUp("fast", function() {
+                self.$el.html(self.editTemplate({[%=aClass.name.toLowerFirst() %]: self.current[%=aClass.name.toUpperFirst() %]Model, componentId: self.componentId , showEdit : self.showEdit , showDelete : self.showDelete
+				[% for (attr in aClass.getListTypeAttributes()) {%] 
+				    ,[%=attr.ownedComment.first().body.toLowerFirst()%]: self.[%=attr.ownedComment.first().body.toLowerFirst()%]Component
+				[%}%] 
+				}));
+                self.$el.slideDown("fast");
+            });
+        }
+    });
+    return App.Controller._[%=aClass.name.toUpperFirst() %]Controller;
+});

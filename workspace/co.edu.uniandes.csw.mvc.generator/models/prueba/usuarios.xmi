@@ -8,11 +8,17 @@
 			<attributes name="nombre" type="String">
 				<annotations annotationType="Validaciones.xmi#//@annotationTypes.0">
 					<attributes attribute="Validaciones.xmi#//@annotationTypes.0/@attributes.0">
-						<value xsi:type="annotate:SimpleValue" value="true" />
+						<value xsi:type="annotate:SimpleValue" value="El nombre es obligatorio" />
 					</attributes>
 				</annotations>
 			</attributes>
-			<attributes name="login" type="String" />
+			<attributes name="login" type="String" >
+				<annotations annotationType="Validaciones.xmi#//@annotationTypes.0">
+					<attributes attribute="Validaciones.xmi#//@annotationTypes.0/@attributes.0">
+						<value xsi:type="annotate:SimpleValue" value="El login es obligatorio" />
+					</attributes>
+				</annotations>
+			</attributes>
 			<attributes name="fechaNacimiento" type="Date" />
 			<attributes name="estado" type="Boolean" />
 			<attributes name="numeroDocumento" type="Long" />
@@ -54,9 +60,7 @@
 	<events name="list-usuario" />
 	<controllers name="listaUsuarioCtrl">
 		<actions name="listar">
-			<annotations>
-				<annotationType href="anotacion1.xmi#//@annotationTypes.2" />
-			</annotations>
+			
 		</actions>
 		<actions name="editar" />
 		<actions name="eliminar" />

@@ -1,0 +1,71 @@
+[% import "../../lib/Utils.eol";  %]
+/*[%=license()%]*/
+<script type="text/template" id="[%=aClass.name.toLowerFirst() %]List">
+    <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <table class="table striped">
+    <thead>
+    <tr>
+  	[%for (attr in aClass.getAllAttributes()->select(at | at.name<>'id' )) {%]
+		 <th>[%=getProjectUtils().toLabel(attr.name)%]</th>
+	[%}%]
+    <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% _.each([%=aClass.name.toLowerFirst() %]s, function([%=aClass.name.toLowerFirst() %]) { %>
+    <tr>
+  	[% for (attr in aClass.getAllAttributes()->select(at | at.name<>'id' )) {%]
+		<td><%= htmlEncode([%=aClass.name.toLowerFirst() %].getDisplay('[%=attr.name.toLowerFirst()%]')) %></td>
+	[%}%]
+    <td>
+    <% if(showEdit) {%>
+    <a onclick="Backbone.trigger('<%= componentId %>-[%=aClass.name.toLowerFirst() %]-edit',{id:<%= [%=aClass.name.toLowerFirst() %].id %>}); return false" >Edit</a> |
+	<% } %> 
+	<% if(showDelete) {%>
+    <a onclick="Backbone.trigger('<%= componentId %>-[%=aClass.name.toLowerFirst() %]-delete',{id:<%= [%=aClass.name.toLowerFirst() %].id %>}); return false" >Delete</a> 
+	<% } %>    
+	</td>
+    </tr>
+    <% }); %>
+    </tbody>
+    </table>
+    </div>
+</script>
+
+<script type="text/template" id="[%=aClass.name.toLowerFirst() %]">
+    <div class="form-group">
+    <form role="form" id="<%= componentId %>-[%=aClass.name.toLowerFirst() %]Form">
+    <% if([%=aClass.name.toLowerFirst() %].id) {%>
+    <input type="hidden" name="id" value="<%= [%=aClass.name.toLowerFirst() %].id %>"/>
+    <% }%>
+  	[% for (attr in aClass.getAllAttributes()->select(at | at.name<>'id' )) {%]
+		<div class="form-group" >
+		[% if (attr.ownedComment->size()>0) {%] 
+			<label for="[%=attr.name.toLowerCase()%]Id">[%=getProjectUtils().toLabel(attr.name)%]</label> 
+            <select class="form-control" id="[%=attr.name.toLowerFirst()%]" name="[%=attr.name.toLowerFirst()%]">
+			  <option value="">None</option>
+            <% [%=attr.ownedComment.first().body.toLowerFirst()%].each(function([%=attr.name.toLowerCase()%]) { %> 
+              <option value="<%=[%=attr.name.toLowerCase()%].get('id')%>" <% if([%=aClass.name.toLowerFirst() %].get('[%=attr.name.toLowerFirst()%]')==[%=attr.name.toLowerCase()%].get('id')) {%>selected<%}%> ><%=[%=attr.name.toLowerCase()%].get('name')%></option>
+            <% }); %>                
+            </select>  
+		[% } else if (attr.type.name ='Boolean') {%]
+	    <label>
+    	  <input id="[%=attr.name.toLowerFirst()%]" name="[%=attr.name.toLowerFirst()%]" value="true" type="checkbox" <%= [%=aClass.name.toLowerFirst() %].get('[%=attr.name.toLowerFirst()%]')?'checked':'' %>> [%=getProjectUtils().toLabel(attr.name)%]
+    	</label>
+		[% } else if (attr.type.name ='Date' or attr.type.name ='EDate') {%]
+			<label for="[%=attr.name.toLowerFirst()%]">[%=getProjectUtils().toLabel(attr.name)%]</label>
+    		<input type="text" data-converter="date" data-date-format="dd/mm/yyyy" class="form-control" id="[%=attr.name.toLowerFirst()%]"  name="[%=attr.name.toLowerFirst()%]" placeholder="Enter value" />
+    		<%= '<scr'+'ipt>' %>
+        	$('#[%=attr.name.toLowerFirst()%]').datepicker({autoclose:true});
+        	$('#[%=attr.name.toLowerFirst()%]').datepicker('setDate',App.Utils.Converter.date.toDate("<%= [%=aClass.name.toLowerFirst() %].get('[%=attr.name.toLowerFirst()%]') %>"));
+    		<%= '</scr'+'ipt>' %>
+		[% } else { %]
+		<label for="[%=attr.name.toLowerFirst()%]">[%=getProjectUtils().toLabel(attr.name)%]</label>
+    	<input type="text" class="form-control" id="[%=attr.name.toLowerFirst()%]" name="[%=attr.name.toLowerFirst()%]" placeholder="Enter value" value="<%= [%=aClass.name.toLowerFirst() %].get('[%=attr.name.toLowerFirst()%]') %>"/>	
+		[%}%]
+		</div>
+	[%}%]
+    </form>
+    </div>
+</script> 

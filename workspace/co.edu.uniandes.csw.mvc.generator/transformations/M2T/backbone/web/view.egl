@@ -1,1 +1,34 @@
 [% import "../../lib/Utils.eol";  %]
+
+<script type="text/template" id="[%=aClass.name.toLowerFirst() %]">
+	[%if(aClass.rootComponent.type='form'){%]
+	<div class="form-group">
+		<form role="form" id="<%= componentId %>-[%=aClass.name.toLowerFirst() %]Form">
+    	[%for(attr in aClass.rootComponent.components){%]
+			<div class="form-group" >
+		[% if (attr.type ='Boolean') {%]
+	    		<label>
+    	  			<input id="[%=attr.name.toLowerFirst()%]" name="[%=attr.name.toLowerFirst()%]" value="true" type="checkbox" <%= [%=aClass.name.toLowerFirst() %].get('[%=attr.name.toLowerFirst()%]')?'checked':'' %>> [%=attr.name%]
+    			</label>
+		[% } else if (attr.type ='Date') {%]
+				<label for="[%=attr.name.toLowerFirst()%]">[%=attr.name%]</label>
+    			<input type="text" data-converter="date" data-date-format="dd/mm/yyyy" class="form-control" id="[%=attr.name.toLowerFirst()%]"  name="[%=attr.name.toLowerFirst()%]" placeholder="Enter value" />
+    		<%= '<scr'+'ipt>' %>
+        	$('#[%=attr.name.toLowerFirst()%]').datepicker({autoclose:true});
+        	$('#[%=attr.name.toLowerFirst()%]').datepicker('setDate',new Date(<%= [%=aClass.name.toLowerFirst() %].get('[%=attr.name.toLowerFirst()%]') %>));
+    		<%= '</scr'+'ipt>' %>
+		[% } else { %]
+				<label for="[%=attr.name.toLowerFirst()%]">[%=attr.name%]</label>
+    			<input type="text" class="form-control" id="[%=attr.name.toLowerFirst()%]" name="[%=attr.name.toLowerFirst()%]" placeholder="Enter value" value="<%= [%=aClass.name.toLowerFirst() %].get('[%=attr.name.toLowerFirst()%]') %>"/>	
+		[%}%]
+			</div>
+		
+		[%}%]
+		
+    	</form>
+    	
+	</div>
+	[%} else if(aClass.rootComponent.type='table'){%]
+	
+	[%}%]
+</script>

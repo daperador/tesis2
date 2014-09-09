@@ -1,8 +1,13 @@
 [%for(control in Controller.all){ %]
-[%('-'+control).println();%]
+[%('-'+control.name).println();%]
 [%control.annotations.println();%]
 [%for(ann in control.annotations){%]
 [%('*'+ann.annotationType.eClass().eAllAttributes).println();%]
 [%('+'+ann.annotationType.name).println();%]
 [%('+'+ann.annotationType.context).println();%]
 [%}}%]
+
+
+[%for(ann in Annotation.all){%]
+[%=ann.annotationType.name.println()%]
+[%}%]

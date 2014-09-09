@@ -1,32 +1,35 @@
 [% import "../../lib/Utils.eol";  %]
-define([], function() {
-    App.Model._[%=aClass.name.toUpperFirst()%]Model = Backbone.Model.extend({
-        defaults: {
-			[% for(att in aClass.attributes){ %]
-			'[%=att.name%]' : '',  
-			[% } %]
-        },
-        initialize: function() {
-        },
-        getDisplay: function(name) {
-	  	[% for (attr in aClass.attributes){%]
-			 [% if (attr.type='Date' or attr.type='EDate') {%]
-             if(name=='[%=attr.name.toLowerFirst() %]'){
-                   var dateConverter = App.Utils.Converter.date;
-                   return dateConverter.unserialize(this.get('[%=attr.name.toLowerFirst() %]'), this);
-             }
-			 [%}%]
-		[%}%]
-         return this.get(name);
+define(['model/_[%=aClass.name%]Model'], function() {
+    App.Model.[%=aClass.name%]Model = App.Model._[%=aClass.name%]Model.extend({
+
+ 		validate: function(attrs,options){
+        	var validationMessage = "";
+        	[% for (attr in aClass.attributes){%]
+		  	 [%for(ann in attr.annotations){%]
+		  	 	[%='//'+ann.annotationType.name%]
+				[%if(ann.annotationType.name=='required'){%]
+			if(!attrs.[%=attr.name%]){
+				[%for(anAttr in ann.attributes){%]
+				[%if(anAttr.attribute.name='message'){%]
+					validationMessage = "[%=anAttr.value.value%].";
+				[%}}%]
+            }
+            	[%}%]
+			 [%}
+			}%]
+			if(validationMessage.length>0){
+               return validationMessage;
+            }
         }
+        
+        
     });
 
-    App.Model._[%=aClass.name.toUpperFirst() %]List = Backbone.Collection.extend({
-        model: App.Model._[%=aClass.name.toUpperFirst() %]Model,
-        initialize: function() {
-        }
-
+    App.Model.[%=aClass.name%]List = App.Model._[%=aClass.name%]List.extend({
+        model: App.Model.UsuarioModel
     });
-    return App.Model._[%=aClass.name.toUpperFirst() %]Model;
+
+    return  App.Model.[%=aClass.name%]Model;
+
 });
 

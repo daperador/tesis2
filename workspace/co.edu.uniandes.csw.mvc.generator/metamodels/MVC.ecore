@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="mvc" nsURI="http://co.edu.uniandes.csw.mvc/1.1" nsPrefix="mvc">
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="mvc" nsURI="http://co.edu.uniandes.csw.mvc/1.0" nsPrefix="mvc">
   <eClassifiers xsi:type="ecore:EClass" name="Model" eSuperTypes="http://co.edu.uniandes.csw.mvc.annotate/1.0#//Annotable">
     <eAnnotations source="doc">
       <details key="Descripci&amp;oacute;n" value="Es la representaci&amp;oacute;n de la informaci&amp;oacute;n con la cual el sistema opera, por lo tanto gestiona todos los accesos a dicha informaci&amp;oacute;n, tanto consultas como actualizaciones, implementando tambi&amp;eacute;n los privilegios de acceso que se hayan descrito en las especificaciones de la aplicaci&amp;oacute;n (l&amp;oacute;gica de negocio). Env&amp;iacute;a a la 'vista' aquella parte de la informaci&amp;oacute;n que en cada momento se le solicita para que sea mostrada (t&amp;iacute;picamente a un usuario). Las peticiones de acceso o manipulaci&amp;oacute;n de informaci&amp;oacute;n llegan al 'modelo' a trav&amp;eacute;s del 'controlador'. Tomado de &lt;a href=&quot;http://es.wikipedia.org/wiki/Modelo%E2%80%93vista%E2%80%93controlador&quot;>MVC&lt;/a>"/>

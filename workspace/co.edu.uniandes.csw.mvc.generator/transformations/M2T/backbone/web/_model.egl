@@ -1,0 +1,31 @@
+[% import "../../lib/Utils.eol";  %]
+define([], function() {
+    App.Model._[%=aClass.name.toUpperFirst()%]Model = Backbone.Model.extend({
+        defaults: {
+			[% for(att in aClass.attributes){ %]
+			'[%=att.name%]' : '',  
+			[% } %]
+        },
+        initialize: function() {
+        },
+        getDisplay: function(name) {
+	  	[% for (attr in aClass.attributes){%]
+		 [% if (attr.type='Date' or attr.type='EDate') {%]
+         if(name=='[%=attr.name.toLowerFirst() %]'){
+               var dateConverter = App.Utils.Converter.date;
+               return dateConverter.unserialize(this.get('[%=attr.name.toLowerFirst() %]'), this);
+         }
+		 [%}}%]
+         return this.get(name);
+        }
+    });
+
+    App.Model._[%=aClass.name.toUpperFirst() %]List = Backbone.Collection.extend({
+        model: App.Model._[%=aClass.name.toUpperFirst() %]Model,
+        initialize: function() {
+        }
+
+    });
+    return App.Model._[%=aClass.name.toUpperFirst() %]Model;
+});
+

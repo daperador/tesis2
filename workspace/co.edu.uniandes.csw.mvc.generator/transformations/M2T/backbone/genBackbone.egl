@@ -1,9 +1,15 @@
 [% import "../lib/Utils.eol";  %]
 
-[%for(control in Controller.all){
-	genFile('web/controller','src/controller/'+control.name+'.js',control);
-}%]
+[%--for(control in Controller.all){
+	--genFile('web/controller','src/controller/'+control.name+'.js',control);
+--}
+%]
 
 [%for(entity in Entity.all){
-	genFile('web/model','src/model/'+entity.name+'.js',entity);
+	genFile('web/_model','model/_'+entity.name+'Model.js',entity);
+	genFile('web/model','model/'+entity.name+'Model.js',entity);
+}%]
+
+[%for(entity in View.all){
+	--genFile('web/view','src/view/'+entity.name+'.html',entity);
 }%]
