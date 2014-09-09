@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<com.mtcflow.model:MTC xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.mtcflow.model="http://com.mtcflow.mtc/1.1">
-  <metamodels name="prueba" URI="MVC.ecore" alias="prueba"/>
-  <metamodels name="anotaciones" URI="Annotateit.ecore" alias="anotaciones"/>
-  <models name="usuarios" URI="prueba/usuarios.xmi" metamodels="//@metamodels.0"/>
-  <models name="anotaciones" URI="prueba/anotaciones.xmi" metamodels="//@metamodels.1"/>
+<com.mtcflow.model:MTC xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.mtcflow.model="http://com.mtcflow.mtc/1.1" validateConformance="false">
+  <metamodels name="prueba" URI="" alias="prueba" autoregister="false" metamodelURI="http://co.edu.uniandes.csw.mvc/1.1"/>
+  <metamodels name="anotaciones" URI="" alias="anotaciones" autoregister="false" metamodelURI="http://co.edu.uniandes.csw.mvc.annotate/1.0"/>
+  <models name="usuarios" URI="prueba/usuarios.xmi" metamodels="//@metamodels.0 //@metamodels.1"/>
   <inputModels model="//@models.0" transformation="//@transformations.0"/>
   <transformations xsi:type="com.mtcflow.model:M2TTransformation" name="prueba" URI="prueba/prueba.egl" implementationClass="" target="C:\Universidad\tmp\pruebagen"/>
 </com.mtcflow.model:MTC>

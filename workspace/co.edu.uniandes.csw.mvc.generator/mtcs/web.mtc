@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <com.mtcflow.model:MTC xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.mtcflow.model="http://com.mtcflow.mtc/1.1" validateConformance="false">
-  <metamodels name="MVC" URI="MVC.ecore" alias="mvc"/>
-  <models name="mvcModel" URI="prueba/usuarios.xmi" metamodels="//@metamodels.0"/>
+  <metamodels name="MVC" URI="" alias="mvc" autoregister="false" metamodelURI="http://co.edu.uniandes.csw.mvc/1.0"/>
+  <metamodels name="Anotaciones" autoregister="false" metamodelURI="http://co.edu.uniandes.csw.mvc.annotate/1.0"/>
+  <models name="mvcModel" URI="prueba/usuarios.xmi" metamodels="//@metamodels.0 //@metamodels.1"/>
   <inputModels model="//@models.0" transformation="//@transformations.0"/>
-  <transformations xsi:type="com.mtcflow.model:M2TTransformation" name="view" URI="backbone/genBackbone.egl" implementationClass="" target="C:\tmp\pruebas"/>
+  <transformations xsi:type="com.mtcflow.model:M2TTransformation" name="view" URI="backbone/genBackbone.egl" implementationClass="" target="C:\Universidad\Tesis\prueba\pruebaGen.web\src\main\webapp\src"/>
 </com.mtcflow.model:MTC>
