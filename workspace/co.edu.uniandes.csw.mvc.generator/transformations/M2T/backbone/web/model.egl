@@ -1,22 +1,13 @@
 [% import "../../lib/Utils.eol";  %]
+[% import "../annotations/validations.egl";  %]
 define(['model/_[%=aClass.name%]Model'], function() {
     App.Model.[%=aClass.name%]Model = App.Model._[%=aClass.name%]Model.extend({
 
  		validate: function(attrs,options){
         	var validationMessage = "";
         	[% for (attr in aClass.attributes){%]
-		  	 [%for(ann in attr.annotations){%]
-		  	 	[%='//'+ann.annotationType.name%]
-				[%if(ann.annotationType.name=='required'){%]
-			if(!attrs.[%=attr.name%]){
-				[%for(anAttr in ann.attributes){%]
-				[%if(anAttr.attribute.name='message'){%]
-					validationMessage = "[%=anAttr.value.value%].";
-				[%}}%]
-            }
-            	[%}%]
-			 [%}
-			}%]
+		  	[%=attr.validation()%] 
+			[%}%]
 			if(validationMessage.length>0){
                return validationMessage;
             }
