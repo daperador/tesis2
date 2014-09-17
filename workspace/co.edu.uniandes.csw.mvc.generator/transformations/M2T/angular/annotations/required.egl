@@ -1,0 +1,4 @@
+[%
+	var msg = annotated.annotations.selectOne(a | a.annotationType.name = 'required').attributes.get(0).value.value;
+%]
+[%=msg%]

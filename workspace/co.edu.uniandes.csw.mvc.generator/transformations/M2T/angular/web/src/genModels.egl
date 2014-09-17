@@ -7,6 +7,7 @@ define(['components/[%=mod.name.toLowerCase()%]Component'], function([%=mod.name
                     {update: {method: 'PUT'}}
             );
             [%for (attr in _model.rootEntity.attributes){%]
+            	[%=attr.processAnnotations()%] 
             [%=_model.name%].[%=attr.name%] = '';
             [%}%]
 

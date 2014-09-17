@@ -1,0 +1,11 @@
+operation Annotable processAnnotations() : String{
+	var generatedText = null;
+	for (ann in self.annotations){
+		var t : Template;
+		t := TemplateFactory.load('annotations/'+ann.annotationType.name + '.egl');
+ 		t.populate('annotated', self);
+ 		t.populate('annotated', self);
+ 		generatedText = generatedText + t.process();
+	}
+	return generatedText;
+}

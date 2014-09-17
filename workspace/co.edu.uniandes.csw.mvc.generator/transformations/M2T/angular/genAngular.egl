@@ -1,6 +1,7 @@
+[%import "temp.eol";%]
 [%for (app in MVCModel.all) {
-  	for(_model in app.models){
-		var t : Template;
+	for(_model in app.models){
+  		var t : Template;
 		t := TemplateFactory.load('web/genIndex.egl');
  		t.populate('app', app);
  		t.populate('_model', _model);
