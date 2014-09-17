@@ -1,153 +1,433 @@
 <?xml version="1.0" encoding="ASCII"?>
-<mvc:MVCModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://co.edu.uniandes.csw.mvc/1.0" name="model" version="0.1">
+<mvc:MVCModel
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:annotate="http://co.edu.uniandes.csw.mvc.annotate/1.0"
+    xmlns:mvc="http://co.edu.uniandes.csw.mvc/1.0"
+    name="model"
+    version="0.1">
   <models name="DocumentType">
-    <rootEntity name="DocumentTypeEntity">
-      <attributes name="id" type="Long"/>
-      <attributes name="name" type="String"/>
-      <attributes name="length" type="Integer"/>
+    <rootEntity
+        name="DocumentTypeEntity">
+      <attributes
+          name="id"
+          type="Long"/>
+      <attributes
+          name="name"
+          type="String"/>
+      <attributes
+          name="length"
+          type="Integer"/>
     </rootEntity>
   </models>
   <models name="City">
-    <rootEntity name="CityEntity">
-      <attributes name="id" type="Long"/>
-      <attributes name="name" type="String"/>
-      <attributes name="population" type="Integer"/>
+    <rootEntity
+        name="CityEntity">
+      <attributes
+          name="id"
+          type="Long"/>
+      <attributes
+          name="name"
+          type="String"/>
+      <attributes
+          name="population"
+          type="Integer"/>
     </rootEntity>
   </models>
   <models name="Country">
-    <rootEntity name="CountryEntity">
-      <attributes name="id" type="Long"/>
-      <attributes name="name" type="String"/>
-      <attributes name="population" type="Integer"/>
+    <rootEntity
+        name="CountryEntity">
+      <attributes
+          name="id"
+          type="Long"/>
+      <attributes
+          name="name"
+          type="String"/>
+      <attributes
+          name="population"
+          type="Integer"/>
     </rootEntity>
   </models>
   <models name="User">
-    <rootEntity name="UserEntity">
-      <attributes name="id" type="Long"/>
-      <attributes name="userName" type="String"/>
-      <attributes name="firstName" type="String"/>
-      <attributes name="lastName" type="String"/>
-      <attributes name="birthDate" type="Date"/>
-      <attributes name="enable" type="Boolean"/>
-      <attributes name="docNumber" type="String"/>
+    <rootEntity
+        name="UserEntity">
+      <attributes
+          name="id"
+          type="Long"/>
+      <attributes
+          name="userName"
+          type="String">
+        <annotations>
+          <annotationType
+              href="../prueba/Validaciones.xmi#//@annotationTypes.0"/>
+          <attributes>
+            <attribute
+                href="../prueba/Validaciones.xmi#//@annotationTypes.0/@attributes.0"/>
+            <value
+                xsi:type="annotate:SimpleValue"
+                value="El nombre del usuario no puede ser vacio."/>
+          </attributes>
+        </annotations>
+      </attributes>
+      <attributes
+          name="firstName"
+          type="String"/>
+      <attributes
+          name="lastName"
+          type="String"/>
+      <attributes
+          name="birthDate"
+          type="Date"/>
+      <attributes
+          name="enable"
+          type="Boolean"/>
+      <attributes
+          name="docNumber"
+          type="String"/>
     </rootEntity>
   </models>
   <models name="Role">
-    <rootEntity name="RoleEntity">
-      <attributes name="id" type="Long"/>
-      <attributes name="name" type="String"/>
-      <attributes name="description" type="String"/>
+    <rootEntity
+        name="RoleEntity">
+      <attributes
+          name="id"
+          type="Long"/>
+      <attributes
+          name="name"
+          type="String"/>
+      <attributes
+          name="description"
+          type="String"/>
     </rootEntity>
   </models>
   <models name="Address">
-    <rootEntity name="AddressEntity">
-      <attributes name="id" type="Long"/>
-      <attributes name="street" type="String"/>
-      <attributes name="aveneu" type="String"/>
+    <rootEntity
+        name="AddressEntity">
+      <attributes
+          name="id"
+          type="Long"/>
+      <attributes
+          name="street"
+          type="String"/>
+      <attributes
+          name="aveneu"
+          type="String"/>
     </rootEntity>
   </models>
   <models name="Sport">
-    <rootEntity name="SportEntity">
-      <attributes name="id" type="Long"/>
-      <attributes name="name" type="String"/>
-      <attributes name="minAge" type="Integer"/>
-      <attributes name="maxAge" type="Integer"/>
+    <rootEntity
+        name="SportEntity">
+      <attributes
+          name="id"
+          type="Long"/>
+      <attributes
+          name="name"
+          type="String"/>
+      <attributes
+          name="minAge"
+          type="Integer"/>
+      <attributes
+          name="maxAge"
+          type="Integer"/>
     </rootEntity>
   </models>
   <views name="DocumentTypeFormView">
-    <rootComponent name="DocumentTypeForm" type="form" orientation="vertical" columns="1">
-      <components xsi:type="mvc:UIInput" name="id" type="text" value="//@models.0/@rootEntity/@attributes.0"/>
-      <components xsi:type="mvc:UIInput" name="name" type="text" value="//@models.0/@rootEntity/@attributes.1"/>
-      <components xsi:type="mvc:UIInput" name="length" type="text" value="//@models.0/@rootEntity/@attributes.2"/>
+    <rootComponent
+        name="DocumentTypeForm"
+        type="form"
+        orientation="vertical"
+        columns="1">
+      <components
+          xsi:type="mvc:UIInput"
+          name="id"
+          type="text"
+          value="//@models.0/@rootEntity/@attributes.0"/>
+      <components
+          xsi:type="mvc:UIInput"
+          name="name"
+          type="text"
+          value="//@models.0/@rootEntity/@attributes.1"/>
+      <components
+          xsi:type="mvc:UIInput"
+          name="length"
+          type="text"
+          value="//@models.0/@rootEntity/@attributes.2"/>
     </rootComponent>
   </views>
   <views name="DocumentTypeListView">
-    <rootComponent name="DocumentTypeList" type="table" orientation="horizontal" columns="1">
-      <components xsi:type="mvc:UIActions" name="editDocumentType" triggerEvent="//@events.2"/>
-      <components xsi:type="mvc:UIActions" name="deleteDocumentType" triggerEvent="//@events.4"/>
+    <rootComponent
+        name="DocumentTypeList"
+        type="table"
+        orientation="horizontal"
+        columns="1">
+      <components
+          xsi:type="mvc:UIActions"
+          name="editDocumentType"
+          triggerEvent="//@events.2"/>
+      <components
+          xsi:type="mvc:UIActions"
+          name="deleteDocumentType"
+          triggerEvent="//@events.4"/>
     </rootComponent>
   </views>
   <views name="CityFormView">
-    <rootComponent name="CityForm" type="form" orientation="vertical" columns="1">
-      <components xsi:type="mvc:UIInput" name="id" type="text" value="//@models.1/@rootEntity/@attributes.0"/>
-      <components xsi:type="mvc:UIInput" name="name" type="text" value="//@models.1/@rootEntity/@attributes.1"/>
-      <components xsi:type="mvc:UIInput" name="population" type="text" value="//@models.1/@rootEntity/@attributes.2"/>
+    <rootComponent
+        name="CityForm"
+        type="form"
+        orientation="vertical"
+        columns="1">
+      <components
+          xsi:type="mvc:UIInput"
+          name="id"
+          type="text"
+          value="//@models.1/@rootEntity/@attributes.0"/>
+      <components
+          xsi:type="mvc:UIInput"
+          name="name"
+          type="text"
+          value="//@models.1/@rootEntity/@attributes.1"/>
+      <components
+          xsi:type="mvc:UIInput"
+          name="population"
+          type="text"
+          value="//@models.1/@rootEntity/@attributes.2"/>
     </rootComponent>
   </views>
   <views name="CityListView">
-    <rootComponent name="CityList" type="table" orientation="horizontal" columns="1">
-      <components xsi:type="mvc:UIActions" name="editCity" triggerEvent="//@events.2"/>
-      <components xsi:type="mvc:UIActions" name="deleteCity" triggerEvent="//@events.4"/>
+    <rootComponent
+        name="CityList"
+        type="table"
+        orientation="horizontal"
+        columns="1">
+      <components
+          xsi:type="mvc:UIActions"
+          name="editCity"
+          triggerEvent="//@events.2"/>
+      <components
+          xsi:type="mvc:UIActions"
+          name="deleteCity"
+          triggerEvent="//@events.4"/>
     </rootComponent>
   </views>
   <views name="CountryFormView">
-    <rootComponent name="CountryForm" type="form" orientation="vertical" columns="1">
-      <components xsi:type="mvc:UIInput" name="id" type="text" value="//@models.2/@rootEntity/@attributes.0"/>
-      <components xsi:type="mvc:UIInput" name="name" type="text" value="//@models.2/@rootEntity/@attributes.1"/>
-      <components xsi:type="mvc:UIInput" name="population" type="text" value="//@models.2/@rootEntity/@attributes.2"/>
+    <rootComponent
+        name="CountryForm"
+        type="form"
+        orientation="vertical"
+        columns="1">
+      <components
+          xsi:type="mvc:UIInput"
+          name="id"
+          type="text"
+          value="//@models.2/@rootEntity/@attributes.0"/>
+      <components
+          xsi:type="mvc:UIInput"
+          name="name"
+          type="text"
+          value="//@models.2/@rootEntity/@attributes.1"/>
+      <components
+          xsi:type="mvc:UIInput"
+          name="population"
+          type="text"
+          value="//@models.2/@rootEntity/@attributes.2"/>
     </rootComponent>
   </views>
   <views name="CountryListView">
-    <rootComponent name="CountryList" type="table" orientation="horizontal" columns="1">
-      <components xsi:type="mvc:UIActions" name="editCountry" triggerEvent="//@events.2"/>
-      <components xsi:type="mvc:UIActions" name="deleteCountry" triggerEvent="//@events.4"/>
+    <rootComponent
+        name="CountryList"
+        type="table"
+        orientation="horizontal"
+        columns="1">
+      <components
+          xsi:type="mvc:UIActions"
+          name="editCountry"
+          triggerEvent="//@events.2"/>
+      <components
+          xsi:type="mvc:UIActions"
+          name="deleteCountry"
+          triggerEvent="//@events.4"/>
     </rootComponent>
   </views>
   <views name="UserFormView">
-    <rootComponent name="UserForm" type="form" orientation="vertical" columns="1">
-      <components xsi:type="mvc:UIInput" name="id" type="text" value="//@models.3/@rootEntity/@attributes.0"/>
-      <components xsi:type="mvc:UIInput" name="userName" type="text" value="//@models.3/@rootEntity/@attributes.1"/>
-      <components xsi:type="mvc:UIInput" name="firstName" type="text" value="//@models.3/@rootEntity/@attributes.2"/>
-      <components xsi:type="mvc:UIInput" name="lastName" type="text" value="//@models.3/@rootEntity/@attributes.3"/>
-      <components xsi:type="mvc:UIInput" name="birthDate" type="date" value="//@models.3/@rootEntity/@attributes.4"/>
-      <components xsi:type="mvc:UIInput" name="enable" type="boolean" value="//@models.3/@rootEntity/@attributes.5"/>
-      <components xsi:type="mvc:UIInput" name="docNumber" type="text" value="//@models.3/@rootEntity/@attributes.6"/>
+    <rootComponent
+        name="UserForm"
+        type="form"
+        orientation="vertical"
+        columns="1">
+      <components
+          xsi:type="mvc:UIInput"
+          name="id"
+          type="text"
+          value="//@models.3/@rootEntity/@attributes.0"/>
+      <components
+          xsi:type="mvc:UIInput"
+          name="userName"
+          type="text"
+          value="//@models.3/@rootEntity/@attributes.1"/>
+      <components
+          xsi:type="mvc:UIInput"
+          name="firstName"
+          type="text"
+          value="//@models.3/@rootEntity/@attributes.2"/>
+      <components
+          xsi:type="mvc:UIInput"
+          name="lastName"
+          type="text"
+          value="//@models.3/@rootEntity/@attributes.3"/>
+      <components
+          xsi:type="mvc:UIInput"
+          name="birthDate"
+          type="date"
+          value="//@models.3/@rootEntity/@attributes.4"/>
+      <components
+          xsi:type="mvc:UIInput"
+          name="enable"
+          type="boolean"
+          value="//@models.3/@rootEntity/@attributes.5"/>
+      <components
+          xsi:type="mvc:UIInput"
+          name="docNumber"
+          type="text"
+          value="//@models.3/@rootEntity/@attributes.6"/>
     </rootComponent>
   </views>
   <views name="UserListView">
-    <rootComponent name="UserList" type="table" orientation="horizontal" columns="1">
-      <components xsi:type="mvc:UIActions" name="editUser" triggerEvent="//@events.2"/>
-      <components xsi:type="mvc:UIActions" name="deleteUser" triggerEvent="//@events.4"/>
+    <rootComponent
+        name="UserList"
+        type="table"
+        orientation="horizontal"
+        columns="1">
+      <components
+          xsi:type="mvc:UIActions"
+          name="editUser"
+          triggerEvent="//@events.2"/>
+      <components
+          xsi:type="mvc:UIActions"
+          name="deleteUser"
+          triggerEvent="//@events.4"/>
     </rootComponent>
   </views>
   <views name="RoleFormView">
-    <rootComponent name="RoleForm" type="form" orientation="vertical" columns="1">
-      <components xsi:type="mvc:UIInput" name="id" type="text" value="//@models.4/@rootEntity/@attributes.0"/>
-      <components xsi:type="mvc:UIInput" name="name" type="text" value="//@models.4/@rootEntity/@attributes.1"/>
-      <components xsi:type="mvc:UIInput" name="description" type="text" value="//@models.4/@rootEntity/@attributes.2"/>
+    <rootComponent
+        name="RoleForm"
+        type="form"
+        orientation="vertical"
+        columns="1">
+      <components
+          xsi:type="mvc:UIInput"
+          name="id"
+          type="text"
+          value="//@models.4/@rootEntity/@attributes.0"/>
+      <components
+          xsi:type="mvc:UIInput"
+          name="name"
+          type="text"
+          value="//@models.4/@rootEntity/@attributes.1"/>
+      <components
+          xsi:type="mvc:UIInput"
+          name="description"
+          type="text"
+          value="//@models.4/@rootEntity/@attributes.2"/>
     </rootComponent>
   </views>
   <views name="RoleListView">
-    <rootComponent name="RoleList" type="table" orientation="horizontal" columns="1">
-      <components xsi:type="mvc:UIActions" name="editRole" triggerEvent="//@events.2"/>
-      <components xsi:type="mvc:UIActions" name="deleteRole" triggerEvent="//@events.4"/>
+    <rootComponent
+        name="RoleList"
+        type="table"
+        orientation="horizontal"
+        columns="1">
+      <components
+          xsi:type="mvc:UIActions"
+          name="editRole"
+          triggerEvent="//@events.2"/>
+      <components
+          xsi:type="mvc:UIActions"
+          name="deleteRole"
+          triggerEvent="//@events.4"/>
     </rootComponent>
   </views>
   <views name="AddressFormView">
-    <rootComponent name="AddressForm" type="form" orientation="vertical" columns="1">
-      <components xsi:type="mvc:UIInput" name="id" type="text" value="//@models.5/@rootEntity/@attributes.0"/>
-      <components xsi:type="mvc:UIInput" name="street" type="text" value="//@models.5/@rootEntity/@attributes.1"/>
-      <components xsi:type="mvc:UIInput" name="aveneu" type="text" value="//@models.5/@rootEntity/@attributes.2"/>
+    <rootComponent
+        name="AddressForm"
+        type="form"
+        orientation="vertical"
+        columns="1">
+      <components
+          xsi:type="mvc:UIInput"
+          name="id"
+          type="text"
+          value="//@models.5/@rootEntity/@attributes.0"/>
+      <components
+          xsi:type="mvc:UIInput"
+          name="street"
+          type="text"
+          value="//@models.5/@rootEntity/@attributes.1"/>
+      <components
+          xsi:type="mvc:UIInput"
+          name="aveneu"
+          type="text"
+          value="//@models.5/@rootEntity/@attributes.2"/>
     </rootComponent>
   </views>
   <views name="AddressListView">
-    <rootComponent name="AddressList" type="table" orientation="horizontal" columns="1">
-      <components xsi:type="mvc:UIActions" name="editAddress" triggerEvent="//@events.2"/>
-      <components xsi:type="mvc:UIActions" name="deleteAddress" triggerEvent="//@events.4"/>
+    <rootComponent
+        name="AddressList"
+        type="table"
+        orientation="horizontal"
+        columns="1">
+      <components
+          xsi:type="mvc:UIActions"
+          name="editAddress"
+          triggerEvent="//@events.2"/>
+      <components
+          xsi:type="mvc:UIActions"
+          name="deleteAddress"
+          triggerEvent="//@events.4"/>
     </rootComponent>
   </views>
   <views name="SportFormView">
-    <rootComponent name="SportForm" type="form" orientation="vertical" columns="1">
-      <components xsi:type="mvc:UIInput" name="id" type="text" value="//@models.6/@rootEntity/@attributes.0"/>
-      <components xsi:type="mvc:UIInput" name="name" type="text" value="//@models.6/@rootEntity/@attributes.1"/>
-      <components xsi:type="mvc:UIInput" name="minAge" type="text" value="//@models.6/@rootEntity/@attributes.2"/>
-      <components xsi:type="mvc:UIInput" name="maxAge" type="text" value="//@models.6/@rootEntity/@attributes.3"/>
+    <rootComponent
+        name="SportForm"
+        type="form"
+        orientation="vertical"
+        columns="1">
+      <components
+          xsi:type="mvc:UIInput"
+          name="id"
+          type="text"
+          value="//@models.6/@rootEntity/@attributes.0"/>
+      <components
+          xsi:type="mvc:UIInput"
+          name="name"
+          type="text"
+          value="//@models.6/@rootEntity/@attributes.1"/>
+      <components
+          xsi:type="mvc:UIInput"
+          name="minAge"
+          type="text"
+          value="//@models.6/@rootEntity/@attributes.2"/>
+      <components
+          xsi:type="mvc:UIInput"
+          name="maxAge"
+          type="text"
+          value="//@models.6/@rootEntity/@attributes.3"/>
     </rootComponent>
   </views>
   <views name="SportListView">
-    <rootComponent name="SportList" type="table" orientation="horizontal" columns="1">
-      <components xsi:type="mvc:UIActions" name="editSport" triggerEvent="//@events.2"/>
-      <components xsi:type="mvc:UIActions" name="deleteSport" triggerEvent="//@events.4"/>
+    <rootComponent
+        name="SportList"
+        type="table"
+        orientation="horizontal"
+        columns="1">
+      <components
+          xsi:type="mvc:UIActions"
+          name="editSport"
+          triggerEvent="//@events.2"/>
+      <components
+          xsi:type="mvc:UIActions"
+          name="deleteSport"
+          triggerEvent="//@events.4"/>
     </rootComponent>
   </views>
   <events name="Save"/>
@@ -155,95 +435,200 @@
   <events name="Edit"/>
   <events name="List"/>
   <events name="Delete"/>
-  <controllers name="DocumentTypeController">
-    <actions name="saveDocumentType"/>
-    <actions name="deleteDocumentType"/>
-    <actions name="getDocumentTypes"/>
-    <actions name="editDocumentType"/>
-    <actions name="createDocumentType"/>
-    <actions name="listDocumentType"/>
-    <views view="//@views.0" models="//@models.0"/>
-    <views view="//@views.1" models="//@models.0"/>
-    <eventActions action="//@controllers.0/@actions.4" events="//@events.1"/>
-    <eventActions action="//@controllers.0/@actions.0" events="//@events.0"/>
-    <eventActions action="//@controllers.0/@actions.5" events="//@events.3"/>
+  <controllers
+      name="DocumentTypeController">
+    <actions
+        name="saveDocumentType"/>
+    <actions
+        name="deleteDocumentType"/>
+    <actions
+        name="getDocumentTypes"/>
+    <actions
+        name="editDocumentType"/>
+    <actions
+        name="createDocumentType"/>
+    <actions
+        name="listDocumentType"/>
+    <views view="//@views.0"
+        models="//@models.0"/>
+    <views view="//@views.1"
+        models="//@models.0"/>
+    <eventActions
+        action="//@controllers.0/@actions.4"
+        events="//@events.1"/>
+    <eventActions
+        action="//@controllers.0/@actions.0"
+        events="//@events.0"/>
+    <eventActions
+        action="//@controllers.0/@actions.5"
+        events="//@events.3"/>
   </controllers>
-  <controllers name="CityController">
-    <actions name="saveCity"/>
-    <actions name="deleteCity"/>
-    <actions name="getCitys"/>
-    <actions name="editCity"/>
-    <actions name="createCity"/>
-    <actions name="listCity"/>
-    <views view="//@views.2" models="//@models.1"/>
-    <views view="//@views.3" models="//@models.1"/>
-    <eventActions action="//@controllers.1/@actions.4" events="//@events.1"/>
-    <eventActions action="//@controllers.1/@actions.0" events="//@events.0"/>
-    <eventActions action="//@controllers.1/@actions.5" events="//@events.3"/>
+  <controllers
+      name="CityController">
+    <actions
+        name="saveCity"/>
+    <actions
+        name="deleteCity"/>
+    <actions
+        name="getCitys"/>
+    <actions
+        name="editCity"/>
+    <actions
+        name="createCity"/>
+    <actions
+        name="listCity"/>
+    <views view="//@views.2"
+        models="//@models.1"/>
+    <views view="//@views.3"
+        models="//@models.1"/>
+    <eventActions
+        action="//@controllers.1/@actions.4"
+        events="//@events.1"/>
+    <eventActions
+        action="//@controllers.1/@actions.0"
+        events="//@events.0"/>
+    <eventActions
+        action="//@controllers.1/@actions.5"
+        events="//@events.3"/>
   </controllers>
-  <controllers name="CountryController">
-    <actions name="saveCountry"/>
-    <actions name="deleteCountry"/>
-    <actions name="getCountrys"/>
-    <actions name="editCountry"/>
-    <actions name="createCountry"/>
-    <actions name="listCountry"/>
-    <views view="//@views.4" models="//@models.2"/>
-    <views view="//@views.5" models="//@models.2"/>
-    <eventActions action="//@controllers.2/@actions.4" events="//@events.1"/>
-    <eventActions action="//@controllers.2/@actions.0" events="//@events.0"/>
-    <eventActions action="//@controllers.2/@actions.5" events="//@events.3"/>
+  <controllers
+      name="CountryController">
+    <actions
+        name="saveCountry"/>
+    <actions
+        name="deleteCountry"/>
+    <actions
+        name="getCountrys"/>
+    <actions
+        name="editCountry"/>
+    <actions
+        name="createCountry"/>
+    <actions
+        name="listCountry"/>
+    <views view="//@views.4"
+        models="//@models.2"/>
+    <views view="//@views.5"
+        models="//@models.2"/>
+    <eventActions
+        action="//@controllers.2/@actions.4"
+        events="//@events.1"/>
+    <eventActions
+        action="//@controllers.2/@actions.0"
+        events="//@events.0"/>
+    <eventActions
+        action="//@controllers.2/@actions.5"
+        events="//@events.3"/>
   </controllers>
-  <controllers name="UserController">
-    <actions name="saveUser"/>
-    <actions name="deleteUser"/>
-    <actions name="getUsers"/>
-    <actions name="editUser"/>
-    <actions name="createUser"/>
-    <actions name="listUser"/>
-    <views view="//@views.6" models="//@models.3"/>
-    <views view="//@views.7" models="//@models.3"/>
-    <eventActions action="//@controllers.3/@actions.4" events="//@events.1"/>
-    <eventActions action="//@controllers.3/@actions.0" events="//@events.0"/>
-    <eventActions action="//@controllers.3/@actions.5" events="//@events.3"/>
+  <controllers
+      name="UserController">
+    <actions
+        name="saveUser"/>
+    <actions
+        name="deleteUser"/>
+    <actions
+        name="getUsers"/>
+    <actions
+        name="editUser"/>
+    <actions
+        name="createUser"/>
+    <actions
+        name="listUser"/>
+    <views view="//@views.6"
+        models="//@models.3"/>
+    <views view="//@views.7"
+        models="//@models.3"/>
+    <eventActions
+        action="//@controllers.3/@actions.4"
+        events="//@events.1"/>
+    <eventActions
+        action="//@controllers.3/@actions.0"
+        events="//@events.0"/>
+    <eventActions
+        action="//@controllers.3/@actions.5"
+        events="//@events.3"/>
   </controllers>
-  <controllers name="RoleController">
-    <actions name="saveRole"/>
-    <actions name="deleteRole"/>
-    <actions name="getRoles"/>
-    <actions name="editRole"/>
-    <actions name="createRole"/>
-    <actions name="listRole"/>
-    <views view="//@views.8" models="//@models.4"/>
-    <views view="//@views.9" models="//@models.4"/>
-    <eventActions action="//@controllers.4/@actions.4" events="//@events.1"/>
-    <eventActions action="//@controllers.4/@actions.0" events="//@events.0"/>
-    <eventActions action="//@controllers.4/@actions.5" events="//@events.3"/>
+  <controllers
+      name="RoleController">
+    <actions
+        name="saveRole"/>
+    <actions
+        name="deleteRole"/>
+    <actions
+        name="getRoles"/>
+    <actions
+        name="editRole"/>
+    <actions
+        name="createRole"/>
+    <actions
+        name="listRole"/>
+    <views view="//@views.8"
+        models="//@models.4"/>
+    <views view="//@views.9"
+        models="//@models.4"/>
+    <eventActions
+        action="//@controllers.4/@actions.4"
+        events="//@events.1"/>
+    <eventActions
+        action="//@controllers.4/@actions.0"
+        events="//@events.0"/>
+    <eventActions
+        action="//@controllers.4/@actions.5"
+        events="//@events.3"/>
   </controllers>
-  <controllers name="AddressController">
-    <actions name="saveAddress"/>
-    <actions name="deleteAddress"/>
-    <actions name="getAddresss"/>
-    <actions name="editAddress"/>
-    <actions name="createAddress"/>
-    <actions name="listAddress"/>
-    <views view="//@views.10" models="//@models.5"/>
-    <views view="//@views.11" models="//@models.5"/>
-    <eventActions action="//@controllers.5/@actions.4" events="//@events.1"/>
-    <eventActions action="//@controllers.5/@actions.0" events="//@events.0"/>
-    <eventActions action="//@controllers.5/@actions.5" events="//@events.3"/>
+  <controllers
+      name="AddressController">
+    <actions
+        name="saveAddress"/>
+    <actions
+        name="deleteAddress"/>
+    <actions
+        name="getAddresss"/>
+    <actions
+        name="editAddress"/>
+    <actions
+        name="createAddress"/>
+    <actions
+        name="listAddress"/>
+    <views view="//@views.10"
+        models="//@models.5"/>
+    <views view="//@views.11"
+        models="//@models.5"/>
+    <eventActions
+        action="//@controllers.5/@actions.4"
+        events="//@events.1"/>
+    <eventActions
+        action="//@controllers.5/@actions.0"
+        events="//@events.0"/>
+    <eventActions
+        action="//@controllers.5/@actions.5"
+        events="//@events.3"/>
   </controllers>
-  <controllers name="SportController">
-    <actions name="saveSport"/>
-    <actions name="deleteSport"/>
-    <actions name="getSports"/>
-    <actions name="editSport"/>
-    <actions name="createSport"/>
-    <actions name="listSport"/>
-    <views view="//@views.12" models="//@models.6"/>
-    <views view="//@views.13" models="//@models.6"/>
-    <eventActions action="//@controllers.6/@actions.4" events="//@events.1"/>
-    <eventActions action="//@controllers.6/@actions.0" events="//@events.0"/>
-    <eventActions action="//@controllers.6/@actions.5" events="//@events.3"/>
+  <controllers
+      name="SportController">
+    <actions
+        name="saveSport"/>
+    <actions
+        name="deleteSport"/>
+    <actions
+        name="getSports"/>
+    <actions
+        name="editSport"/>
+    <actions
+        name="createSport"/>
+    <actions
+        name="listSport"/>
+    <views view="//@views.12"
+        models="//@models.6"/>
+    <views view="//@views.13"
+        models="//@models.6"/>
+    <eventActions
+        action="//@controllers.6/@actions.4"
+        events="//@events.1"/>
+    <eventActions
+        action="//@controllers.6/@actions.0"
+        events="//@events.0"/>
+    <eventActions
+        action="//@controllers.6/@actions.5"
+        events="//@events.3"/>
   </controllers>
 </mvc:MVCModel>
