@@ -1,0 +1,49 @@
+import "lib/Utils.eol";
+
+pre init {
+	var primitiveTypes = new Set;
+	var rootModel;
+}
+
+post end {
+	rootModel.packagedElement.addAll(primitiveTypes);
+}
+
+rule MVCModel2Model
+transform mm : MVC!MVCModel to um : UML!Model{
+	
+	rootModel = um;
+	um.name = mm.name;
+	
+	for (_model in mm->models){
+		um.packagedElement.add(_model.rootEntity.equivalent());
+	}
+	um.packagedElement.addAll(primitiveTypes);
+}
+
+rule Entity2Class 
+	transform s : MVC!Entity
+	to t : UML!Class {
+	t.name = s.name;
+	
+	t.ownedAttribute.addAll(s.attributes.equivalent());
+}
+
+rule Attribute2Property 
+	transform s : MVC!Attribute
+	to t : UML!Property {
+	
+	t.name = s.name;
+	if (primitiveTypes->selectOne(t|t.name = s.type).isUndefined()){
+		var type = new UML!PrimitiveType;
+		type.name = s.type;
+		primitiveTypes.add(type);
+	}
+	t.type = primitiveTypes->selectOne(t|t.name = s.type);
+	
+	t.lowerValue = new UML!LiteralInteger;
+	t.lowerValue.value = 1;
+	
+	t.upperValue = new UML!LiteralUnlimitedNatural;
+	t.upperValue.value = 1;
+}
