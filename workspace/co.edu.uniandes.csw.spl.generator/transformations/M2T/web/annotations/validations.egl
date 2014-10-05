@@ -1,0 +1,29 @@
+[% import "../../lib/Utils.eol";  %]
+
+[%
+	
+	@template
+	operation Property validation(){
+%]	
+	//prueba validacion [%=self.name%]-[%=self.owner.name%]
+	[%for(entity in Entity.all->select(en|en.name=self.owner.name)){%]
+	[%for(ann in entity.attributes->select(at|at.name=self.name)){%]
+  	 	[%='//'+ann.annotationType.name%]
+		[%if(ann.annotationType.name=='required'){%]
+	[%=self.required(ann)%]
+    	[%}%]
+	 [%}}%]
+[%	
+	}
+	@template
+	operation Property required(ann){
+%]	
+	if(!attrs.[%=self.name%]){
+		[%for(anAttr in ann.attributes){%]
+		[%if(anAttr.attribute.name='message'){%]
+			validationMessage = "[%=anAttr.value.value%].";
+		[%}}%]
+    }
+[%	
+	}
+%]

@@ -1,0 +1,7 @@
+[% import "../../lib/Utils.eol";  %]
+/*[%=license()%]*/
+define(['component/_CRUDComponent'], function() {
+    App.Delegate._[%=aClass.name.toUpperFirst() %]Delegate = App.Component.BasicComponent.extend({
+    
+    });
+});

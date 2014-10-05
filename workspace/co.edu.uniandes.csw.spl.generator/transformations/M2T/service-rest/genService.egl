@@ -1,0 +1,10 @@
+[% import "../lib/Utils.eol";  %]
+
+[%
+for (class in Class.all) { 
+	genFile('_RestServiceJAVA',class.service_src_dir()+'/'+class.basePckPath()+'/service/_'+class.name()+'Service.java',class);
+	genFile('RestServiceJAVA',class.service_src_dir()+'/'+class.basePckPath()+'/service/'+class.name()+'Service.java',class);
+}
+
+
+%]

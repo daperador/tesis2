@@ -1,0 +1,205 @@
+[% import "../../lib/Utils.eol";  %]
+/*[%=license()%]*/
+
+package [%=aClass.basePck()%].persistence;
+
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.UserTransaction;
+
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import java.util.*;
+
+
+import [%=aClass.basePck()%].logic.dto.[%=aClass.DTOName()%];
+import [%=aClass.basePck()%].persistence.api.I[%=aClass.name()%]Persistence;
+import [%=aClass.basePck()%].persistence.entity.[%=aClass.name()%]Entity;
+import [%=aClass.basePck()%].persistence.converter.[%=aClass.name()%]Converter;
+import static [%=getBasePackage()%].util._TestUtil.*;
+
+@RunWith(Arquillian.class)
+public class [%=aClass.name%]PersistenceTest {
+
+	public static final String DEPLOY = "Prueba";
+
+	@Deployment
+	public static WebArchive createDeployment() {
+		return ShrinkWrap.create(WebArchive.class, DEPLOY + ".war")
+				.addPackage([%=aClass.name()%]Persistence.class.getPackage())
+				.addPackage([%=aClass.name()%]Entity.class.getPackage())
+				.addPackage(I[%=aClass.name()%]Persistence.class.getPackage())
+                .addPackage([%=aClass.name()%]DTO.class.getPackage())
+                .addPackage([%=aClass.name()%]Converter.class.getPackage())
+				.addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
+                .addAsWebInfResource("META-INF/beans.xml", "beans.xml");
+	}
+
+	@Inject
+	private I[%=aClass.name()%]Persistence [%=aClass.name.toLowerFirst()%]Persistence;
+
+	@PersistenceContext
+	private EntityManager em;
+
+	@Inject
+	UserTransaction utx;
+
+	@Before
+	public void configTest() {
+		System.out.println("em: " + em);
+		try {
+			utx.begin();
+			clearData();
+			insertData();
+			utx.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				utx.rollback();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		}
+	}
+
+	private void clearData() {
+		em.createQuery("delete from [%=aClass.name()%]Entity").executeUpdate();
+	}
+
+	private List<[%=aClass.name()%]Entity> data=new ArrayList<[%=aClass.name()%]Entity>();
+
+	private void insertData() {
+		for(int i=0;i<3;i++){
+			[%=aClass.name()%]Entity entity=new [%=aClass.name()%]Entity();
+			[% for (attr in aClass.getAllAttributes()) { %]
+			[% if (attr.name<>'id') {%]
+			entity.set[%=attr.name.toUpperFirst() %](generateRandom([%=attr.type.name %].class));
+			[% }} %]
+			em.persist(entity);
+			data.add(entity);
+		}
+	}
+	
+	@Test
+	public void create[%=aClass.name.toUpperFirst()%]Test(){
+		[%=aClass.DTOName()%] dto=new [%=aClass.DTOName()%]();
+		[% for (attr in aClass.getAllAttributes()) { %]
+		[% if (attr.name<>'id'){ if(attr.type.name<>'Date') {%]
+		dto.set[%=attr.name.toUpperFirst() %](generateRandom([%=attr.type.name %].class));
+		[%}else{%]dto.set[%=attr.name.toUpperFirst() %](generateRandomDate());
+		[% }}} %]
+		
+		[%=aClass.DTOName()%] result=[%=aClass.name.toLowerFirst()%]Persistence.create[%=aClass.name.toUpperFirst()%](dto);
+		
+		Assert.assertNotNull(result);
+		
+		[%=aClass.name%]Entity entity=em.find([%=aClass.name%]Entity.class, result.getId());
+		
+		[% for (attr in aClass.getAllAttributes()) { %]
+		[% if (attr.name<>'id'){ if(attr.type.name<>'Date') {%]
+		Assert.assertEquals(dto.get[%=attr.name.toUpperFirst() %](), entity.get[%=attr.name.toUpperFirst()%]());
+		[%}else{%]Assert.assertEquals(parseDate(dto.get[%=attr.name.toUpperFirst() %]()), entity.get[%=attr.name.toUpperFirst()%]());	
+		[% }}} %]
+	}
+	
+	@Test
+	public void get[%=aClass.name.toUpperFirst()%]sTest(){
+		List<[%=aClass.DTOName()%]> list=[%=aClass.name.toLowerFirst()%]Persistence.get[%=aClass.name.toUpperFirst()%]s();
+		Assert.assertEquals(list.size(), data.size());
+        for([%=aClass.DTOName()%] dto:list){
+        	boolean found=false;
+            for([%=aClass.name%]Entity entity:data){
+            	if(dto.getId().equals(entity.getId())){
+                	found=true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+	}
+	
+	@Test
+	public void get[%=aClass.name.toUpperFirst()%]Test(){
+		[%=aClass.name%]Entity entity=data.get(0);
+		[%=aClass.DTOName()%] dto=[%=aClass.name.toLowerFirst()%]Persistence.get[%=aClass.name%](entity.getId());
+        Assert.assertNotNull(dto);
+        [% for (attr in aClass.getAllAttributes()) { %]
+		[% if (attr.name<>'id' and attr.type.name<>'Date') {%]
+		Assert.assertEquals(entity.get[%=attr.name.toUpperFirst() %](), dto.get[%=attr.name.toUpperFirst() %]());
+		[% }} %]        
+	}
+	
+	@Test
+	public void delete[%=aClass.name.toUpperFirst()%]Test(){
+		[%=aClass.name%]Entity entity=data.get(0);
+		[%=aClass.name.toLowerFirst()%]Persistence.delete[%=aClass.name%](entity.getId());
+        [%=aClass.name%]Entity deleted=em.find([%=aClass.name%]Entity.class, entity.getId());
+        Assert.assertNull(deleted);
+	}
+	
+	@Test
+	public void update[%=aClass.name.toUpperFirst()%]Test(){
+		[%=aClass.name%]Entity entity=data.get(0);
+		
+		[%=aClass.DTOName()%] dto=new [%=aClass.DTOName()%]();
+		dto.setId(entity.getId());
+		[% for (attr in aClass.getAllAttributes()) { %]
+		[% if (attr.name<>'id') { if(attr.type.name<>'Date') {%]
+		dto.set[%=attr.name.toUpperFirst() %](generateRandom([%=attr.type.name %].class));
+		[%}else{%]dto.set[%=attr.name.toUpperFirst() %](generateRandomDate());
+		[% }}} %]
+		
+		
+		[%=aClass.name.toLowerFirst()%]Persistence.update[%=aClass.name.toUpperFirst()%](dto);
+		
+		
+		[%=aClass.name%]Entity resp=em.find([%=aClass.name%]Entity.class, entity.getId());
+		
+		[% for (attr in aClass.getAllAttributes()) { %]
+		[% if (attr.name<>'id'){ if(attr.type.name<>'Date') {%]
+		Assert.assertEquals(dto.get[%=attr.name.toUpperFirst() %](), resp.get[%=attr.name.toUpperFirst()%]());	
+		[%} else {%]Assert.assertEquals(parseDate(dto.get[%=attr.name.toUpperFirst() %]()), resp.get[%=attr.name.toUpperFirst()%]());
+		[% }}} %]
+	}
+	
+	/*@Test
+	public void get[%=aClass.name.toUpperFirst()%]PaginationTest(){
+		//Page 1
+		[%=aClass.name.toUpperFirst()%]PageDTO dto1=[%=aClass.name.toLowerFirst()%]Persistence.get[%=aClass.name%](1,2);
+        Assert.assertNotNull(dto1);
+        Assert.assertEquals(dto1.getRecords().size(),2);
+        Assert.assertEquals(dto1.getTotalRecords(),2L);
+        //Page 2
+        [%=aClass.name.toUpperFirst()%]PageDTO dto2=[%=aClass.name.toLowerFirst()%]Persistence.get[%=aClass.name%](2,2);
+        Assert.assertNotNull(dto2);
+        Assert.assertEquals(dto2.getRecords().size(),1);
+        Assert.assertEquals(dto2.getTotalRecords(),1L);
+        
+        for([%=aClass.DTOName()%] dto:dto1.getRecords()){
+        	boolean found=false;
+            for([%=aClass.name%]Entity entity:data){
+            	if(dto.getId().equals(entity.getId())){
+                	found=true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+        
+        for([%=aClass.DTOName()%] dto:dto2.getRecords()){
+        	boolean found=false;
+            for([%=aClass.name%]Entity entity:data){
+            	if(dto.getId().equals(entity.getId())){
+                	found=true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+	}*/
+	
+}

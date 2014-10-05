@@ -1,0 +1,30 @@
+[% import "../../lib/Utils.eol";  %]
+[% import "../annotations/validations.egl";  %]
+/*[%=license()%]*/
+define(['model/_[%=aClass.name.toLowerFirst() %]Model'], function() {
+    App.Model.[%=aClass.name.toUpperFirst() %]Model = App.Model._[%=aClass.name.toUpperFirst() %]Model.extend({
+
+ 		validate: function(attrs,options){
+            var validationMessage = "";
+            [% if(aClass.getAllAttributes().exists(at | at.name='name')) {%]
+            if(!attrs.name){
+                validationMessage = "The name can't be empty.";
+            }
+            [%}%]
+            [% for (attr in aClass.getAllAttributes()){%]
+		  	[%=attr.validation()%] 
+			[%}%]
+            if(validationMessage.length>0){
+               return validationMessage;
+            }
+        }
+
+    });
+
+    App.Model.[%=aClass.name.toUpperFirst() %]List = App.Model._[%=aClass.name.toUpperFirst() %]List.extend({
+        model: App.Model.[%=aClass.name.toUpperFirst() %]Model
+    });
+
+    return  App.Model.[%=aClass.name.toUpperFirst() %]Model;
+
+});

@@ -1,0 +1,41 @@
+[% import "../lib/Utils.eol";  %]
+/*[%=license()%]*/
+
+package [%=aClass.basePck()%].logic.ejb;
+import java.util.List;
+import javax.inject.Inject;
+
+import [%=aClass.basePck()%].logic.dto.[%=aClass.DTOName()%];
+import [%=aClass.basePck()%].logic.dto.[%=aClass.PageName()%];
+import [%=aClass.basePck()%].logic.api._I[%=aClass.name%]LogicService;
+import [%=aClass.basePck()%].persistence.api.I[%=aClass.name%]Persistence;
+
+public abstract class _[%=aClass.name%]LogicService implements _I[%=aClass.name%]LogicService {
+
+	@Inject
+	protected I[%=aClass.name%]Persistence persistance;
+
+	public [%=aClass.DTOName()%] create[%=aClass.name.toUpperFirst()%]([%=aClass.DTOName()%] [%=aClass.name.toLowerFirst()%]){
+		return persistance.create[%=aClass.name.toUpperFirst()%]( [%=aClass.name.toLowerFirst()%]); 
+    }
+
+	public List<[%=aClass.DTOName()%]> get[%=aClass.name.toUpperFirst()%]s(){
+		return persistance.get[%=aClass.name.toUpperFirst()%]s(); 
+	}
+
+	public [%=aClass.PageName()%] get[%=aClass.name.toUpperFirst()%]s(Integer page, Integer maxRecords){
+		return persistance.get[%=aClass.name.toUpperFirst()%]s(page, maxRecords); 
+	}
+
+	public [%=aClass.DTOName()%] get[%=aClass.name.toUpperFirst()%](Long id){
+		return persistance.get[%=aClass.name.toUpperFirst()%](id); 
+	}
+
+	public void delete[%=aClass.name.toUpperFirst()%](Long id){
+	    persistance.delete[%=aClass.name.toUpperFirst()%](id); 
+	}
+
+	public void update[%=aClass.name.toUpperFirst()%]([%=aClass.DTOName()%] [%=aClass.name.toLowerFirst()%]){
+	    persistance.update[%=aClass.name.toUpperFirst()%]([%=aClass.name.toLowerFirst()%]); 
+	}	
+}

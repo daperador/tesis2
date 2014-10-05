@@ -1,0 +1,45 @@
+[% import "../lib/Utils.eol";  %]
+/*[%=license()%]*/
+
+package [%=getBasePackage()%].[%=aClass.name.toLowerCase()%].master.service;
+
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.inject.Inject;
+
+import [%=getBasePackage()%].[%=aClass.name.toLowerCase()%].master.logic.api.I[%=aClass.name()%]MasterLogicService;
+import [%=getBasePackage()%].[%=aClass.name.toLowerCase()%].master.logic.dto.[%=aClass.name()%]MasterDTO;
+
+public abstract class _[%=aClass.name()%]MasterService {
+
+    @Inject
+    protected I[%=aClass.name()%]MasterLogicService [%=aClass.name.toLowerCase()%]LogicService;
+
+    @POST
+    public [%=aClass.name()%]MasterDTO create[%=aClass.name()%]([%=aClass.name()%]MasterDTO [%=aClass.name.toLowerCase()%]) {
+        return [%=aClass.name.toLowerCase()%]LogicService.createMaster[%=aClass.name()%]([%=aClass.name.toLowerCase()%]);
+    }
+
+    @DELETE
+    @Path("{id}")
+    public void delete[%=aClass.name()%](@PathParam("id") Long id) {
+        [%=aClass.name.toLowerCase()%]LogicService.deleteMaster[%=aClass.name()%](id);
+    }
+    
+    @GET
+    @Path("{id}")
+    public [%=aClass.name()%]MasterDTO get[%=aClass.name()%](@PathParam("id") Long id) {
+        return [%=aClass.name.toLowerCase()%]LogicService.getMaster[%=aClass.name()%](id);
+    }
+
+    @PUT
+    @Path("{id}")
+    public void update[%=aClass.name()%](@PathParam("id") Long id, [%=aClass.name()%]MasterDTO [%=aClass.name.toLowerCase()%]) {
+        [%=aClass.name.toLowerCase()%]LogicService.updateMaster[%=aClass.name()%]([%=aClass.name.toLowerCase()%]);
+    }
+
+}

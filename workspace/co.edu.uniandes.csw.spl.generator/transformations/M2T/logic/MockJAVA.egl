@@ -1,0 +1,15 @@
+[% import "../lib/Utils.eol";  %]
+/*[%=license()%]*/
+
+package [%=aClass.basePck()%].logic.mock;
+import javax.enterprise.inject.Alternative;
+import javax.inject.Singleton;
+
+import [%=getBasePackage()%].[%=aClass.name.toLower()%].logic.api.I[%=aClass.name%]LogicService;
+[%if(useBasicConfiguration<>'true'){%]
+@Alternative
+[%}%]
+@Singleton
+public class [%=aClass.name%]MockLogicService extends _[%=aClass.name%]MockLogicService implements I[%=aClass.name%]LogicService {
+	
+}

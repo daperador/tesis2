@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.mtcflow.model:MTC xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.mtcflow.model="http://com.mtcflow.mtc/1.1">
+  <metamodels name="UML" URI="" alias="UML" autoregister="false" metamodelURI="http://www.eclipse.org/uml2/4.0.0/UML"/>
+  <models name="Domain Model" URI="${model}" metamodels="//@metamodels.0" format=""/>
+  <inputModels model="//@models.0" transformation="//@transformations.0"/>
+  <inputModels model="//@models.0" transformation="//@transformations.1"/>
+  <inputModels model="//@models.0" transformation="//@transformations.2"/>
+  <transformations xsi:type="com.mtcflow.model:M2TTransformation" name="Config Services" URI="config/genConfigService.egl" target="${output}"/>
+  <transformations xsi:type="com.mtcflow.model:M2TTransformation" name="Config Web" URI="config/genConfigWeb.egl" target="${output}"/>
+  <transformations xsi:type="com.mtcflow.model:M2TTransformation" name="Config Subsystem" URI="config/main.egl" target="${output}"/>
+  <configurations>
+    <variables name="output" defaultValue="config-gen"/>
+    <variables name="model" defaultValue="domain.uml"/>
+  </configurations>
+</com.mtcflow.model:MTC>

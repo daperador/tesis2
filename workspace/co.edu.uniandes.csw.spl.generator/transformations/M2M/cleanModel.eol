@@ -1,0 +1,79 @@
+//Clean complex attributes 
+import "../M2T/lib/Utils.eol";
+
+for(comment in Comment.all.clone){
+ comment.destroy();
+}
+
+//Change simple associations for attributes
+for(association in Association.all){
+// association.menberEnd;
+}
+
+for (cls in Class.all) {
+	cls.addSupertypesAttributes();
+	for (prop in cls.ownedElements.clone()) { 
+		if(prop.type.isUndefined()){
+			prop.destroy();
+		} else if(prop.isKindOf(Property) and (prop.association.isDefined() or prop.type.isKindOf(Class))){
+		    // agregation types none/shared
+		 	if(prop.upperBound=1 and (prop.aggregation.toString()='none' or prop.aggregation.toString()='shared')){
+		 	 // save the name in a comment anf change the attribute for a Long identifier 	
+		 	  var attr = cls.createOwnedAttribute(prop.name.toLowerCase()+'Id', getType('Long'));
+		 	  var comment = attr.createOwnedComment();
+		 	  comment.body = prop.name; 
+		 	  var comment1 = attr.createOwnedComment();
+		 	  comment1.body = prop.type.name; 
+		 	}else{
+		 	  
+		 	}
+		    prop.destroy();
+		}
+	}
+}
+
+//Clean all abstact classes 
+for (cls in Class.all.clone()) {
+	if(cls.abstract or cls.getAllAttributes().clone().isEmpty()){ 
+		cls.destroy();
+	}
+	for(gen in cls.getGeneralizations().clone()){
+	    gen.destroy();
+	}
+}
+
+// Delete all associations
+for(assc in Association.all.clone()){
+	assc.destroy();
+}
+
+// Create all the project structures
+genProjectStructure();
+
+//Utils functions
+function getType(name : String) : PrimitiveType {
+ for (type in PrimitiveType.all) { 
+	if(type.name=name){
+	  return type;
+	}
+ }
+}
+
+function Class addSupertypesAttributes(){
+ var attributes = self.getAllSuperClassAttributes();
+ for (atr in attributes) { 
+   self.createOwnedAttribute(atr.name, atr.type);
+ }
+}
+
+function Class getAllSuperClassAttributes() : List {
+  var resp = new List;
+  for (superClass in self.getSuperClasses()) { 
+	 for(atr in superClass.attributes){
+	    if(atr.isKindOf(Property)){
+	     resp.add(atr);
+	    }
+	 }		
+  }
+  return resp;
+}

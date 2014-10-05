@@ -1,0 +1,14 @@
+[% import "../../lib/Utils.eol";  %]
+{
+    "displayName" : "[%=aClass.name.toUpperFirst()%]",
+    "name" : "[%=aClass.name.toLowerFirst()%]",
+    "templateName" : "[%=aClass.name.toLowerFirst()%]",
+    "url" : "user.html",
+    "server": "localhost:8080",
+    [% if(useBasicConfiguration=='true') {%]
+    "context": "/[%=projectName%].web/webresources/[%=aClass.name.toUpperFirst()%]",
+    [% } else {%]
+    "context": "/[%=aClass.name.toLowerCase()%].service.subsystem.web/webresources/[%=aClass.name.toUpperFirst()%]",
+    [% }%]
+    "el" : "#main"
+}

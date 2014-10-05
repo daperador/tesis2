@@ -1,0 +1,24 @@
+[% import "../lib/Utils.eol";  %]
+
+[%
+'pruebaxxxx'.println();
+MVCModel.all.println();
+for (class in Class.all) { 
+	genFile('component/ComponentJS',class.client_web_dir()+'/src/component/'+class.jsFileName()+'Component.js',class);
+	genFile('component/ConfigJSON',class.client_web_dir()+'/src/component/config/'+class.jsFileName()+'Config.json',class);
+ 	genFile('controller/_ControllerJS',class.client_web_dir()+'/src/controller/_'+class.jsFileName()+'Controller.js',class);
+ 	genFile('controller/ControllerJS',class.client_web_dir()+'/src/controller/'+class.jsFileName()+'Controller.js',class);
+ 	genFile('delegate/_DelegateJS',class.client_web_dir()+'/src/delegate/_'+class.jsFileName()+'Delegate.js',class);
+ 	genFile('delegate/DelegateJS',class.client_web_dir()+'/src/delegate/'+class.jsFileName()+'Delegate.js',class);
+ 	genFile('model/_ModelJS',class.client_web_dir()+'/src/model/_'+class.jsFileName()+'Model.js',class);
+ 	genFile('model/ModelJS',class.client_web_dir()+'/src/model/'+class.jsFileName()+'Model.js',class);
+ 	genFile('view/TemplateHTML',class.client_web_dir()+'/src/view/'+class.jsFileName()+'Templates.html',class);
+ 	if(useBasicConfiguration=='true'){
+ 		genFile('IndexHTML',class.client_web_dir()+'/'+class.name.toLowerFirst()+'.html',class);
+ 	} else {
+ 		genFile('IndexHTML',class.client_web_dir()+'/index.html',class);
+ 	}
+ 	genFile('css/StyleCSS',class.client_web_dir()+'/src/css/'+class.jsFileName()+'.css',class);
+
+}
+%]

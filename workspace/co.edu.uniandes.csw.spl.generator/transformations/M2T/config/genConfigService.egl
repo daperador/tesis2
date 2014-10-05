@@ -1,0 +1,12 @@
+[% import "../lib/Utils.eol";  %]
+
+[%
+if(useBasicConfiguration<>'true'){
+for (class in Class.all) { 
+	--genFile('services/serviceCLASSPATH',class.name.toLowerCase()+'.service.subsystem.web/.classpath',class);
+	--genFile('services/servicePROJECT',class.name.toLowerCase()+'.service.subsystem.web/.project',class);	
+	genFile('services/servicePOM',class.name.toLowerCase()+'.service.subsystem.web/pom.xml',class);
+	genFile('services/WEB_INF/webXML',class.service_web_dir()+'/WEB-INF/web.xml',class);
+}
+}
+%]

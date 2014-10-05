@@ -1,0 +1,16 @@
+[% import "../lib/Utils.eol";  %] 
+/*[%=license()%]*/
+
+package [%=getBasePackage()%].[%=aClass.name.toLowerCase()%].master.logic.ejb;
+
+import [%=getBasePackage()%].[%=aClass.name.toLowerCase()%].master.logic.api.I[%=aClass.name()%]MasterLogicService;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+import javax.enterprise.inject.Default;
+
+@Default
+@Stateless
+@LocalBean
+public class [%=aClass.name()%]MasterLogicService extends _[%=aClass.name()%]MasterLogicService implements I[%=aClass.name()%]MasterLogicService {
+
+}

@@ -1,0 +1,31 @@
+[% import "../lib/Utils.eol";  %]
+/*[%=license()%]*/
+
+package [%=aClass.basePck()%].logic.dto;
+
+import java.util.List;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+public class _[%=aClass.PageName()%] {
+
+    private Long totalRecords;
+
+    private List<[%=aClass.DTOName()%]> records;
+
+    public Long getTotalRecords() {
+	return totalRecords;
+    }
+
+    public void setTotalRecords(Long totalRecords) {
+	this.totalRecords = totalRecords;
+    }
+
+    public List<[%=aClass.DTOName()%]> getRecords() {
+	return records;
+    }
+
+    public void setRecords(List<[%=aClass.DTOName()%]> records) {
+	this.records = records;
+    }
+}

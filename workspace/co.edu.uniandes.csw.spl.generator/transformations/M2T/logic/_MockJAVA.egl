@@ -1,0 +1,69 @@
+[% import "../lib/Utils.eol";  %]
+/*[%=license()%]*/
+
+package [%=aClass.basePck()%].logic.mock;
+import java.util.ArrayList;
+import java.util.List;
+
+import [%=aClass.basePck()%].logic.dto.[%=aClass.DTOName()%];
+import [%=aClass.basePck()%].logic.dto.[%=aClass.PageName()%];
+import [%=aClass.basePck()%].logic.api._I[%=aClass.name%]LogicService;
+
+public abstract class _[%=aClass.name%]MockLogicService implements _I[%=aClass.name%]LogicService {
+
+    [% var idType = aClass.attribute->select(a|a.name='id').first().type.name ;%]
+	private [%=idType%] id= new [%=idType%](1);
+	protected List<[%=aClass.DTOName()%]> data=new ArrayList<[%=aClass.DTOName()%]>();
+
+	public [%=aClass.DTOName()%] create[%=aClass.name.toUpperFirst()%]([%=aClass.DTOName()%] [%=aClass.name.toLowerFirst()%]){
+		id++;
+		[%=aClass.name.toLowerFirst()%].setId(id);
+		data.add([%=aClass.name.toLowerFirst()%]);
+		return [%=aClass.name.toLowerFirst()%];
+    }
+    
+    public List<[%=aClass.DTOName()%]> get[%=aClass.name.toUpperFirst()%]s(){
+		return data; 
+	}
+
+	public [%=aClass.PageName()%] get[%=aClass.name.toUpperFirst()%]s(Integer page, Integer maxRecords){
+		[%=aClass.PageName()%] response = new [%=aClass.PageName()%]();
+		response.setTotalRecords(Long.parseLong(data.size()+""));
+		response.setRecords(data);
+		return response;
+	}
+
+	public [%=aClass.DTOName()%] get[%=aClass.name.toUpperFirst()%](Long id){
+		for([%=aClass.DTOName()%] data1:data){
+			if(data1.getId().equals(id)){
+				return data1;
+			}
+		}
+		return null;
+	}
+
+	public void delete[%=aClass.name.toUpperFirst()%](Long id){
+	    [%=aClass.DTOName()%] delete=null;
+		for([%=aClass.DTOName()%] data1:data){
+			if(data1.getId().equals(id)){
+				delete=data1;
+			}
+		}
+		if(delete!=null){
+			data.remove(delete);
+		} 
+	}
+
+	public void update[%=aClass.name.toUpperFirst()%]([%=aClass.DTOName()%] [%=aClass.name.toLowerFirst()%]){
+	    [%=aClass.DTOName()%] delete=null;
+		for([%=aClass.DTOName()%] data1:data){
+			if(data1.getId().equals(id)){
+				delete=data1;
+			}
+		}
+		if(delete!=null){
+			data.remove(delete);
+			data.add([%=aClass.name.toLowerFirst()%]);
+		} 
+	}	
+}

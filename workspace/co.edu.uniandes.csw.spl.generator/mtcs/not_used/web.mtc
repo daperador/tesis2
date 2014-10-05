@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.mtcflow.model:MTC xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.mtcflow.model="http://com.mtcflow.mtc/1.1">
+  <metamodels name="UML" URI="http://www.eclipse.org/uml2/4.0.0/UML" alias="UML" autoregister="false"/>
+  <models name="Domain Model" URI="${model}" metamodels="//@metamodels.0"/>
+  <inputModels model="//@models.0" transformation="//@transformations.0"/>
+  <inputModels model="//@models.0" transformation="//@transformations.1"/>
+  <inputModels model="//@models.0" transformation="//@transformations.2"/>
+  <inputModels model="//@models.0" transformation="//@transformations.3"/>
+  <inputModels model="//@models.0" transformation="//@transformations.4"/>
+  <inputModels model="//@models.0" transformation="//@transformations.5"/>
+  <inputModels model="//@models.0" transformation="//@transformations.6"/>
+  <transformations xsi:type="com.mtcflow.model:M2TTransformation" name="UML -> Component" URI="web/component/Component.mtl" target="${outputWeb}"/>
+  <transformations xsi:type="com.mtcflow.model:M2TTransformation" name="UML -> Controller" URI="web/controller/Controller.mtl" target="${outputWeb}"/>
+  <transformations xsi:type="com.mtcflow.model:M2TTransformation" name="UML -> CSS" URI="web/css/Css.mtl" target="${outputWeb}"/>
+  <transformations xsi:type="com.mtcflow.model:M2TTransformation" name="UML -> Delegate" URI="web/delegate/Delegate.mtl" technology="" target="${outputWeb}"/>
+  <transformations xsi:type="com.mtcflow.model:M2TTransformation" name="UML->Model" URI="web/model/Model.mtl" target="${outputWeb}"/>
+  <transformations xsi:type="com.mtcflow.model:M2TTransformation" name="UML -> Template" URI="web/view/Template.mtl" target="${outputWeb}"/>
+  <transformations xsi:type="com.mtcflow.model:M2TTransformation" name="UML -> HTML" URI="web/Html.mtl" technology="" target="${output}"/>
+  <configurations>
+    <variables name="outputWeb" defaultValue="web"/>
+    <variables name="model" defaultValue="domain.uml"/>
+  </configurations>
+</com.mtcflow.model:MTC>

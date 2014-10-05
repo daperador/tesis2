@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_IOldMEDAEeOL1sClu8Ur_g" name="SPL Profile" URI="http://co.edu.uniandes.csw.profiles/ProductProfile" metaclassReference="_a9-UgEDAEeOL1sClu8Ur_g _Af8hEEDBEeOL1sClu8Ur_g">
+  <eAnnotations xmi:id="_W3wGAEDAEeOL1sClu8Ur_g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_IOajsEKlEeOiyc-bZYpdJg" name="SPLProfile" nsURI="http://co.edu.uniandes.csw.profiles/ProductProfile" nsPrefix="SPLProfile">
+      <eAnnotations xmi:id="_IObx0UKlEeOiyc-bZYpdJg" source="PapyrusVersion">
+        <details xmi:id="_IObx0kKlEeOiyc-bZYpdJg" key="Version" value="0.1.16"/>
+        <details xmi:id="_IObx00KlEeOiyc-bZYpdJg" key="Comment" value=""/>
+        <details xmi:id="_IObx1EKlEeOiyc-bZYpdJg" key="Copyright" value=""/>
+        <details xmi:id="_IObx1UKlEeOiyc-bZYpdJg" key="Date" value="2013-10-31"/>
+        <details xmi:id="_IObx1kKlEeOiyc-bZYpdJg" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_IOajsUKlEeOiyc-bZYpdJg" name="Mandatory">
+        <eAnnotations xmi:id="_IOajskKlEeOiyc-bZYpdJg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_xRJ5UEDZEeOrt6eA-Vlurg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_IOajs0KlEeOiyc-bZYpdJg" name="base_Association" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Association"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_IOajtUKlEeOiyc-bZYpdJg" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_IOajt0KlEeOiyc-bZYpdJg" name="Optional">
+        <eAnnotations xmi:id="_IOajuEKlEeOiyc-bZYpdJg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_0mju4EDZEeOrt6eA-Vlurg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_IOajuUKlEeOiyc-bZYpdJg" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_IOaju0KlEeOiyc-bZYpdJg" name="base_Association" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Association"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_ux2CsEKkEeOiyc-bZYpdJg" name="SPLProfile" nsURI="http://co.edu.uniandes.csw.profiles/ProductProfile" nsPrefix="SPLProfile">
+      <eAnnotations xmi:id="_ux2pw0KkEeOiyc-bZYpdJg" source="PapyrusVersion">
+        <details xmi:id="_ux2pxEKkEeOiyc-bZYpdJg" key="Version" value="0.1.15"/>
+        <details xmi:id="_ux2pxUKkEeOiyc-bZYpdJg" key="Comment" value=""/>
+        <details xmi:id="_ux2pxkKkEeOiyc-bZYpdJg" key="Copyright" value=""/>
+        <details xmi:id="_ux2px0KkEeOiyc-bZYpdJg" key="Date" value="2013-10-31"/>
+        <details xmi:id="_ux2pyEKkEeOiyc-bZYpdJg" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_ux2CsUKkEeOiyc-bZYpdJg" name="Mandatory">
+        <eAnnotations xmi:id="_ux2CskKkEeOiyc-bZYpdJg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_xRJ5UEDZEeOrt6eA-Vlurg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_ux2Cs0KkEeOiyc-bZYpdJg" name="base_Association" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Association"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_ux2CtUKkEeOiyc-bZYpdJg" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_ux2Ct0KkEeOiyc-bZYpdJg" name="Optional">
+        <eAnnotations xmi:id="_ux2CuEKkEeOiyc-bZYpdJg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_0mju4EDZEeOrt6eA-Vlurg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_ux2CuUKkEeOiyc-bZYpdJg" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_ux2Cu0KkEeOiyc-bZYpdJg" name="base_Association" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Association"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_rjP_wEKkEeOiyc-bZYpdJg" name="SPLProfile" nsURI="http://co.edu.uniandes.csw.profiles/ProductProfile" nsPrefix="SPLProfile">
+      <eAnnotations xmi:id="_rjRN40KkEeOiyc-bZYpdJg" source="PapyrusVersion">
+        <details xmi:id="_rjRN5EKkEeOiyc-bZYpdJg" key="Version" value="0.1.14"/>
+        <details xmi:id="_rjRN5UKkEeOiyc-bZYpdJg" key="Comment" value=""/>
+        <details xmi:id="_rjRN5kKkEeOiyc-bZYpdJg" key="Copyright" value=""/>
+        <details xmi:id="_rjRN50KkEeOiyc-bZYpdJg" key="Date" value="2013-10-31"/>
+        <details xmi:id="_rjRN6EKkEeOiyc-bZYpdJg" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_rjP_wUKkEeOiyc-bZYpdJg" name="Mandatory">
+        <eAnnotations xmi:id="_rjP_wkKkEeOiyc-bZYpdJg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_xRJ5UEDZEeOrt6eA-Vlurg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_rjP_w0KkEeOiyc-bZYpdJg" name="base_Association" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Association"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_rjP_xUKkEeOiyc-bZYpdJg" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_rjP_x0KkEeOiyc-bZYpdJg" name="Optional">
+        <eAnnotations xmi:id="_rjP_yEKkEeOiyc-bZYpdJg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_0mju4EDZEeOrt6eA-Vlurg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_rjP_yUKkEeOiyc-bZYpdJg" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_rjP_y0KkEeOiyc-bZYpdJg" name="base_Association" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Association"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_nD-YEEKkEeOiyc-bZYpdJg" name="SPLProfile" nsURI="http://co.edu.uniandes.csw.profiles/ProductProfile" nsPrefix="SPLProfile">
+      <eAnnotations xmi:id="_nEBbYEKkEeOiyc-bZYpdJg" source="PapyrusVersion">
+        <details xmi:id="_nEBbYUKkEeOiyc-bZYpdJg" key="Version" value="0.1.13"/>
+        <details xmi:id="_nEBbYkKkEeOiyc-bZYpdJg" key="Comment" value=""/>
+        <details xmi:id="_nEBbY0KkEeOiyc-bZYpdJg" key="Copyright" value=""/>
+        <details xmi:id="_nEBbZEKkEeOiyc-bZYpdJg" key="Date" value="2013-10-31"/>
+        <details xmi:id="_nEBbZUKkEeOiyc-bZYpdJg" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_nD-YEUKkEeOiyc-bZYpdJg" name="Mandatory">
+        <eAnnotations xmi:id="_nD-YEkKkEeOiyc-bZYpdJg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_xRJ5UEDZEeOrt6eA-Vlurg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nD-YE0KkEeOiyc-bZYpdJg" name="base_Association" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Association"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nD-YFUKkEeOiyc-bZYpdJg" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_nD-YF0KkEeOiyc-bZYpdJg" name="Optional">
+        <eAnnotations xmi:id="_nD-YGEKkEeOiyc-bZYpdJg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_0mju4EDZEeOrt6eA-Vlurg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nD-_IEKkEeOiyc-bZYpdJg" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nD-_IkKkEeOiyc-bZYpdJg" name="base_Association" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Association"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+  </eAnnotations>
+  <elementImport xmi:id="_a9-UgEDAEeOL1sClu8Ur_g" alias="Class">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+  </elementImport>
+  <elementImport xmi:id="_Af8hEEDBEeOL1sClu8Ur_g" alias="Association">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Association"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_xRJ5UEDZEeOrt6eA-Vlurg" name="Mandatory">
+    <ownedAttribute xmi:id="_359ZUEDZEeOrt6eA-Vlurg" name="base_Association" association="_35-ncEDZEeOrt6eA-Vlurg">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Association"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_XMqRQEHMEeO2ONi76Dq2lA" name="base_Class" association="_XMsGcEHMEeO2ONi76Dq2lA">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_0mju4EDZEeOrt6eA-Vlurg" name="Optional">
+    <ownedAttribute xmi:id="_3OR_EEDZEeOrt6eA-Vlurg" name="base_Class" association="_3OSmIEDZEeOrt6eA-Vlurg">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_Ymys8EHMEeO2ONi76Dq2lA" name="base_Association" association="_Ymys8UHMEeO2ONi76Dq2lA">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Association"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_3OSmIEDZEeOrt6eA-Vlurg" name="E_Optional_Class1" memberEnd="_3OSmIUDZEeOrt6eA-Vlurg _3OR_EEDZEeOrt6eA-Vlurg">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_3OSmIUDZEeOrt6eA-Vlurg" name="extension_Optional" type="_0mju4EDZEeOrt6eA-Vlurg" aggregation="composite" association="_3OSmIEDZEeOrt6eA-Vlurg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_35-ncEDZEeOrt6eA-Vlurg" name="E_Mandatory_Association1" memberEnd="_35-ncUDZEeOrt6eA-Vlurg _359ZUEDZEeOrt6eA-Vlurg">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_35-ncUDZEeOrt6eA-Vlurg" name="extension_Mandatory" type="_xRJ5UEDZEeOrt6eA-Vlurg" aggregation="composite" association="_35-ncEDZEeOrt6eA-Vlurg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_XMsGcEHMEeO2ONi76Dq2lA" name="E_Mandatory_Class1" memberEnd="_XMsGcUHMEeO2ONi76Dq2lA _XMqRQEHMEeO2ONi76Dq2lA">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_XMsGcUHMEeO2ONi76Dq2lA" name="extension_Mandatory" type="_xRJ5UEDZEeOrt6eA-Vlurg" aggregation="composite" association="_XMsGcEHMEeO2ONi76Dq2lA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_Ymys8UHMEeO2ONi76Dq2lA" name="E_Optional_Association1" memberEnd="_Ymys8kHMEeO2ONi76Dq2lA _Ymys8EHMEeO2ONi76Dq2lA">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_Ymys8kHMEeO2ONi76Dq2lA" name="extension_Optional" type="_0mju4EDZEeOrt6eA-Vlurg" aggregation="composite" association="_Ymys8UHMEeO2ONi76Dq2lA"/>
+  </packagedElement>
+</uml:Profile>

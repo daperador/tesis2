@@ -1,0 +1,77 @@
+[% import "../lib/Utils.eol";  %]
+/*[%=license()%]*/
+
+package [%=aClass.basePck()%].persistence.converter;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
+import [%=getBasePackage()%].[%=aClass.name.toLower()%].logic.dto.[%=aClass.DTOName()%];
+import [%=getBasePackage()%].[%=aClass.name.toLower()%].persistence.entity.[%=aClass.name%]Entity;
+
+public abstract class _[%=aClass.name%]Converter {
+
+    [% if(aClass.getAllAttributes().exists(at | at.type.name='Date')) {%] 
+	private final static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
+	[%}%]
+	public static [%=aClass.DTOName()%] entity2PersistenceDTO([%=aClass.name%]Entity entity){
+		if (entity != null) {
+			[%=aClass.DTOName()%] dto = new [%=aClass.DTOName()%]();
+			[% for (attr in aClass.getAllAttributes()) {%]
+			    [% if(attr.type.name == 'Date') {%] 
+			    if(entity.get[%=attr.name.toUpperFirst()%]() != null){
+					dto.set[%=attr.name.toUpperFirst()%](DATE_FORMAT.format(entity.get[%=attr.name.toUpperFirst()%]()));
+				}	
+				[% } else {%]
+					dto.set[%=attr.name.toUpperFirst()%](entity.get[%=attr.name.toUpperFirst()%]());
+				[% }%]
+			[% } %]
+			return dto;
+		}else{
+			return null;
+		}
+	}
+	
+	public static [%=aClass.name%]Entity persistenceDTO2Entity([%=aClass.DTOName()%] dto){
+		if(dto!=null){
+			[%=aClass.name%]Entity entity=new [%=aClass.name%]Entity();
+			[% for (attr in aClass.getAllAttributes()) { %]
+			    [% if(attr.type.name == 'Date') {%] 
+			      try{ 
+			        if(dto.get[%=attr.name.toUpperFirst()%]() != null){
+						entity.set[%=attr.name.toUpperFirst()%](DATE_FORMAT.parse(dto.get[%=attr.name.toUpperFirst()%]()));
+					}
+				  } catch (Exception ex) {
+                        Logger.getLogger(_[%=aClass.name%]Converter.class.getName()).log(Level.SEVERE, null, ex);
+                  }	
+				[% } else {%]
+					entity.set[%=attr.name.toUpperFirst()%](dto.get[%=attr.name.toUpperFirst()%]());
+				[% }%]			
+			[% }%]
+			return entity;
+		}else {
+			return null;
+		}
+	}
+	
+	public static List<[%=aClass.DTOName()%]> entity2PersistenceDTOList(List<[%=aClass.name%]Entity> entities){
+		List<[%=aClass.DTOName()%]> dtos=new ArrayList<[%=aClass.DTOName()%]>();
+		for([%=aClass.name%]Entity entity:entities){
+			dtos.add(entity2PersistenceDTO(entity));
+		}
+		return dtos;
+	}
+	
+	public static List<[%=aClass.name%]Entity> persistenceDTO2EntityList(List<[%=aClass.DTOName()%]> dtos){
+		List<[%=aClass.name%]Entity> entities=new ArrayList<[%=aClass.name%]Entity>();
+		for([%=aClass.DTOName()%] dto:dtos){
+			entities.add(persistenceDTO2Entity(dto));
+		}
+		return entities;
+	}
+}

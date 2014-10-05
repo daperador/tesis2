@@ -1,0 +1,69 @@
+[% import '../lib/Utils.eol';%]
+<[%
+var templateName : Template;
+-- Pass parameters to the template
+
+if(useBasicConfiguration=='true'){
+
+ templateName := TemplateFactory.load('simpleConfiguration/SubsystemPOM.egl');
+ templateName.populate('name',projectName+'.api');	
+ templateName.generate(projectName+'.api/pom.xml');
+ templateName := TemplateFactory.load('simpleConfiguration/SubsystemPOM.egl');
+ templateName.populate('name',projectName+'.logic');
+ templateName.generate(projectName+'.logic/pom.xml');
+ templateName := TemplateFactory.load('nbactionsXML.egl');
+ templateName.generate(projectName+'.logic/nbactions.xml');
+ templateName := TemplateFactory.load('simpleConfiguration/SubsystemPOM.egl');
+ templateName.populate('name',projectName+'.mock');
+ templateName.generate(projectName+'.mock/pom.xml'); 
+
+
+ templateName := TemplateFactory.load('simpleConfiguration/allProjectsPOM.egl');
+ --templateName.populate('name',projectName+'.mock');
+ templateName.generate(projectName+'/pom.xml'); 
+
+ templateName := TemplateFactory.load('simpleConfiguration/WebPOM.egl');
+ templateName.generate(projectName+'.web/pom.xml', false ,false);
+
+ templateName := TemplateFactory.load('web/WebApp.egl');
+ templateName.generate(Class.all.first().service_src_dir()+'/'+getBasePackagePath()+'/service/config/WebApp.java');
+ 
+ templateName := TemplateFactory.load('nbactionsXML.egl');
+ templateName.generate(projectName+'.web/nbactions.xml');
+} else{
+
+templateName := TemplateFactory.load('subsystem/pom-all.egl');
+ templateName.populate('name', 'build-'+productName);
+ templateName.generate('build-'+productName+'/pom.xml');
+ --templateName := TemplateFactory.load('_Project.egl');
+ --templateName.populate('name', "build-"+productName);
+ --templateName.generate('build-'+productName+'/.project');
+ 
+ templateName := TemplateFactory.load('subsystem/pom-ear.egl');
+ templateName.populate('name', productName+'-ear');
+ templateName.generate(productName+'-ear/pom.xml');
+ --templateName := TemplateFactory.load('_Project.egl');
+ --templateName.populate('name', productName+'-ear');
+ --templateName.generate(productName+'-ear/.project');
+ 
+ templateName := TemplateFactory.load('subsystem/_manifest-ear.egl');
+ templateName.generate(productName+'-ear/src/main/application/META-INF/MANIFEST.MF');
+ 
+for (aClass in Class.all){
+ templateName := TemplateFactory.load('subsystem/pom.egl');
+ templateName.populate('aClass', aClass);
+ templateName.populate('pomName', aClass.name.toLowerCase());
+ templateName.generate(aClass.name.toLowerCase()+'.service.subsystem/pom.xml');
+ templateName := TemplateFactory.load('web/WebApp.egl');
+ templateName.generate(aClass.service_src_dir()+'/'+getBasePackagePath()+'/service/config/WebApp.java'); 
+ --templateName := TemplateFactory.load('classpath.egl');
+ --templateName.populate('aClass', aClass);
+ --templateName.generate(aClass.name.toLowerCase()+'.service.subsystem/.classpath');
+ --templateName := TemplateFactory.load('project.egl');
+ --templateName.populate('aClass', aClass);
+ --templateName.generate(aClass.name.toLowerCase()+'.service.subsystem/.project');
+ 
+ }
+
+}
+%]

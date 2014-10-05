@@ -1,0 +1,60 @@
+[% import "../lib/Utils.eol";  %] 
+
+[%
+
+for (class in Class.all) { 
+    if(class.hasReferences()){
+		genMasterProjectStructure();
+		genFile('_MasterDtoJAVA',class.api_src_dir()+'/'+class.masterBasePckPath()+'/logic/dto/_'+class.name()+'MasterDTO.java',class);
+		genFile('MasterDtoJAVA',class.api_src_dir()+'/'+class.masterBasePckPath()+'/logic/dto/'+class.name()+'MasterDTO.java',class);
+		genFile('_MasterLogicServiceJAVA',class.api_src_dir()+'/'+class.masterBasePckPath()+'/logic/api/_I'+class.name()+'MasterLogicService.java',class);
+		genFile('MasterLogicServiceJAVA',class.api_src_dir()+'/'+class.masterBasePckPath()+'/logic/api/I'+class.name()+'MasterLogicService.java',class);
+		genFile('_EjbJAVA',class.master_src_dir()+'/'+class.masterBasePckPath()+'/logic/ejb/_'+class.name()+'MasterLogicService.java',class);
+		genFile('EjbJAVA',class.master_src_dir()+'/'+class.masterBasePckPath()+'/logic/ejb/'+class.name()+'MasterLogicService.java',class);
+		genFile('_MockJAVA',class.mock_src_dir()+'/'+class.basePckPath()+'/logic/mock/_'+class.name()+'MasterMockLogicService.java',class);
+		genFile('MockJAVA',class.mock_src_dir()+'/'+class.basePckPath()+'/logic/mock/'+class.name()+'MasterMockLogicService.java',class);
+		
+		genFile('_JpaJAVA',class.master_src_dir()+'/'+class.masterBasePckPath()+'/persistence/_'+class.name()+'MasterPersistence.java',class);
+		genFile('JpaJAVA',class.master_src_dir()+'/'+class.masterBasePckPath()+'/persistence/'+class.name()+'MasterPersistence.java',class);
+		genFile('_PersistenceApiJAVA',class.master_src_dir()+'/'+class.masterBasePckPath()+'/persistence/api/_I'+class.name()+'MasterPersistence.java',class);
+		genFile('PersistenceApiJAVA',class.master_src_dir()+'/'+class.masterBasePckPath()+'/persistence/api/I'+class.name()+'MasterPersistence.java',class);
+		--genFile('_ConverterJAVA',class.master_src_dir()+'/'+class.masterBasePckPath()+'/persistence/converter/_'+class.name()+'MasterConverter.java',class);
+		--genFile('ConverterJAVA',class.master_src_dir()+'/'+class.masterBasePckPath()+'/persistence/converter/'+class.name()+'MasterConverter.java',class);
+		genFile('_ServiceJAVA',class.service_src_dir()+'/'+class.masterBasePckPath()+'/service/_'+class.name()+'MasterService.java',class);
+		genFile('ServiceJAVA',class.service_src_dir()+'/'+class.masterBasePckPath()+'/service/'+class.name()+'MasterService.java',class);
+		if(useBasicConfiguration<>'true') {
+			genFile('_MasterPOM',class.name.toLowerCase()+'.master.service.subsystem/pom.xml',class);
+			genFile('../config/web/WebApp',class.master_src_dir()+'/'+getBasePackagePath()+'/service/config/WebApp.java',null);
+	    }
+		--genFile('_MasterProject',class.name.toLowerCase()+'.master.service.subsystem/.project',class);
+		--genFile('../common/_MasterClasspath',class.name.toLowerCase()+'.master.service.subsystem/.classpath',class); 
+		
+		genFile('web/_WebComponentJS',class.master_web_dir()+"/src/component/"+class.name.firstToLowerCase()+'MasterComponent.js',class);
+		genFile('web/_ModelJS',class.master_web_dir()+"/src/model/_"+class.name.firstToLowerCase()+'MasterModel.js',class);	
+		genFile('web/ModelJS',class.master_web_dir()+"/src/model/"+class.name.firstToLowerCase()+'MasterModel.js',class);
+		genFile('web/_ConfigJSON',class.master_web_dir()+"/src/component/config/"+class.name.firstToLowerCase()+'MasterConfig.json',class);
+		if(useBasicConfiguration=='true') {
+			genFile('web/_IndexHTML',class.master_web_dir()+'/'+class.name.toLowerFirst()+'Master.html',class);
+		} else{ 
+			genFile('web/_WebXML',class.master_web_dir()+'/WEB-INF/web.xml',class);
+			genFile('web/_PersistenceXML',class.master_rsc_dir()+'/META-INF/persistence.xml',class);
+			genFile('web/_IndexHTML',class.master_web_dir()+'/index.html',class);
+			genFile('../common/BeansXML',class.master_web_dir()+'/WEB-INF/beans.xml',class);
+		}
+		for(asc in class.getAllAssociations()){
+		 	var templateName : Template;
+ 			templateName := TemplateFactory.load('EntityJAVA.egl');
+ 			templateName.populate('asc', asc);
+ 			templateName.populate('aClass', asc.getSourceEntity());
+ 			templateName.populate('entity', asc.getEndEntity());
+ 			var class = asc.getSourceEntity();
+     		templateName.generate(class.master_src_dir()+'/'+class.masterBasePckPath()+'/persistence/entity/'+asc.getEntityName()+'.java');
+     		templateName := TemplateFactory.load('EntityIdJAVA.egl');
+     		templateName.populate('aClass', asc.getSourceEntity());
+ 			templateName.populate('entity', asc.getEndEntity());
+ 			templateName.populate('asc', asc);
+     		templateName.generate(class.master_src_dir()+'/'+class.masterBasePckPath()+'/persistence/entity/'+asc.getEntityName()+'Id.java');
+		}
+	}
+}
+%]

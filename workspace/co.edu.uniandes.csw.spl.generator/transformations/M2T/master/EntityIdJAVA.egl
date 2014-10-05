@@ -1,0 +1,31 @@
+[% import "../lib/Utils.eol";  %]
+/*[%=license()%]*/
+
+package [%=getBasePackage()%].[%=aClass.name.toLowerCase()%].master.persistence.entity;
+
+import java.io.Serializable;
+
+/**
+ *
+ * @author 
+ */
+public class [%=asc.getEntityName()%]Id implements Serializable{
+
+    private Long [%=asc.getEntityIdName()%];
+    private Long [%=asc.getEndEntityIdName()%];
+
+    @Override
+    public int hashCode() {
+        return (int) ([%=asc.getEntityIdName()%] + [%=asc.getEndEntityIdName()%]);
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object instanceof [%=asc.getEntityName()%]Id) {
+            [%=asc.getEntityName()%]Id otherId = ([%=asc.getEntityName()%]Id) object;
+            return (otherId.[%=asc.getEntityIdName()%].equals(this.[%=asc.getEntityIdName()%])) && (otherId.[%=asc.getEndEntityIdName()%].equals(this.[%=asc.getEndEntityIdName()%]));
+        }
+        return false;
+    }
+
+}

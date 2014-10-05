@@ -1,0 +1,82 @@
+[% import "../lib/Utils.eol";  %]
+/*[%=license()%]*/
+
+package [%=getBasePackage()%].[%=aClass.name.toLowerCase()%].master.persistence.entity;
+
+import [%=getBasePackage()%].[%=entity.name.toLowerCase()%].persistence.entity.[%=entity.name()%]Entity;
+import [%=getBasePackage()%].[%=aClass.name.toLowerCase()%].persistence.entity.[%=aClass.name()%]Entity;
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.PrimaryKeyJoinColumn; 
+import org.eclipse.persistence.annotations.JoinFetch;
+
+@Entity
+@IdClass([%=asc.getEntityName()%]Id.class)
+@NamedQueries({
+    @NamedQuery(name = "[%=asc.getEntityName()%].[%=asc.getListQueryName()%]", query = "SELECT  u FROM [%=asc.getEntityName()%] u WHERE u.[%=asc.getEntityIdName()%]=:[%=asc.getEntityIdName()%]"),
+    @NamedQuery(name = "[%=asc.getEntityName()%].[%=asc.getDeleteQueryName()%]", query = "DELETE FROM [%=asc.getEntityName()%] u WHERE u.[%=asc.getEntityIdName()%]=:[%=asc.getEntityIdName()%] and  u.[%=asc.getEndEntityIdName()%]=:[%=asc.getEndEntityIdName()%]")
+})
+public class [%=asc.getEntityName()%] implements Serializable {
+
+    @Id
+    @Column(name = "[%=asc.getEntityIdName()%]")
+    private Long [%=asc.getEntityIdName()%];
+    @Id
+    @Column(name = "[%=asc.getEndEntityIdName()%]")
+    private Long [%=asc.getEndEntityIdName()%];
+    @ManyToOne
+    @PrimaryKeyJoinColumn(name = "[%=asc.getEntityIdName()%]", referencedColumnName = "id")
+    @JoinFetch
+    private [%=entity.name()%]Entity [%=asc.getEntityIdName()%]Entity;
+    @ManyToOne
+    @PrimaryKeyJoinColumn(name = "[%=asc.getEndEntityIdName()%]", referencedColumnName = "id")
+    @JoinFetch
+    private [%=asc.getEndEntity().name()%]Entity [%=asc.getEndEntityIdName()%]Entity; 
+
+    public [%=asc.getEntityName()%]() {
+    }
+
+    public [%=asc.getEntityName()%](Long [%=asc.getEntityIdName()%], Long [%=asc.getEndEntityIdName()%]) {
+        this.[%=asc.getEntityIdName()%] =[%=asc.getEntityIdName()%];
+        this.[%=asc.getEndEntityIdName()%] = [%=asc.getEndEntityIdName()%];
+    }
+
+    public Long get[%=asc.getEntityIdName().firstToUpperCase()%]() {
+        return [%=asc.getEntityIdName()%];
+    }
+
+    public void set[%=asc.getEntityIdName().firstToUpperCase()%](Long [%=asc.getEntityIdName()%]) {
+        this.[%=asc.getEntityIdName()%] = [%=asc.getEntityIdName()%];
+    }
+
+    public Long get[%=asc.getEndEntityIdName().firstToUpperCase()%]() {
+        return [%=asc.getEndEntityIdName()%];
+    }
+
+    public void set[%=asc.getEndEntityIdName().firstToUpperCase()%](Long [%=asc.getEndEntityIdName()%]) {
+        this.[%=asc.getEndEntityIdName()%] = [%=asc.getEndEntityIdName()%];
+    }
+
+    public [%=entity.name()%]Entity get[%=asc.getEntityIdName().firstToUpperCase()%]Entity() {
+        return [%=asc.getEntityIdName()%]Entity;
+    }
+
+    public void set[%=asc.getEntityIdName().firstToUpperCase()%]Entity([%=entity.name()%]Entity [%=asc.getEntityIdName()%]Entity) {
+        this.[%=asc.getEntityIdName()%]Entity = [%=asc.getEntityIdName()%]Entity;
+    }
+
+    public [%=asc.getEndEntity().name()%]Entity get[%=asc.getEndEntityIdName().firstToUpperCase()%]Entity() {
+        return [%=asc.getEndEntityIdName()%]Entity;
+    }
+
+    public void set[%=asc.getEndEntityIdName().firstToUpperCase()%]Entity([%=asc.getEndEntity().name()%]Entity [%=asc.getEndEntityIdName()%]Entity) {
+        this.[%=asc.getEndEntityIdName()%]Entity = [%=asc.getEndEntityIdName()%]Entity;
+    }
+
+}

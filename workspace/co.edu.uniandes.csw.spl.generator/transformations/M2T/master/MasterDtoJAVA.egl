@@ -1,0 +1,8 @@
+[% import "../lib/Utils.eol"; %]
+/*[%=license()%]*/
+
+package [%=getBasePackage()%].[%= aClass.name.toLowerCase() %].master.logic.dto;
+
+public class [%=aClass.name()%]MasterDTO extends _[%=aClass.name()%]MasterDTO {
+
+}

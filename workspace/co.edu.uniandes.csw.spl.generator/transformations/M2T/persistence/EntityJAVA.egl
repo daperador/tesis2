@@ -1,0 +1,11 @@
+[% import "../lib/Utils.eol";  %]
+/*[%=license()%]*/
+
+package [%=aClass.basePck()%].persistence.entity;
+
+import javax.persistence.Entity;
+
+@Entity
+public class [%=aClass.name%]Entity extends _[%=aClass.name%]Entity {
+ 	
+}

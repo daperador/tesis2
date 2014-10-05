@@ -1,0 +1,17 @@
+[% import "../lib/Utils.eol";  %]
+/*[%=license()%]*/
+
+package [%=aClass.basePck()%].persistence;
+
+import javax.ejb.Stateless;
+import javax.enterprise.inject.Default;
+
+import [%=aClass.basePck()%].persistence.api.I[%=aClass.name%]Persistence;
+import javax.ejb.LocalBean;
+
+@Default
+@Stateless 
+@LocalBean
+public class [%=aClass.name%]Persistence extends _[%=aClass.name%]Persistence  implements I[%=aClass.name%]Persistence {
+
+}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_Z9eooCL3EeONTOmUzHJmQQ" name="Model">
+  <packagedElement xmi:type="uml:Class" xmi:id="_erxjwCL3EeONTOmUzHJmQQ" name="Address">
+    <ownedAttribute xmi:id="_gd_IQCL3EeONTOmUzHJmQQ" name="id" visibility="public" type="_H5tTECUZEeONTOmUzHJmQQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hEfHkCL3EeONTOmUzHJmQQ" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_hE1s4CL3EeONTOmUzHJmQQ" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_hFOucCL3EeONTOmUzHJmQQ" value="10"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_hM0R8CbNEeOApeBsH0H2KA" name="name">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_n0ou0C1BEeOTc9Z2sp7YnQ" name="city" visibility="public" type="_sIHWMC1BEeOTc9Z2sp7YnQ" isUnique="false">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_viMQYC1BEeOTc9Z2sp7YnQ" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_viVaUC1BEeOTc9Z2sp7YnQ" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_viw4IC1BEeOTc9Z2sp7YnQ">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_wFDF0C1BEeOTc9Z2sp7YnQ" name="street" visibility="public" type="_sIHWMC1BEeOTc9Z2sp7YnQ" isUnique="false">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_yMxnUC1BEeOTc9Z2sp7YnQ" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_yM48EC1BEeOTc9Z2sp7YnQ" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_yNKB0C1BEeOTc9Z2sp7YnQ">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_diNcgDBREeO7XKlqTUlzwQ" name="registerDate" type="_ZroMgDBREeO7XKlqTUlzwQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_H5tTECUZEeONTOmUzHJmQQ" name="Long"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_sIHWMC1BEeOTc9Z2sp7YnQ" name="String"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_ZroMgDBREeO7XKlqTUlzwQ" name="Date"/>
+</uml:Model>

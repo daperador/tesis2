@@ -1,0 +1,13 @@
+[% import "../../lib/Utils.eol"; %]
+define(['model/_[%=aClass.name.firstToLowerCase()%]MasterModel'], function() { 
+    App.Model.[%=aClass.name()%]MasterModel = App.Model._[%=aClass.name()%]MasterModel.extend({
+
+    });
+
+    App.Model.[%=aClass.name()%]MasterList = App.Model._[%=aClass.name()%]MasterList.extend({
+        model: App.Model.[%=aClass.name()%]MasterModel
+    });
+
+    return  App.Model.[%=aClass.name()%]MasterModel;
+
+});

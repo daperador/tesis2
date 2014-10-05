@@ -1,0 +1,9 @@
+[% import "../lib/Utils.eol"; %] 
+/*[%=license()%]*/
+
+package [%=getBasePackage()%].[%= aClass.name.toLowerCase() %].master.logic.api;
+
+public interface I[%= aClass.name() %]MasterLogicService extends _I[%= aClass.name() %]MasterLogicService {
+
+        
+}

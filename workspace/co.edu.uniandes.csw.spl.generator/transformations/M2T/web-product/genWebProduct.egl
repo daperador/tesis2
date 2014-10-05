@@ -1,0 +1,24 @@
+[% import "../lib/Utils.eol";  %]
+
+[%
+
+
+
+if(useBasicConfiguration<>'true'){
+
+--var projectUtils = new Native("co.edu.uniandes.ticsw.spl.util.ProjectUtils");
+--projectUtils.genWebProductDirectory();
+
+
+genFile('indexHTML','web-product/src/main/webapp/index.html',Class);
+genFile('webXML','web-product/src/main/webapp/WEB-INF/web.xml',Class);
+genFile('CLASSPATH','web-product/.classpath',Class);
+genFile('PROJECT','web-product/.project',Class);
+genFile('pomXML','web-product/pom.xml',Class);
+
+} else {
+
+genFile('indexHTML',projectName+'.web/src/main/webapp/index.html',Class);
+
+}
+%]

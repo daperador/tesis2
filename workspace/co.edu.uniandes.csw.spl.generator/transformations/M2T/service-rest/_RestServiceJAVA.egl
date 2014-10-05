@@ -1,0 +1,54 @@
+[% import "../lib/Utils.eol";  %]
+/*[%=license()%]*/
+
+package [%=aClass.basePck()%].service;
+
+import java.util.List;
+
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.QueryParam;
+import javax.inject.Inject;
+
+import [%=aClass.basePck()%].logic.api.I[%=aClass.name%]LogicService;
+import [%=aClass.basePck()%].logic.dto.[%=aClass.DTOName()%];
+import [%=aClass.basePck()%].logic.dto.[%=aClass.PageName()%];
+
+
+public abstract class _[%=aClass.name%]Service {
+
+	@Inject
+	protected I[%=aClass.name%]LogicService [%=aClass.name.toLowerFirst()%]LogicService;
+	
+	@POST
+	public [%=aClass.DTOName()%] create[%=aClass.name%]([%=aClass.DTOName()%] [%=aClass.name.toLowerFirst() %]){
+		return [%=aClass.name.toLowerFirst()%]LogicService.create[%=aClass.name%]([%=aClass.name.toLowerFirst() %]);
+	}
+	
+	@DELETE
+	@Path("{id}")
+	public void delete[%=aClass.name%](@PathParam("id") Long id){
+		[%=aClass.name.toLowerFirst()%]LogicService.delete[%=aClass.name%](id);
+	}
+	
+	@GET
+	public [%=aClass.PageName()%] get[%=aClass.name%]s(@QueryParam("page") Integer page, @QueryParam("maxRecords") Integer maxRecords){
+		return [%=aClass.name.toLowerFirst()%]LogicService.get[%=aClass.name%]s(page, maxRecords);
+	}
+	
+	@GET
+	@Path("{id}")
+	public [%=aClass.DTOName()%] get[%=aClass.name%](@PathParam("id") Long id){
+		return [%=aClass.name.toLowerFirst()%]LogicService.get[%=aClass.name%](id);
+	}
+	
+	@PUT
+	public void update[%=aClass.name%](@PathParam("id") Long id, [%=aClass.DTOName()%] [%=aClass.name.toLowerFirst() %]){
+		[%=aClass.name.toLowerFirst()%]LogicService.update[%=aClass.name%]([%=aClass.name.toLowerFirst() %]);
+	}
+	
+}

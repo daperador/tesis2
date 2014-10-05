@@ -1,0 +1,15 @@
+[% import "../../lib/Utils.eol"; %]
+{
+    "displayName" : "[%=aClass.name()%]",
+    "name" : "[%=aClass.name.toLowerCase()%]",
+    "templateName" : "[%=aClass.name.toLowerCase()%]",
+    "url" : "[%=aClass.name.toLowerCase()%].html",
+    "server": "localhost:8080",
+    "server": "localhost:8080",
+    [% if(useBasicConfiguration=='true') {%]
+    "context": "/[%=projectName%].web/webresources/[%=aClass.name()%]Master",
+    [% } else {%]
+    "context": "/[%=aClass.name.toLowerCase()%].master.service.subsystem/webresources/[%=aClass.name()%]Master",
+    [% }%]    
+    "el" : "#main"
+}

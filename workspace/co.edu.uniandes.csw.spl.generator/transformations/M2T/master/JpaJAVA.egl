@@ -1,0 +1,17 @@
+[% import "../lib/Utils.eol";  %]
+/*[%=license()%]*/
+
+package [%=getBasePackage()%].[%=aClass.name.toLowerCase()%].master.persistence;
+
+import javax.ejb.Stateless;
+
+import [%=getBasePackage()%].[%=aClass.name.toLowerCase()%].master.persistence.api.I[%=aClass.name()%]MasterPersistence;
+import javax.ejb.LocalBean;
+import javax.enterprise.inject.Default;
+
+@Default
+@Stateless 
+@LocalBean
+public class [%=aClass.name()%]MasterPersistence extends _[%=aClass.name()%]MasterPersistence  implements I[%=aClass.name()%]MasterPersistence {
+
+}

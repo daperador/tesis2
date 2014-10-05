@@ -1,0 +1,23 @@
+[% import "../lib/Utils.eol";  %]
+
+[%
+
+for (class in Class.all) { 
+	
+	genFile('_ConverterJAVA',class.subsystem_src_dir()+'/'+class.basePckPath()+'/persistence/converter/_'+class.name()+'Converter.java',class);
+	genFile('ConverterJAVA',class.subsystem_src_dir()+'/'+class.basePckPath()+'/persistence/converter/'+class.name()+'Converter.java',class);
+	genFile('_EntityJAVA',class.subsystem_src_dir()+'/'+class.basePckPath()+'/persistence/entity/_'+class.name()+'Entity.java',class);
+	genFile('EntityJAVA',class.subsystem_src_dir()+'/'+class.basePckPath()+'/persistence/entity/'+class.name()+'Entity.java',class);
+	genFile('_InterfaceJAVA',class.subsystem_src_dir()+'/'+class.basePckPath()+'/persistence/api/_I'+class.name()+'Persistence.java',class);
+	genFile('InterfaceJAVA',class.subsystem_src_dir()+'/'+class.basePckPath()+'/persistence/api/I'+class.name()+'Persistence.java',class);
+	genFile('_JpaJAVA',class.subsystem_src_dir()+'/'+class.basePckPath()+'/persistence/_'+class.name()+'Persistence.java',class);
+	genFile('JpaJAVA',class.subsystem_src_dir()+'/'+class.basePckPath()+'/persistence/'+class.name()+'Persistence.java',class);
+	genFile('GlassfishResourcesXML',class.service_rsc_dir()+'/META-INF/glassfish-resources.xml',class);
+	genFile('InitSQL',class.subsystem_rsc_dir()+'/META-INF/init.sql',class);
+	genFile('PersistenceXML',class.subsystem_rsc_dir()+'/META-INF/persistence.xml',class);
+	genFile('_PersistenceXML',class.subsystem_rsc_dir()+'/META-INF/_persistence.xml',class);
+	-- Test Generation
+	--genFile('test/PersistenceTestJAVA',class.subsystem_test_src_dir()+'/'+class.basePckPath()+'/persistence/'+class.name()+'PersistenceTest.java',class);
+	--genFile('test/_TestUtilJAVA',class.subsystem_test_src_dir()+'/'+getBasePackagePath()+'/util/_TestUtil.java',class);
+}
+%]

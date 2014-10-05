@@ -1,0 +1,16 @@
+[% import "../../lib/Utils.eol";  %]
+/*[%=license()%]*/
+define(['component/_CRUDComponent', 'model/[%=aClass.name.toLowerFirst()%]Model', 'controller/[%=aClass.name.toLowerFirst()%]Controller'], function() {
+    App.Component.[%=aClass.name.toUpperFirst()%]Component = App.Component._CRUDComponent.extend({
+        name: '[%=aClass.name.toLowerFirst()%]',
+        model: App.Model.[%=aClass.name.toUpperFirst()%]Model,
+        listModel: App.Model.[%=aClass.name.toUpperFirst()%]List,
+        controller : App.Controller.[%=aClass.name.toUpperFirst()%]Controller,
+        postInit: function(){
+        [%for(attr in aClass.getAllAttributes()->select(at | at.name<>'id' )){%]
+        	this.listComponent.addColumn('[%=attr.name.toLowerFirst()%]','[%=getProjectUtils().toLabel(attr.name)%]');
+    	[%}%]
+        }
+    });
+    return App.Component.[%=aClass.name.toUpperFirst()%]Component;
+});

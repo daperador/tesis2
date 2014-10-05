@@ -1,0 +1,94 @@
+[% import "../lib/Utils.eol";  %]
+/*[%=license()%]*/
+
+package [%=aClass.basePck()%].logic.mock;
+import java.util.ArrayList;
+import java.util.List;
+
+import [%=aClass.basePck()%].logic.dto.[%=aClass.DTOName()%];
+import [%=aClass.basePck()%].logic.api.I[%=aClass.name%]LogicService;
+import [%=aClass.basePck()%].master.logic.api._I[%=aClass.name%]MasterLogicService;
+import [%=aClass.basePck()%].master.logic.dto.[%=aClass.name%]MasterDTO;
+[%for(asc in aClass.getAllAssociatedEntitiesUnique()){%]
+import [%=getBasePackage()%].[%=asc.name.toLowerCase()%].logic.api.I[%=asc.name%]LogicService;
+[%}%]
+[%for(asc in aClass.getAllAssociatedEntitiesUnique()){%]
+import [%=getBasePackage()%].[%=asc.name.toLowerCase()%].logic.dto.[%=asc.name%]DTO;
+[%}%]
+import javax.inject.Inject;
+
+
+public abstract class _[%=aClass.name%]MasterMockLogicService implements _I[%=aClass.name%]MasterLogicService {
+
+    protected static ArrayList<[%=aClass.name%]MasterDTO> [%=aClass.name.firstToLowerCase()%]MasterDtosList = new ArrayList<[%=aClass.name%]MasterDTO>() ;
+    [%for(asc in aClass.getAllAssociatedEntitiesUnique()){ if(asc.name==aClass.name)continue;%]
+    @Inject
+    protected I[%=asc.name%]LogicService [%=asc.name.firstToLowerCase()%]Persistance;
+    [%}%]
+    @Inject
+    protected I[%=aClass.name%]LogicService [%=aClass.name.firstToLowerCase()%]Persistance;
+
+    public [%=aClass.name%]MasterDTO createMaster[%=aClass.name%]([%=aClass.name%]MasterDTO [%=aClass.name.firstToLowerCase()%]) {
+
+        [%=aClass.name.firstToLowerCase()%]Persistance.create[%=aClass.name%]([%=aClass.name.firstToLowerCase()%].get[%=aClass.name%]Entity());
+        [%for(asc in aClass.getAllAssociations()){%]
+        for ([%=asc.getEndEntity().name%]DTO dto : [%=aClass.name.firstToLowerCase()%].getCreate[%=asc.getName()%]()) {
+            [%=asc.getEndEntity().name.firstToLowerCase()%]Persistance.create[%=asc.getEndEntity().name%](dto);
+        }
+		[%}%]
+        [%=aClass.name.firstToLowerCase()%]MasterDtosList.add([%=aClass.name.firstToLowerCase()%]);
+        return [%=aClass.name.firstToLowerCase()%];
+    }
+
+    public [%=aClass.name%]MasterDTO getMaster[%=aClass.name%](Long id) {
+        for ([%=aClass.name%]MasterDTO [%=aClass.name.firstToLowerCase()%]MasterDTO : [%=aClass.name.firstToLowerCase()%]MasterDtosList) {
+            if ([%=aClass.name.firstToLowerCase()%]MasterDTO.get[%=aClass.name%]Entity().getId() == id) {
+                return [%=aClass.name.firstToLowerCase()%]MasterDTO;
+            }
+        }
+
+        return null;
+    }
+
+    public void deleteMaster[%=aClass.name%](Long id) {
+        for ([%=aClass.name%]MasterDTO [%=aClass.name.firstToLowerCase()%]MasterDTO : [%=aClass.name.firstToLowerCase()%]MasterDtosList) {
+            if ([%=aClass.name.firstToLowerCase()%]MasterDTO.get[%=aClass.name%]Entity().getId() == id) {
+
+				[%for(asc in aClass.getAllAssociations()){%]
+                for ([%=asc.getEndEntity().name%]DTO dto : [%=aClass.name.firstToLowerCase()%]MasterDTO.getCreate[%=asc.getName()%]()) {
+                    [%=asc.getEndEntity().name.firstToLowerCase()%]Persistance.delete[%=asc.getEndEntity().name%](dto.getId());
+                }
+                [%=aClass.name.firstToLowerCase()%]Persistance.delete[%=aClass.name%]([%=aClass.name.firstToLowerCase()%]MasterDTO.getId());
+                [%=aClass.name.firstToLowerCase()%]MasterDtosList.remove([%=aClass.name.firstToLowerCase()%]MasterDTO);
+                [%}%]
+            }
+        }
+
+    }
+
+    public void updateMaster[%=aClass.name%]([%=aClass.name%]MasterDTO [%=aClass.name.firstToLowerCase()%]) {
+
+        [%for(asc in aClass.getAllAssociations()){%]
+        // update [%=asc.getEndEntity().name%]
+        if ([%=aClass.name.firstToLowerCase()%].getUpdate[%=asc.getName()%]() != null) {
+            for ([%=asc.getEndEntity().name%]DTO dto : [%=aClass.name.firstToLowerCase()%].getUpdate[%=asc.getName()%]()) {
+                [%=asc.getEndEntity().name.firstToLowerCase()%]Persistance.update[%=asc.getEndEntity().name%](dto);
+            }
+        }
+        // persist new [%=asc.getEndEntity().name%]
+        if ([%=aClass.name.firstToLowerCase()%].getCreate[%=asc.getName()%]() != null) {
+            for ([%=asc.getEndEntity().name%]DTO dto : [%=aClass.name.firstToLowerCase()%].getCreate[%=asc.getName()%]()) {
+                [%=asc.getEndEntity().name%]DTO persisted[%=asc.getEndEntity().name%]DTO = [%=asc.getEndEntity().name.firstToLowerCase()%]Persistance.create[%=asc.getEndEntity().name%](dto);
+                dto = persisted[%=asc.getEndEntity().name%]DTO;
+            }
+        }
+        // delete [%=asc.getEndEntity().name%]
+        if ([%=aClass.name.firstToLowerCase()%].getDelete[%=asc.getName()%]() != null) {
+            for ([%=asc.getEndEntity().name%]DTO dto : [%=aClass.name.firstToLowerCase()%].getDelete[%=asc.getName()%]()) {
+
+                [%=asc.getEndEntity().name.firstToLowerCase()%]Persistance.delete[%=asc.getEndEntity().name%](dto.getId());
+            }
+        }
+        [%}%]
+    }
+}

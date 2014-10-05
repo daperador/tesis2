@@ -1,0 +1,25 @@
+[% import "../../lib/Utils.eol"; %]
+define([], function() {
+    App.Model._[%=aClass.name()%]MasterModel = Backbone.Model.extend({
+     	initialize: function() {
+            this.on('invalid', function(model,error) {
+                Backbone.trigger('[%=aClass.name.firstToLowerCase()%]-master-model-error', error);
+            });
+        },
+        validate: function(attrs, options){
+        	var modelMaster = new App.Model.[%=aClass.name.toUpperFirst() %]Model();
+        	if(modelMaster.validate){
+            	return modelMaster.validate(attrs.[%=aClass.name().firstToLowerCase()%]Entity,options);
+            }
+        }
+    });
+
+    App.Model._[%=aClass.name()%]MasterList = Backbone.Collection.extend({
+        model: App.Model._[%=aClass.name()%]MasterModel,
+        initialize: function() {
+        }
+
+    });
+    return App.Model._[%=aClass.name()%]MasterModel;
+    
+});

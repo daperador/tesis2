@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:artifact="antlib:org.apache.maven.artifact.ant" default="main">
+	<path id="maven-ant-tasks.classpath" path="lib/maven-ant-tasks-2.1.3.jar"></path>
+	<typedef resource="org/apache/maven/artifact/ant/antlib.xml" uri="antlib:org.apache.maven.artifact.ant" classpathref="maven-ant-tasks.classpath"></typedef>
+
+	<!--<property file="conf.properties" />-->
+
+	<target name="main">
+		
+		<echo message="linea: ${linea}"></echo>
+		<echo message="artefacto: ${artefacto}"></echo>
+		<antcall target="eclipse.logic.api"></antcall>
+		<antcall target="eclipse.persistence.api"></antcall>
+		<antcall target="eclipse.persistence.jpa"></antcall>
+		<antcall target="eclipse.logic.ejb"></antcall>
+		<antcall target="eclipse.logic.mock"></antcall>
+		<antcall target="eclipse.service.rest"></antcall>
+		<antcall target="eclipse.service.subsystem"></antcall>
+		<antcall target="eclipse.web"></antcall>
+		<antcall target="eclipse.pom"></antcall>
+
+	</target>
+
+	<target name="logic.api">
+		<delete dir="${artefacto}.logic.api"></delete>
+		<artifact:mvn>
+			<arg value="archetype:generate"></arg>
+			<arg value="-DgroupId=co.edu.uniandes.${linea}"></arg>
+			<arg value="-DartifactId=${artefacto}.logic.api"></arg>
+		</artifact:mvn>
+		<artifact:pom id="logic.api.pom" groupId="co.edu.uniandes.${linea}" artifactId="${artefacto}.logic.api" version="1.0-SNAPSHOT" name="${artefacto}.logic.api">
+			<dependency groupId="org.glassfish.main.extras" artifactId="glassfish-embedded-all" version="3.1.2.2" scope="provided"></dependency>
+		</artifact:pom>
+		<artifact:writepom pomRefId="logic.api.pom" file="${artefacto}.logic.api/pom.xml"></artifact:writepom>
+		
+		<delete dir="${artefacto}.logic.api/src/test/java/co"></delete>
+		<delete file="${artefacto}.logic.api/src/main/java/co/edu/uniandes/${linea}/App.java"></delete>
+	</target>
+
+	<target name="eclipse.logic.api" depends="logic.api">
+		<artifact:mvn pom="${artefacto}.logic.api/pom.xml">
+			<arg value="eclipse:eclipse"></arg>
+		</artifact:mvn>
+	</target>
+
+	<target name="persistence.api">
+		<java fork="true" dir="c:\work\lib">
+			<delete dir="${artefacto}.persistence.api"></delete>
+			<artifact:mvn>
+				<arg value="archetype:generate"></arg>
+				<arg value="-DgroupId=co.edu.uniandes.${linea}"></arg>
+				<arg value="-DartifactId=${artefacto}.persistence.api"></arg>
+			</artifact:mvn>
+			<artifact:pom id="persistence.api.pom" groupId="co.edu.uniandes.${linea}" artifactId="${artefacto}.persistence.api" version="1.0-SNAPSHOT" name="${artefacto}.persistence.api">
+				<dependency groupId="org.glassfish.main.extras" artifactId="glassfish-embedded-all" version="3.1.2.2" scope="provided"></dependency>
+				<dependency groupId="co.edu.uniandes.${linea}" artifactId="${artefacto}.logic.api" version="1.0-SNAPSHOT"></dependency>
+			</artifact:pom>
+			<artifact:writepom pomRefId="persistence.api.pom" file="${artefacto}.persistence.api/pom.xml"></artifact:writepom>
+			<delete dir="${artefacto}.persistence.api/src/test/java/co"></delete>
+			<delete file="${artefacto}.persistence.api/src/main/java/co/edu/uniandes/${linea}/App.java"></delete>
+		</java>
+	</target>
+
+	<target name="eclipse.persistence.api" depends="persistence.api">
+		<artifact:mvn pom="${artefacto}.persistence.api/pom.xml">
+			<arg value="eclipse:eclipse"></arg>
+		</artifact:mvn>
+	</target>
+
+	<target name="persistence.jpa">
+		<delete dir="${artefacto}.persistence.jpa"></delete>
+		<artifact:mvn>
+			<arg value="archetype:generate"></arg>
+			<arg value="-DgroupId=co.edu.uniandes.${linea}"></arg>
+			<arg value="-DartifactId=${artefacto}.persistence.jpa"></arg>
+		</artifact:mvn>
+		<artifact:pom id="persistence.jpa.pom" groupId="co.edu.uniandes.${linea}" artifactId="${artefacto}.persistence.jpa" version="1.0-SNAPSHOT" name="${artefacto}.persistence.jpa">
+			<dependency groupId="org.glassfish.main.extras" artifactId="glassfish-embedded-all" version="3.1.2.2" scope="provided"></dependency>
+			<dependency groupId="co.edu.uniandes.${linea}" artifactId="${artefacto}.persitence.api" version="1.0-SNAPSHOT"></dependency>
+			<!-- test -->
+			<dependency groupId="junit" artifactId="junit" version="4.10" scope="test"></dependency>
+			<dependency groupId="org.jboss.arquillian.junit" artifactId="arquillian-junit-container" version="1.0.0.Final" scope="test"></dependency>
+			<dependency groupId="org.jboss.arquillian.container" artifactId="arquillian-glassfish-embedded-3.1" version="1.0.0.CR3" scope="test"></dependency>
+		</artifact:pom>
+		<artifact:writepom pomRefId="persistence.jpa.pom" file="${artefacto}.persistence.jpa/pom.xml"></artifact:writepom>
+		<delete dir="${artefacto}.persistence.jpa/src/test/java/co"></delete>
+		<delete file="${artefacto}.persistence.jpa/src/main/java/co/edu/uniandes/${linea}/App.java"></delete>
+	</target>
+
+	<target name="eclipse.persistence.jpa" depends="persistence.jpa">
+		<artifact:mvn pom="${artefacto}.persistence.jpa/pom.xml">
+			<arg value="eclipse:eclipse"></arg>
+		</artifact:mvn>
+	</target>
+
+	<target name="logic.ejb">
+		<delete dir="${artefacto}.logic.ejb"></delete>
+		<artifact:mvn>
+			<arg value="archetype:generate"></arg>
+			<arg value="-DgroupId=co.edu.uniandes.${linea}"></arg>
+			<arg value="-DartifactId=${artefacto}.logic.ejb"></arg>
+		</artifact:mvn>
+		<artifact:pom id="logic.ejb.pom" groupId="co.edu.uniandes.${linea}" artifactId="${artefacto}.logic.ejb" version="1.0-SNAPSHOT" name="${artefacto}.logic.ejb">
+			<dependency groupId="org.glassfish.main.extras" artifactId="glassfish-embedded-all" version="3.1.2.2" scope="provided"></dependency>
+			<dependency groupId="co.edu.uniandes.${linea}" artifactId="${artefacto}.logic.api" version="1.0-SNAPSHOT"></dependency>
+			<dependency groupId="co.edu.uniandes.${linea}" artifactId="${artefacto}.persitence.api" version="1.0-SNAPSHOT"></dependency>
+			<!-- test -->
+			<dependency groupId="junit" artifactId="junit" version="4.10" scope="test"></dependency>
+			<dependency groupId="org.jboss.arquillian.junit" artifactId="arquillian-junit-container" version="1.0.0.Final" scope="test"></dependency>
+			<dependency groupId="org.jboss.arquillian.container" artifactId="arquillian-glassfish-embedded-3.1" version="1.0.0.CR3" scope="test"></dependency>
+		</artifact:pom>
+		<artifact:writepom pomRefId="logic.ejb.pom" file="${artefacto}.logic.ejb/pom.xml"></artifact:writepom>
+		<delete dir="${artefacto}.logic.ejb/src/test/java/co"></delete>
+		<delete file="${artefacto}.logic.ejb/src/main/java/co/edu/uniandes/${linea}/App.java"></delete>
+	</target>
+
+	<target name="eclipse.logic.ejb" depends="logic.ejb">
+		<artifact:mvn pom="${artefacto}.logic.ejb/pom.xml">
+			<arg value="eclipse:eclipse"></arg>
+		</artifact:mvn>
+	</target>
+
+	<target name="logic.mock">
+		<delete dir="${artefacto}.logic.mock"></delete>
+		<artifact:mvn>
+			<arg value="archetype:generate"></arg>
+			<arg value="-DgroupId=co.edu.uniandes.${linea}"></arg>
+			<arg value="-DartifactId=${artefacto}.logic.mock"></arg>
+		</artifact:mvn>
+		<artifact:pom id="logic.mock.pom" groupId="co.edu.uniandes.${linea}" artifactId="${artefacto}.logic.mock" version="1.0-SNAPSHOT" name="${artefacto}.logic.mock">
+			<dependency groupId="org.glassfish.main.extras" artifactId="glassfish-embedded-all" version="3.1.2.2" scope="provided"></dependency>
+			<dependency groupId="co.edu.uniandes.${linea}" artifactId="${artefacto}.logic.api" version="1.0-SNAPSHOT"></dependency>
+		</artifact:pom>
+		<artifact:writepom pomRefId="logic.mock.pom" file="${artefacto}.logic.mock/pom.xml"></artifact:writepom>
+		<delete dir="${artefacto}.logic.mock/src/test/java/co"></delete>
+		<delete file="${artefacto}.logic.mock/src/main/java/co/edu/uniandes/${linea}/App.java"></delete>
+	</target>
+
+	<target name="eclipse.logic.mock" depends="logic.mock">
+		<artifact:mvn pom="${artefacto}.logic.mock/pom.xml">
+			<arg value="eclipse:eclipse"></arg>
+		</artifact:mvn>
+	</target>
+
+	<target name="service.rest">
+		<delete dir="${artefacto}.service.rest"></delete>
+		<artifact:mvn>
+			<arg value="archetype:generate"></arg>
+			<arg value="-DgroupId=co.edu.uniandes.${linea}"></arg>
+			<arg value="-DartifactId=${artefacto}.service.rest"></arg>
+		</artifact:mvn>
+		<artifact:pom id="service.rest.pom" groupId="co.edu.uniandes.${linea}" artifactId="${artefacto}.service.rest" version="1.0-SNAPSHOT" name="${artefacto}.service.rest">
+			<dependency groupId="org.glassfish.main.extras" artifactId="glassfish-embedded-all" version="3.1.2.2" scope="provided"></dependency>
+			<dependency groupId="co.edu.uniandes.${linea}" artifactId="${artefacto}.logic.api" version="1.0-SNAPSHOT"></dependency>
+		</artifact:pom>
+		<artifact:writepom pomRefId="service.rest.pom" file="${artefacto}.service.rest/pom.xml"></artifact:writepom>
+		<delete dir="${artefacto}.logic.ejb/src/test/java/co"></delete>
+		<delete file="${artefacto}.logic.ejb/src/main/java/co/edu/uniandes/${linea}/App.java"></delete>
+	</target>
+
+	<target name="eclipse.service.rest" depends="service.rest">
+		<artifact:mvn pom="${artefacto}.service.rest/pom.xml">
+			<arg value="eclipse:eclipse"></arg>
+		</artifact:mvn>
+	</target>
+
+	<target name="service.subsystem">
+		<delete dir="${artefacto}.service.subsystem"></delete>
+		<artifact:mvn>
+			<arg value="archetype:generate"></arg>
+			<arg value="-DgroupId=co.edu.uniandes.${linea}"></arg>
+			<arg value="-DartifactId=${artefacto}.service.subsystem"></arg>
+			<arg value="-DarchetypeArtifactId=maven-archetype-webapp"></arg>
+		</artifact:mvn>
+		<artifact:pom id="service.subsystem.pom" groupId="co.edu.uniandes.${linea}" artifactId="${artefacto}.service.subsystem" version="1.0-SNAPSHOT" name="${artefacto}.service.subsystem">
+			<dependency groupId="co.edu.uniandes.${linea}" artifactId="${artefacto}.service.rest" version="1.0-SNAPSHOT"></dependency>
+			<dependency groupId="co.edu.uniandes.${linea}" artifactId="${artefacto}.logic.mock" version="1.0-SNAPSHOT"></dependency>
+		</artifact:pom>
+		<artifact:writepom pomRefId="service.subsystem.pom" file="${artefacto}.service.subsystem/pom.xml"></artifact:writepom>
+		<delete dir="${artefacto}.logic.ejb/src/test/java/co"></delete>
+		<delete file="${artefacto}.logic.ejb/src/main/java/co/edu/uniandes/${linea}/App.java"></delete>
+	</target>
+
+	<target name="eclipse.service.subsystem" depends="service.subsystem">
+		<artifact:mvn pom="${artefacto}.service.subsystem/pom.xml">
+			<arg value="eclipse:eclipse"></arg>
+		</artifact:mvn>
+	</target>
+
+	<target name="web">
+		<delete dir="${artefacto}.web"></delete>
+		<artifact:mvn>
+			<arg value="archetype:generate"></arg>
+			<arg value="-DgroupId=co.edu.uniandes.${linea}"></arg>
+			<arg value="-DartifactId=${artefacto}.web"></arg>
+			<arg value="-DarchetypeArtifactId=maven-archetype-webapp"></arg>
+		</artifact:mvn>
+		<artifact:pom id="web.pom" groupId="co.edu.uniandes.${linea}" artifactId="${artefacto}.web" version="1.0-SNAPSHOT" name="${artefacto}.web">
+			<dependency groupId="net.sourceforge.htmlunit" artifactId="htmlunit" version="2.4"></dependency>
+		</artifact:pom>
+		<artifact:writepom pomRefId="web.pom" file="${artefacto}.web/pom.xml"></artifact:writepom>
+	</target>
+
+	<target name="eclipse.web" depends="web">
+		<artifact:mvn pom="${artefacto}.web/pom.xml">
+			<arg value="eclipse:eclipse"></arg>
+		</artifact:mvn>
+	</target>
+
+	<target name="pom">
+		<mkdir dir="${artefacto}.pom"></mkdir>
+		<copy file="pom/pom.xml" tofile="${artefacto}.pom/pom.xml">
+			<filterchain>
+				<filterreader classname="org.apache.tools.ant.filters.ReplaceTokens">
+					<param type="propertiesfile" value="conf.properties"></param>
+					<param type="tokenchar" name="begintoken" value="{"></param>
+					<param type="tokenchar" name="endtoken" value="}"></param>
+				</filterreader>
+			</filterchain>
+		</copy>
+	</target>
+	
+	<target name="eclipse.pom" depends="pom">
+		<artifact:mvn pom="${artefacto}.pom/pom.xml">
+			<arg value="eclipse:eclipse"></arg>
+		</artifact:mvn>
+	</target>
+	
+</project>

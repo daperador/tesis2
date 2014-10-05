@@ -1,0 +1,8 @@
+[% import "../lib/Utils.eol";  %]
+/*[%=license()%]*/
+
+package [%=aClass.basePck()%].logic.api;
+
+public interface I[%=aClass.name%]LogicService extends _I[%=aClass.name%]LogicService {
+
+}

@@ -1,0 +1,137 @@
+[% import "../lib/Utils.eol";  %]
+/*[%=license()%]*/
+
+package [%=getBasePackage()%].[%=aClass.name.toLowerCase()%].master.logic.ejb;
+
+[%for (entity in aClass.getAllAssociatedEntities()) { %]
+import [%=getBasePackage()%].[%= entity.name.toLowerCase() %].logic.dto.[%= entity.DTOName() %];
+import [%=getBasePackage()%].[%= entity.name.toLowerCase() %].persistence.api.I[%= entity.name() %]Persistence;
+[%}%]
+import [%=getBasePackage()%].[%=aClass.name.toLowerCase()%].logic.dto.[%=aClass.name()%]DTO;
+import [%=getBasePackage()%].[%=aClass.name.toLowerCase()%].master.logic.api._I[%=aClass.name()%]MasterLogicService;
+import [%=getBasePackage()%].[%=aClass.name.toLowerCase()%].master.logic.dto.[%=aClass.name()%]MasterDTO;
+import [%=getBasePackage()%].[%=aClass.name.toLowerCase()%].master.persistence.api.I[%=aClass.name()%]MasterPersistence;
+[%for (asc in aClass.getAllAssociations()) { %]
+import [%=getBasePackage()%].[%=aClass.name.toLowerCase()%].master.persistence.entity.[%=asc.getEntityName()%];
+[%}%]
+import [%=getBasePackage()%].[%=aClass.name.toLowerCase()%].persistence.api.I[%=aClass.name()%]Persistence;
+import javax.inject.Inject;
+
+public abstract class _[%=aClass.name()%]MasterLogicService implements _I[%=aClass.name()%]MasterLogicService {
+
+    @Inject
+    protected I[%=aClass.name()%]Persistence [%=aClass.name.toLowerCase()%]Persistance;
+    @Inject
+    protected I[%=aClass.name()%]MasterPersistence [%=aClass.name.toLowerCase()%]MasterPersistance;
+    [%for (entity in aClass.getAllAssociatedEntitiesUnique()) { %]
+    [%
+     if(entity == aClass){
+        continue;
+     }
+    %]
+    @Inject
+    protected I[%= entity.name() %]Persistence [%= entity.name.firstToLowerCase() %]Persistance;
+    [%}%]
+
+    public [%=aClass.name()%]MasterDTO createMaster[%=aClass.name()%]([%=aClass.name()%]MasterDTO [%=aClass.name.toLowerCase()%]) {
+        [%=aClass.name()%]DTO persisted[%=aClass.name()%]DTO = [%=aClass.name.toLowerCase()%]Persistance.create[%=aClass.name()%]([%=aClass.name.toLowerCase()%].get[%=aClass.name()%]Entity());
+        [%for (asc in aClass.getAllAssociations()) { %]
+        [% 
+        	var entity = asc.getEndEntity();
+        	var varId = aClass.name.toLowerCase();
+        %]
+        if ([%=varId%].getCreate[%=  asc.getName() %]() != null) {
+            for ([%=entity.name()%]DTO [%=entity.name.firstToLowerCase()%]DTO : [%=varId%].getCreate[%=  asc.getName() %]()) {
+                [%=entity.name()%]DTO created[%=entity.name()%]DTO = [%=entity.name.firstToLowerCase()%]Persistance.create[%=entity.name()%]([%=entity.name.firstToLowerCase()%]DTO);
+                [%=asc.getEntityName()%] [%=aClass.name.toLowerCase()%][%=entity.name()%]Entity = new [%=asc.getEntityName()%](persisted[%=aClass.name()%]DTO.getId(), created[%=entity.name()%]DTO.getId());
+                [%=aClass.name.toLowerCase()%]MasterPersistance.create[%=asc.getEntityName()%]([%=aClass.name.toLowerCase()%][%=entity.name()%]Entity);
+            }
+        }
+        [%}%]
+        [%for (asc in aClass.getAllAssociations()) { %]
+        [% 
+        	var entity = asc.getEndEntity();
+        	var varId = aClass.name.toLowerCase();
+        %]
+        // update [%=entity.name.firstToLowerCase()%]
+        if ([%=varId%].getUpdate[%=  asc.getName() %]() != null) {
+            for ([%=entity.name()%]DTO [%=entity.name.firstToLowerCase()%]DTO : [%=aClass.name.toLowerCase()%].getUpdate[%=  asc.getName() %]()) {
+                [%=entity.name.firstToLowerCase()%]Persistance.update[%=entity.name()%]([%=entity.name.firstToLowerCase()%]DTO);
+                [%=asc.getEntityName()%] [%=aClass.name.toLowerCase()%][%=entity.name()%]Entity = new [%=asc.getEntityName()%](persisted[%=aClass.name()%]DTO.getId(), [%=entity.name().firstToLowerCase()%]DTO.getId());
+                [%=aClass.name.toLowerCase()%]MasterPersistance.create[%=asc.getEntityName()%]([%=aClass.name.toLowerCase()%][%=entity.name()%]Entity);
+            }
+        }
+        [%}%]
+        return [%=aClass.name.toLowerCase()%];
+    }
+
+    public [%=aClass.name()%]MasterDTO getMaster[%=aClass.name()%](Long id) {
+        return [%=aClass.name.toLowerCase()%]MasterPersistance.get[%=aClass.name()%](id);
+    }
+
+    public void deleteMaster[%=aClass.name()%](Long id) {
+        [%=aClass.name.toLowerCase()%]Persistance.delete[%=aClass.name()%](id);
+    }
+
+    public void updateMaster[%=aClass.name()%]([%=aClass.name()%]MasterDTO [%=aClass.name.toLowerCase()%]) {
+        [%=aClass.name.toLowerCase()%]Persistance.update[%=aClass.name()%]([%=aClass.name.toLowerCase()%].get[%=aClass.name()%]Entity());
+
+        //---- FOR RELATIONSHIP
+        [%for (asc in aClass.getContainmentAssociations()) { %]
+        [% 
+        	var entity = asc.getEndEntity();
+        	var varId = aClass.name.toLowerCase();
+        %]
+        // persist new [%=entity.name.firstToLowerCase()%]
+        if ([%=varId%].getCreate[%=  asc.getName() %]() != null) {
+            for ([%=entity.name()%]DTO [%=entity.name.firstToLowerCase()%]DTO : [%=varId%].getCreate[%=  asc.getName() %]()) {
+                [%=entity.name()%]DTO created[%=entity.name()%]DTO = [%=entity.name.firstToLowerCase()%]Persistance.create[%=entity.name()%]([%=entity.name.firstToLowerCase()%]DTO);
+                [%=asc.getEntityName()%] [%=aClass.name.toLowerCase()%][%=entity.name()%]Entity = new [%=asc.getEntityName()%]([%=aClass.name.toLowerCase()%].get[%=aClass.name()%]Entity().getId(), created[%=entity.name()%]DTO.getId());
+                [%=aClass.name.toLowerCase()%]MasterPersistance.create[%=asc.getEntityName()%]([%=aClass.name.toLowerCase()%][%=entity.name()%]Entity);
+            }
+        }
+        // update [%=entity.name.firstToLowerCase()%]
+        if ([%=varId%].getUpdate[%=  asc.getName() %]() != null) {
+            for ([%=entity.name()%]DTO [%=entity.name.firstToLowerCase()%]DTO : [%=varId%].getUpdate[%=  asc.getName() %]()) {
+                [%=entity.name.firstToLowerCase()%]Persistance.update[%=entity.name()%]([%=entity.name.firstToLowerCase()%]DTO);
+            }
+        }
+        // delete [%=entity.name.firstToLowerCase()%]
+        if ([%=varId%].getDelete[%=  asc.getName() %]() != null) {
+            for ([%=entity.name()%]DTO [%=entity.name.firstToLowerCase()%]DTO : [%=varId%].getDelete[%=  asc.getName() %]()) {
+                [%=aClass.name.toLowerCase()%]MasterPersistance.delete[%=asc.getEntityName()%]([%=aClass.name.toLowerCase()%].get[%=aClass.name()%]Entity().getId(), [%=entity.name.firstToLowerCase()%]DTO.getId());
+                [%=entity.name.firstToLowerCase()%]Persistance.delete[%=entity.name()%]([%=entity.name.firstToLowerCase()%]DTO.getId());
+            }
+        }
+        [%}%]
+        [%for (asc in aClass.getSharedAssociations()) { %]
+        [% 
+        	var entity = asc.getEndEntity();
+        	var varId = aClass.name.toLowerCase();
+        %]
+        // delete [%=entity.name.firstToLowerCase()%]
+        if ([%=varId%].getDelete[%=  asc.getName() %]() != null) {
+            for ([%=entity.name()%]DTO [%=entity.name.firstToLowerCase()%]DTO : [%=varId%].getDelete[%=  asc.getName() %]()) {
+                [%=aClass.name.toLowerCase()%]MasterPersistance.delete[%=asc.getEntityName()%]([%=aClass.name.toLowerCase()%].get[%=aClass.name()%]Entity().getId(), [%=entity.name.firstToLowerCase()%]DTO.getId());
+            }
+        }
+        // persist new [%=entity.name.firstToLowerCase()%]
+        if ([%=varId%].getCreate[%=  asc.getName() %]() != null) {
+            for ([%=entity.name()%]DTO [%=entity.name.firstToLowerCase()%]DTO : [%=varId%].getCreate[%=  asc.getName() %]()) {
+                [%=asc.getEntityName()%] [%=aClass.name.toLowerCase()%][%=entity.name()%]Entity = new [%=asc.getEntityName()%]([%=aClass.name.toLowerCase()%].get[%=aClass.name()%]Entity().getId(), [%=entity.name.firstToLowerCase()%]DTO.getId());
+                [%=aClass.name.toLowerCase()%]MasterPersistance.create[%=asc.getEntityName()%]([%=aClass.name.toLowerCase()%][%=entity.name()%]Entity);
+            }
+        }
+        // update [%=entity.name.firstToLowerCase()%]
+        if ([%=varId%].getUpdate[%=  asc.getName() %]() != null) {
+            for ([%=entity.name()%]DTO [%=entity.name.firstToLowerCase()%]DTO : [%=varId%].getUpdate[%=  asc.getName() %]()) {
+                [%=aClass.name.toLowerCase()%]MasterPersistance.delete[%=asc.getEntityName()%]([%=aClass.name.toLowerCase()%].get[%=aClass.name()%]Entity().getId(), [%=entity.name.firstToLowerCase()%]DTO.getId());
+                [%=entity.name.firstToLowerCase()%]Persistance.update[%=entity.name()%]([%=entity.name.firstToLowerCase()%]DTO);
+                [%=asc.getEntityName()%] [%=aClass.name.toLowerCase()%][%=entity.name()%]Entity = new [%=asc.getEntityName()%]([%=aClass.name().toLowerCase()%].getId(), [%=entity.name().firstToLowerCase()%]DTO.getId());
+                [%=aClass.name.toLowerCase()%]MasterPersistance.create[%=asc.getEntityName()%]([%=aClass.name.toLowerCase()%][%=entity.name()%]Entity);
+                
+            }
+        }
+        [%}%]
+    }
+}

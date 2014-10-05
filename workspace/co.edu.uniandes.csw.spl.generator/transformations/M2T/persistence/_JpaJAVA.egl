@@ -1,0 +1,69 @@
+[% import "../lib/Utils.eol";  %]
+/*[%=license()%]*/
+
+package [%=aClass.basePck()%].persistence;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+import [%=aClass.basePck()%].logic.dto.[%=aClass.DTOName()%];
+import [%=aClass.basePck()%].logic.dto.[%=aClass.PageName()%];
+import [%=aClass.basePck()%].persistence.api._I[%=aClass.name%]Persistence;
+import [%=aClass.basePck()%].persistence.converter.[%=aClass.name%]Converter;
+import [%=aClass.basePck()%].persistence.entity.[%=aClass.name%]Entity;
+
+public abstract class _[%=aClass.name%]Persistence implements _I[%=aClass.name%]Persistence {
+
+  	[% if(useBasicConfiguration=='true') {%]
+  	@PersistenceContext(unitName="[%=projectName%]PU")
+  	[% } else {%]
+  	@PersistenceContext(unitName="[%=aClass.name%]PU")
+  	[% }%] 
+	protected EntityManager entityManager;
+	
+	public [%=aClass.DTOName()%] create[%=aClass.name.toUpperFirst()%]([%=aClass.DTOName()%] [%=aClass.name.toLowerFirst()%]) {
+		[%=aClass.name%]Entity entity=[%=aClass.name%]Converter.persistenceDTO2Entity([%=aClass.name.toLowerFirst()%]);
+		entityManager.persist(entity);
+		return [%=aClass.name%]Converter.entity2PersistenceDTO(entity);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<[%=aClass.DTOName()%]> get[%=aClass.name%]s() {
+		Query q = entityManager.createQuery("select u from [%=aClass.name%]Entity u");
+		return [%=aClass.name%]Converter.entity2PersistenceDTOList(q.getResultList());
+	}
+
+	@SuppressWarnings("unchecked")
+	public [%=aClass.PageName()%] get[%=aClass.name%]s(Integer page, Integer maxRecords) {
+		Query count = entityManager.createQuery("select count(u) from [%=aClass.name%]Entity u");
+		Long regCount = 0L;
+		regCount = Long.parseLong(count.getSingleResult().toString());
+		Query q = entityManager.createQuery("select u from [%=aClass.name%]Entity u");
+		if (page != null && maxRecords != null) {
+		    q.setFirstResult((page-1)*maxRecords);
+		    q.setMaxResults(maxRecords);
+		}
+		[%=aClass.PageName()%] response = new [%=aClass.PageName()%]();
+		response.setTotalRecords(regCount);
+		response.setRecords([%=aClass.name%]Converter.entity2PersistenceDTOList(q.getResultList()));
+		return response;
+	}
+
+	public [%=aClass.DTOName()%] get[%=aClass.name%](Long id) {
+		return [%=aClass.name%]Converter.entity2PersistenceDTO(entityManager.find([%=aClass.name%]Entity.class, id));
+	}
+
+	public void delete[%=aClass.name%](Long id) {
+		[%=aClass.name%]Entity entity=entityManager.find([%=aClass.name%]Entity.class, id);
+		entityManager.remove(entity);
+	}
+
+	public void update[%=aClass.name%]([%=aClass.DTOName()%] detail) {
+		[%=aClass.name%]Entity entity=entityManager.merge([%=aClass.name%]Converter.persistenceDTO2Entity(detail));
+		[%=aClass.name%]Converter.entity2PersistenceDTO(entity);
+	}
+
+}

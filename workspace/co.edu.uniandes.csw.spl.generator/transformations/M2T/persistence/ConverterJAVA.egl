@@ -1,0 +1,11 @@
+[% import "../lib/Utils.eol";  %]
+/*[%=license()%]*/
+
+package [%=aClass.basePck()%].persistence.converter;
+
+import [%=getBasePackage()%].[%=aClass.name.toLower()%].logic.dto.[%=aClass.DTOName()%];
+import [%=getBasePackage()%].[%=aClass.name.toLower()%].persistence.entity.[%=aClass.name%]Entity;
+
+public class [%=aClass.name%]Converter extends _[%=aClass.name%]Converter {
+
+}

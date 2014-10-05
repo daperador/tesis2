@@ -1,0 +1,20 @@
+[% import "../lib/Utils.eol";  %]
+/*[%=license()%]*/
+
+package [%=aClass.basePck()%].logic.api;
+
+import java.util.List; 
+
+import [%=aClass.basePck()%].logic.dto.[%=aClass.DTOName()%];
+import [%=aClass.basePck()%].logic.dto.[%=aClass.PageName()%];
+
+public interface _I[%=aClass.name%]LogicService {
+
+	public [%=aClass.DTOName()%] create[%=aClass.name.toUpperFirst()%]([%=aClass.DTOName()%] detail);
+	public List<[%=aClass.DTOName()%]> get[%=aClass.name.toUpperFirst()%]s();
+	public [%=aClass.PageName()%] get[%=aClass.name.toUpperFirst()%]s(Integer page, Integer maxRecords);
+	public [%=aClass.DTOName()%] get[%=aClass.name.toUpperFirst()%](Long id);
+	public void delete[%=aClass.name.toUpperFirst()%](Long id);
+	public void update[%=aClass.name.toUpperFirst()%]([%=aClass.DTOName()%] detail);
+	
+}

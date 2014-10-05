@@ -1,0 +1,187 @@
+[% import "../../lib/Utils.eol"; %]
+define(['controller/selectionController', 'model/cacheModel', 'model/[%=aClass.name.firstToLowerCase()%]MasterModel', 'component/_CRUDComponent', 'controller/tabController', 'component/[%=aClass.name.firstToLowerCase()%]Component',
+ [%for (entity in aClass.getAllAssociatedEntities()) { %]
+ 'component/[%=entity.name.firstToLowerCase()%]Component'
+ [%if(hasMore){%]
+ ,
+ [%}%]
+ [%}%] 
+ ],function(SelectionController, CacheModel, [%=aClass.name()%]MasterModel, CRUDComponent, TabController, [%=aClass.name()%]Component,
+ [%for (asc in aClass.getAllAssociations()) { %]
+ [%=asc.getName()%]Component
+ [%if(hasMore){%]
+ ,
+ [%}%]
+ [%}%]
+ ) {
+    App.Component.[%=aClass.name()%]MasterComponent = App.Component.BasicComponent.extend({
+        initialize: function() {
+            var self = this;
+            this.configuration = App.Utils.loadComponentConfiguration('[%=aClass.name.firstToLowerCase()%]Master');
+            var uComponent = new [%=aClass.name()%]Component();
+            uComponent.initialize();
+            uComponent.render('main');
+            Backbone.on(uComponent.componentId + '-post-[%=aClass.name.firstToLowerCase()%]-create', function(params) {
+                self.renderChilds(params);
+            });
+            Backbone.on(uComponent.componentId + '-post-[%=aClass.name.firstToLowerCase()%]-edit', function(params) {
+                self.renderChilds(params);
+            });
+            Backbone.on(uComponent.componentId + '-pre-[%=aClass.name.firstToLowerCase()%]-list', function() {
+                self.hideChilds();
+            });
+            Backbone.on('[%=aClass.name.firstToLowerCase()%]-master-model-error', function(error) {
+                Backbone.trigger(uComponent.componentId + '-' + 'error', {event: '[%=aClass.name.firstToLowerCase()%]-master-save', view: self, message: error});
+            });
+            Backbone.on(uComponent.componentId + '-instead-[%=aClass.name.firstToLowerCase()%]-save', function(params) {
+                self.model.set('[%=aClass.name.firstToLowerCase()%]Entity', params.model);
+                if (params.model) {
+                    self.model.set('id', params.model.id);
+                } else {
+                    self.model.unset('id');
+                }
+                [%for (asc in aClass.getAllAssociations()) { %]
+                [% var entity = asc.getEndEntity();%]
+                var [%=asc.getName()%]Models = self.[%=asc.getName()%]Component.componentController.[%=entity.name.firstToLowerCase()%]ModelList;
+                self.model.set('list[%=asc.getName()%]', []);
+                self.model.set('create[%=asc.getName()%]', []);
+                self.model.set('update[%=asc.getName()%]', []);
+                self.model.set('delete[%=asc.getName()%]', []);
+                for (var i = 0; i < [%=asc.getName()%]Models.models.length; i++) {
+                    var m =[%=asc.getName()%]Models.models[i];
+                    var modelCopy = m.clone();
+                    if (m.isCreated()) {
+                        //set the id to null
+                        modelCopy.unset('id');
+                        self.model.get('create[%=asc.getName()%]').push(modelCopy.toJSON());
+                    } else if (m.isUpdated()) {
+                        self.model.get('update[%=asc.getName()%]').push(modelCopy.toJSON());
+                    }
+                }
+                for (var i = 0; i < [%=asc.getName()%]Models.deletedModels.length; i++) {
+                    var m = [%=asc.getName()%]Models.deletedModels[i];
+                    self.model.get('delete[%=asc.getName()%]').push(m.toJSON());
+                }
+                [%}%]
+                self.model.save({}, {
+                    success: function() {
+                        Backbone.trigger(uComponent.componentId + '-' + 'post-[%=aClass.name.toLowerFirst() %]-save', {view: self, model : self.model});
+                    },
+                    error: function(error) {
+                        Backbone.trigger(self.componentId + '-' + 'error', {event: '[%=aClass.name.firstToLowerCase()%]-master-save', view: self, error: error});
+                    }
+                });
+            });
+        },
+        renderChilds: function(params) {
+            var self = this;
+            this.tabModel = new App.Model.TabModel(
+                    {
+                        tabs: [
+                        	[%for (asc in aClass.getAllAssociations()) { %]
+                            {label: "[%=getProjectUtils().toLabel(asc.getName())%]", name: "[%=asc.getName()%]", enable: true},
+                            [%if(hasMore){%]
+                            ,
+                            [%}%]
+                            [%}%]
+                        ]
+                    }
+            );
+
+            this.tabs = new TabController({model: this.tabModel});
+
+            this.tabs.render('tabs');
+            App.Model.[%=aClass.name()%]MasterModel.prototype.urlRoot = this.configuration.context;
+            var options = {
+                success: function() {
+                	[%for (asc in aClass.getAllAssociations()) { %]
+                	[% var entity = asc.getEndEntity();%]
+					self.[%=asc.getName()%]Component = new [%=asc.getName()%]Component();
+                    self.[%=asc.getName()%]Models = App.Utils.convertToModel(App.Utils.createCacheModel(App.Model.[%=entity.name()%]Model), self.model.get('list[%=asc.getName()%]'));
+                    self.[%=asc.getName()%]Component.initialize({
+                        modelClass: App.Utils.createCacheModel(App.Model.[%=entity.name()%]Model),
+                        listModelClass: App.Utils.createCacheList(App.Model.[%=entity.name()%]Model, App.Model.[%=entity.name()%]List, self.[%=asc.getName()%]Models)
+                    });
+                    self.[%=asc.getName()%]Component.listComponent.setData({pagination: false});
+                    self.[%=asc.getName()%]Component.render(self.tabs.getTabHtmlId('[%=asc.getName()%]'));
+                    Backbone.on(self.[%=asc.getName()%]Component.componentId + '-post-[%=entity.name.firstToLowerCase()%]-create', function(params) {
+                        params.view.current[%=entity.name()%]Model.setCacheList(params.view.[%=entity.name.firstToLowerCase()%]ModelList);
+                    });
+                    [%}%]
+                    [%for (asc in aClass.getContainmentAssociations()) { %]
+                    self.resetToolbar(self.[%=asc.getName()%]Component,true);
+                    [%}%]
+                    [%for (asc in aClass.getSharedAssociations()) { %]
+                    self.resetToolbar(self.[%=asc.getName()%]Component,false);
+                    self.[%=asc.getName()%]Component.listComponent.removeAction('edit');
+                    self.[%=asc.getName()%]Component.listComponent.render();
+                    [%}%]                	
+                     
+                
+                    [%for (asc in aClass.getSharedAssociations()) { %]
+                    Backbone.on(self.[%=asc.getName()%]Component.componentId + '-toolbar-add', function() {
+                        var selection = new App.Controller.SelectionController({"componentId":"[%=asc.getName()%]Component"});
+                        App.Utils.getComponentList('[%=asc.getEndEntity().name().firstToLowerCase()%]Component', function(componentName, model) {
+                            if (model.models.length == 0) {
+                                alert('There is no [%=getProjectUtils().toLabel(asc.getName())%]s to select.');
+                            } else {
+                                selection.showSelectionList({list: model, name: 'name', title: '[%=getProjectUtils().toLabel(asc.getName())%] List'});
+                            }
+                            ;
+                        });
+                    });
+                    Backbone.on('[%=asc.getName()%]Component-post-selection', function(models) {
+                        var cache[%=asc.getName()%]Model = App.Utils.createCacheModel(App.Model.[%=asc.getEndEntity().getName()%]Model);
+                        models = App.Utils.convertToModel(cache[%=asc.getName()%]Model, models);
+                        for (var i = 0; i < models.length; i++) {
+                        	var model = models[i];
+                        	model.setCacheList(self.[%=asc.getName()%]Component.componentController.[%=asc.getEndEntity().getName().firstToLowerCase()%]ModelList);
+                        	model.save('',{});
+                        }
+                        self.[%=asc.getName()%]Component.componentController.showEdit=false;
+                        self.[%=asc.getName()%]Component.componentController.list(null,self.[%=asc.getName()%]Component.list,self.[%=asc.getName()%]Component);
+                        
+                    });
+                    [%}%]
+                    $('#tabs').show();
+                },
+                error: function() {
+                    Backbone.trigger(self.componentId + '-' + 'error', {event: '[%=aClass.name.firstToLowerCase()%]-edit', view: self, id: id, data: data, error: error});
+                }
+            };
+            if (params.id) {
+                self.model = new App.Model.[%=aClass.name()%]MasterModel({id: params.id});
+                self.model.fetch(options);
+            } else {
+                self.model = new App.Model.[%=aClass.name()%]MasterModel();
+                options.success();
+            }
+
+
+        },
+        hideChilds: function() {
+            $('#tabs').hide();
+        },
+		resetToolbar: function(component, composite) {
+		    component.toolbarComponent.removeButton('refresh');
+		    component.toolbarComponent.removeButton('print');
+		    component.toolbarComponent.removeButton('search');
+		    if (!composite) {
+			    component.toolbarComponent.removeButton('create');
+				component.toolbarComponent.removeButton('save');
+				component.toolbarComponent.removeButton('cancel');
+				component.toolbarComponent.addButton({
+				    name: 'add',
+				    icon: 'glyphicon-send',
+				    displayName: 'Add',
+				    show: true
+				}, function() {
+				    Backbone.trigger(component.componentId + '-toolbar-add');
+				});
+		    }
+		    component.toolbarComponent.render();
+        }
+    });
+
+    return App.Component.[%=aClass.name()%]MasterComponent;
+});

@@ -1,0 +1,19 @@
+[% import "../lib/Utils.eol"; %] 
+/*[%=license()%]*/
+
+[% 
+ var name = aClass.name.toLowerCase();
+ var Name = aClass.name.firstToUpperCase();
+%]
+package [%=getBasePackage()%].[%= name %].master.logic.api;
+
+import [%=getBasePackage()%].[%= name %].master.logic.dto.[%= Name %]MasterDTO;
+
+public interface _I[%= Name %]MasterLogicService {
+
+	public [%= Name %]MasterDTO createMaster[%= Name %]([%= Name %]MasterDTO detail);
+    public void updateMaster[%= Name %]([%= Name %]MasterDTO detail);
+	public void deleteMaster[%= Name %](Long id); 
+	public [%= Name %]MasterDTO getMaster[%= Name %](Long id);
+        
+}

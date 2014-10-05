@@ -1,0 +1,8 @@
+[% import "../../lib/Utils.eol";  %]
+/*[%=license()%]*/
+define(['controller/_[%=aClass.name.toLowerFirst() %]Controller','delegate/[%=aClass.name.toLowerFirst() %]Delegate'], function() {
+    App.Controller.[%=aClass.name.toUpperFirst() %]Controller = App.Controller._[%=aClass.name.toUpperFirst() %]Controller.extend({
+
+    });
+    return App.Controller.[%=aClass.name.toUpperFirst() %]Controller;
+}); 

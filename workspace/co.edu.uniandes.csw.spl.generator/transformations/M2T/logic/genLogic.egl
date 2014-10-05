@@ -1,0 +1,22 @@
+[% import "../lib/Utils.eol";  %]
+
+[%
+for (class in Class.all) { 
+	genFile('../common/BeansXML',class.service_web_dir()+'/WEB-INF/beans.xml',class);
+	genFile('../common/BeansXML',class.subsystem_rsc_dir()+'/META-INF/beans.xml',class);
+	genFile('_DtoJAVA',class.api_src_dir()+'/'+class.basePckPath()+'/logic/dto/_'+class.DTOName()+'.java',class);
+	genFile('DtoJAVA',class.api_src_dir()+'/'+class.basePckPath()+'/logic/dto/'+class.DTOName()+'.java',class);
+	genFile('_PageDtoJAVA',class.api_src_dir()+'/'+class.basePckPath()+'/logic/dto/_'+class.PageName()+'.java',class);
+	genFile('PageDtoJAVA',class.api_src_dir()+'/'+class.basePckPath()+'/logic/dto/'+class.PageName()+'.java',class);
+	genFile('_EjbJAVA',class.subsystem_src_dir()+'/'+class.basePckPath()+'/logic/ejb/_'+class.name()+'LogicService.java',class);
+	genFile('EjbJAVA',class.subsystem_src_dir()+'/'+class.basePckPath()+'/logic/ejb/'+class.name()+'LogicService.java',class);
+	genFile('_InterfaceJAVA',class.api_src_dir()+'/'+class.basePckPath()+'/logic/api/_I'+class.name()+'LogicService.java',class);
+	genFile('InterfaceJAVA',class.api_src_dir()+'/'+class.basePckPath()+'/logic/api/I'+class.name()+'LogicService.java',class);
+	genFile('_MockJAVA',class.mock_src_dir()+'/'+class.basePckPath()+'/logic/mock/_'+class.name()+'MockLogicService.java',class);
+	genFile('MockJAVA',class.mock_src_dir()+'/'+class.basePckPath()+'/logic/mock/'+class.name()+'MockLogicService.java',class);
+	
+	-- Test Generation
+	--genFile('test/EjbTestJAVA',class.subsystem_test_src_dir()+'/'+class.basePckPath()+'/logic/ejb/'+class.name()+'LogicServiceTest.java',class);
+	
+}
+%]

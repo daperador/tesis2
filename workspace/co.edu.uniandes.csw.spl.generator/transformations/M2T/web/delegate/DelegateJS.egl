@@ -1,0 +1,7 @@
+[% import "../../lib/Utils.eol";  %]
+/*[%=license()%]*/
+define(['delegate/_[%=aClass.name.toLowerFirst() %]Delegate'], function() {
+    App.Delegate.[%=aClass.name.toUpperFirst() %]Delegate = App.Delegate._[%=aClass.name.toUpperFirst() %]Delegate.extend({
+        
+    });
+});

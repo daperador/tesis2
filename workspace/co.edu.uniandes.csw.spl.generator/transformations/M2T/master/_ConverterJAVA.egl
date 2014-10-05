@@ -1,0 +1,43 @@
+[% import "../lib/Utils.eol";  %]
+/*[%=license()%]*/
+
+package [%=getBasePackage()%].[%=aClass.name.toLowerCase()%].master.persistence.converter;
+[%for (asc in aClass.getAllAssociations()) { %]
+[%
+var entity = asc.getEndEntity();
+%]
+import [%=getBasePackage()%].[%=aClass.name.toLowerCase()%].master.persistence.entity.[%=asc.getEntityName()%];
+import [%=getBasePackage()%].[%=entity.name.toLowerCase()%].logic.dto.[%=entity.name()%]DTO;
+import [%=getBasePackage()%].[%=entity.name.toLowerCase()%].persistence.converter.[%=entity.name()%]Converter;
+[%}%]
+import [%=getBasePackage()%].[%=aClass.name.toLowerCase()%].logic.dto.[%=aClass.name()%]DTO;
+import [%=getBasePackage()%].[%=aClass.name.toLowerCase()%].master.logic.dto.[%=aClass.name()%]MasterDTO;
+import [%=getBasePackage()%].[%=aClass.name.toLowerCase()%].persistence.converter.[%=aClass.name()%]Converter;
+import [%=getBasePackage()%].[%=aClass.name.toLowerCase()%].persistence.entity.[%=aClass.name()%]Entity;
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class _[%=aClass.name()%]MasterConverter {
+
+    public static [%=aClass.name()%]MasterDTO entity2PersistenceDTO([%=aClass.name()%]Entity [%=aClass.name.toLowerCase()%]Entity 
+    [%for (asc in aClass.getAllAssociations()) { %]
+    ,List<[%=asc.getEntityName()%]> [%=asc.getName().firstToLowerCase()%]
+    [%}%]
+    ) {
+        [%=aClass.name()%]DTO [%=aClass.name.toLowerCase()%]DTO = [%=aClass.name()%]Converter.entity2PersistenceDTO([%=aClass.name.toLowerCase()%]Entity);
+        [%for (asc in aClass.getAllAssociations()) { %]
+        [% var entity = asc.getEndEntity();%]
+        ArrayList<[%=asc.getEntityName()%]> [%=asc.getName()%]Entities = new ArrayList<[%=asc.getEntityName()%]>([%=aClass.name.toLowerCase()%][%=entity.name()%]Entity.size());
+        for ([%=asc.getEntityName()%] entity : [%=aClass.name.toLowerCase()%][%=entity.name()%]Entity) {
+            [%=entity.name.firstToLowerCase()%]Entities.add([%=entity.name()%]Converter.entity2PersistenceDTO([%=aClass.name.toLowerCase()%][%=entity.name()%].get[%=entity.name()%]Entity()));
+        }
+        [%}%]
+        [%=aClass.name()%]MasterDTO respDTO  = new [%=aClass.name()%]MasterDTO();
+        respDTO.set[%=aClass.name()%]Entity([%=aClass.name.toLowerCase()%]DTO);
+        [%for (entity in aClass.getAllAssociatedEntities()) { %]
+        respDTO.setList[%=entity.name()%]([%=entity.name.firstToLowerCase()%]Entities);
+        [%}%]
+        return respDTO;
+    }
+
+}

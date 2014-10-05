@@ -1,0 +1,72 @@
+[% import "../lib/Utils.eol";  %]
+/*[%=license()%]*/
+
+package [%=getBasePackage()%].[%=aClass.name.toLowerCase()%].master.persistence;
+[%for (asc in aClass.getAllAssociations()) { %]
+import [%=getBasePackage()%].[%=asc.getEndEntity().name.toLowerCase()%].logic.dto.[%=asc.getEndEntity().name()%]DTO;
+import [%=getBasePackage()%].[%=asc.getSourceEntity().name.toLowerCase()%].master.persistence.entity.[%=asc.getEntityName()%];
+import [%=getBasePackage()%].[%=asc.getEndEntity().name.toLowerCase()%].persistence.converter.[%=asc.getEndEntity().name()%]Converter;
+[%}%]
+import [%=getBasePackage()%].[%=aClass.name.toLowerCase()%].logic.dto.[%=aClass.name()%]DTO;
+import [%=getBasePackage()%].[%=aClass.name.toLowerCase()%].master.logic.dto.[%=aClass.name()%]MasterDTO;
+import [%=getBasePackage()%].[%=aClass.name.toLowerCase()%].master.persistence.api._I[%=aClass.name()%]MasterPersistence;
+import [%=getBasePackage()%].[%=aClass.name.toLowerCase()%].persistence.api.I[%=aClass.name()%]Persistence;
+import java.util.ArrayList;
+import java.util.List;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+public class _[%=aClass.name()%]MasterPersistence implements _I[%=aClass.name()%]MasterPersistence {
+
+  	[% if(useBasicConfiguration=='true') {%]
+  	@PersistenceContext(unitName="[%=projectName%]PU")
+  	[% } else {%]
+    @PersistenceContext(unitName = "[%=aClass.name()%]MasterPU")
+  	[% }%] 
+    protected EntityManager entityManager;
+    
+    @Inject
+    protected I[%=aClass.name()%]Persistence [%=aClass.name.toLowerCase()%]Persistence;  
+
+    public [%=aClass.name()%]MasterDTO get[%=aClass.name()%](Long [%=aClass.name.toLowerCase()%]Id) {
+        [%=aClass.name()%]MasterDTO [%=aClass.name.toLowerCase()%]MasterDTO = new [%=aClass.name()%]MasterDTO();
+        [%=aClass.name()%]DTO [%=aClass.name.toLowerCase()%] = [%=aClass.name.toLowerCase()%]Persistence.get[%=aClass.name()%]([%=aClass.name.toLowerCase()%]Id);
+        [%=aClass.name.toLowerCase()%]MasterDTO.set[%=aClass.name()%]Entity([%=aClass.name.toLowerCase()%]);
+        [%for (asc in aClass.getAllAssociations()) { %]
+        [%=aClass.name.toLowerCase()%]MasterDTO.setList[%= asc.getName() %](get[%=asc.getEntityName()%]List([%=aClass.name.toLowerCase()%]Id));
+        [%}%]
+        return [%=aClass.name.toLowerCase()%]MasterDTO;
+    }
+
+    [%for (asc in aClass.getAllAssociations()) { %]
+    public [%=asc.getEntityName()%] create[%=asc.getEntityName()%]([%=asc.getEntityName()%] entity) {
+        entityManager.persist(entity);
+        return entity;
+    }
+
+    public void delete[%=asc.getEntityName()%](Long [%=asc.getEntityIdName()%], Long [%=asc.getEndEntityIdName()%]) {
+        Query q = entityManager.createNamedQuery("[%=asc.getEntityName()%].[%=asc.getDeleteQueryName()%]");
+        q.setParameter("[%=asc.getEntityIdName()%]", [%=asc.getEntityIdName()%]);
+        q.setParameter("[%=asc.getEndEntityIdName()%]", [%=asc.getEndEntityIdName()%]);
+        q.executeUpdate();
+    }
+
+    public List<[%=asc.getEndEntity().DTOName()%]> get[%=asc.getEntityName()%]List(Long [%=asc.getEntityIdName()%]) {
+        ArrayList<[%=asc.getEndEntity().DTOName()%]> resp = new ArrayList<[%=asc.getEndEntity().DTOName()%]>();
+        Query q = entityManager.createNamedQuery("[%=asc.getEntityName()%].[%=asc.getListQueryName()%]");
+        q.setParameter("[%=asc.getEntityIdName()%]",[%=asc.getEntityIdName()%]);
+        List<[%=asc.getEntityName()%]> qResult =  q.getResultList();
+        [% var getEntity = 'get'+asc.getEndEntityIdName().firstToUpperCase()+'Entity'; %]
+        for ([%=asc.getEntityName()%] entity : qResult) { 
+            if(entity.[%=getEntity%]()==null){
+                entityManager.refresh(entity);
+            }
+            resp.add([%=asc.getEndEntity().name()%]Converter.entity2PersistenceDTO(entity.[%=getEntity%]()));
+        }
+        return resp;
+    }
+    [%}%]
+
+}

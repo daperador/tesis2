@@ -1,0 +1,53 @@
+[% import "../../lib/Utils.eol";  %]
+/*[%=license()%]*/
+define([], function() {
+    App.Model._[%=aClass.name.toUpperFirst() %]Model = Backbone.Model.extend({
+        defaults: {
+  	[% for (attr in aClass.getAllAttributes()->select(at | at.name<>'id' )) {%] 
+		 '[%=attr.name.toLowerFirst()%]' : [%if(attr.type.name='Boolean') {%] false [%}else{%]''[% } %]
+		 [%if(hasMore) {%] , [%}%]
+	[%}%]
+        },
+        initialize: function() {
+          var self = this;
+          this.on('invalid',function(error){
+                 Backbone.trigger(self.get('componentId') + '-' + 'error',{event: 'validation', message: error.validationError});
+          });
+        },
+        getDisplay: function(name) {
+	  	[% for (attr in aClass.getAllAttributes()){%]
+			 [% if (attr.type.name='Date' or attr.type.name='EDate') {%]
+             if(name=='[%=attr.name.toLowerFirst() %]'){
+                   var dateConverter = App.Utils.Converter.date;
+                   return dateConverter.unserialize(this.get('[%=attr.name.toLowerFirst() %]'), this);
+             }
+			 [%}%]
+			 [% if (attr.ownedComment->size()>0) {%]
+			 if(name=='[%=attr.name.toLowerFirst() %]'){  
+                 var value = App.Utils.getModelFromCache('[%=attr.ownedComment.second().body.toLowerFirst() %]Component',this.get('[%=attr.name.toLowerFirst() %]'));
+                 if(value) 
+                 return value.get('name');
+             }
+			 [%}%]
+		[%}%]
+         return this.get(name);
+        }
+    });
+
+    App.Model._[%=aClass.name.toUpperFirst() %]List = Backbone.PageableCollection.extend({
+        model: App.Model._[%=aClass.name.toUpperFirst() %]Model,
+        initialize: function() {
+        },
+		queryParams: {
+		    currentPage: "page",
+		    pageSize: "maxRecords"
+		},
+        parseState: function (resp, queryParams, state, options) {
+          return {totalRecords: resp.totalRecords};
+        },
+        parseRecords: function (resp, options) {
+          return resp.records;
+        }
+    });
+    return App.Model._[%=aClass.name.toUpperFirst() %]Model;
+});

@@ -1,0 +1,8 @@
+[% import "../lib/Utils.eol";  %]
+/*[%=license()%]*/
+
+package [%=getBasePackage()%].[%=aClass.name.toLowerCase()%].master.persistence.converter;
+
+public class [%=aClass.name()%]MasterConverter extends _[%=aClass.name()%]MasterConverter {
+
+}

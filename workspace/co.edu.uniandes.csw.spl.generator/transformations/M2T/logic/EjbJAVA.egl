@@ -1,0 +1,20 @@
+[% import "../lib/Utils.eol";  %]
+/*[%=license()%]*/
+
+package [%=aClass.basePck()%].logic.ejb;
+
+import javax.ejb.EJB;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless; 
+import javax.inject.Inject;
+
+import javax.enterprise.inject.Default;
+
+import [%=aClass.basePck()%].logic.api.I[%=aClass.name%]LogicService;
+
+@Default
+@Stateless
+@LocalBean
+public class [%=aClass.name%]LogicService extends _[%=aClass.name%]LogicService implements I[%=aClass.name%]LogicService {
+
+}

@@ -1,0 +1,8 @@
+[% import "../lib/Utils.eol";  %]
+/*[%=license()%]*/
+
+package [%=aClass.basePck()%].persistence.api;
+
+public interface I[%=aClass.name%]Persistence extends _I[%=aClass.name%]Persistence {
+
+}

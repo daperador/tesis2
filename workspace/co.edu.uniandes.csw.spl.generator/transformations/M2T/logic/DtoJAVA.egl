@@ -1,0 +1,8 @@
+[% import "../lib/Utils.eol";  %]
+/*[%=license()%]*/
+
+package [%=aClass.basePck()%].logic.dto;
+
+public class [%=aClass.DTOName()%] extends _[%=aClass.DTOName()%] {
+
+}

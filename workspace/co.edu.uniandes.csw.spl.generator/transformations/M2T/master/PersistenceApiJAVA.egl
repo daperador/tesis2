@@ -1,0 +1,8 @@
+[% import "../lib/Utils.eol";  %]
+/*[%=license()%]*/
+
+package [%=getBasePackage()%].[%=aClass.name.toLowerCase()%].master.persistence.api;
+
+public interface I[%=aClass.name()%]MasterPersistence extends _I[%=aClass.name()%]MasterPersistence {
+	
+}

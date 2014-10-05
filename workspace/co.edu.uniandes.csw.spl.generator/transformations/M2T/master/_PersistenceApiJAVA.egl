@@ -1,0 +1,25 @@
+[% import "../lib/Utils.eol";  %]
+/*[%=license()%]*/
+
+package [%=getBasePackage()%].[%=aClass.name.toLowerCase()%].master.persistence.api;
+
+[%for (asc in aClass.getAllAssociations()) { %]
+import [%=getBasePackage()%].[%=aClass.name.toLowerCase()%].master.persistence.entity.[%=asc.getEntityName()%];
+import [%=getBasePackage()%].[%=asc.getEndEntity().name.toLowerCase()%].logic.dto.[%=asc.getEndEntity().name()%]DTO;
+[%}%]
+import [%=getBasePackage()%].[%=aClass.name.toLowerCase()%].master.logic.dto.[%=aClass.name()%]MasterDTO;
+import java.util.List;
+
+public interface _I[%=aClass.name()%]MasterPersistence {
+
+	public [%=aClass.name()%]MasterDTO get[%=aClass.name()%](Long [%=aClass.name.toLowerCase()%]Id);
+	
+	
+	[%for (asc in aClass.getAllAssociations()) { %]
+    public [%=asc.getEntityName()%] create[%=asc.getEntityName()%]([%=asc.getEntityName()%] entity);
+    public void delete[%=asc.getEntityName()%](Long [%=asc.getEntityIdName()%], Long [%=asc.getEndEntityIdName()%]);
+    public List<[%=asc.getEndEntity().DTOName()%]> get[%=asc.getEntityName()%]List(Long [%=asc.getEntityIdName()%]);
+     [%}%]
+   
+  
+}

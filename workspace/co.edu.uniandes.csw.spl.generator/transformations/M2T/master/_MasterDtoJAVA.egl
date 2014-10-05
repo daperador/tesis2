@@ -1,0 +1,61 @@
+[% import "../lib/Utils.eol"; %]
+/*[%=license()%]*/
+
+package [%=getBasePackage()%].[%= aClass.name.toLowerCase() %].master.logic.dto;
+
+[%for (asc in aClass.getAllAssociations()) { %]
+import [%=getBasePackage()%].[%= asc.getEndEntity().name.toLowerCase() %].logic.dto.[%= asc.getEndEntity().DTOName() %];
+[%}%]
+import [%=getBasePackage()%].[%= aClass.name.toLowerCase() %].logic.dto.[%= aClass.DTOName() %];
+
+import java.util.List;
+
+[*-import javax.xml.bind.annotation.XmlAttribute;*]
+import javax.xml.bind.annotation.XmlRootElement;
+
+
+@XmlRootElement
+public abstract class _[%=aClass.name()%]MasterDTO {
+
+	[*-Master Entity*] 
+    [*@XmlAttribute(name = "[%=aClass.name.toLowerCase()%]Entity")*]
+    protected [%=aClass.DTOName()%] [%=aClass.name.toLowerCase()%]Entity;
+    protected Long id;
+    
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
+    public [%=aClass.name()%]DTO get[%=aClass.name()%]Entity() {
+        return [%=aClass.name.toLowerCase()%]Entity;
+    }
+
+    public void set[%=aClass.name()%]Entity([%=aClass.name()%]DTO [%=aClass.name.toLowerCase()%]Entity) {
+        this.[%=aClass.name.toLowerCase()%]Entity = [%=aClass.name.toLowerCase()%]Entity;
+    }
+    
+    [%for (asc in aClass.getAllAssociations()) { %]
+    public List<[%= asc.getEndEntity().DTOName() %]> create[%= asc.getName() %];
+    public List<[%= asc.getEndEntity().DTOName() %]> update[%= asc.getName() %];
+    public List<[%= asc.getEndEntity().DTOName() %]> delete[%= asc.getName() %];
+    public List<[%= asc.getEndEntity().DTOName() %]> list[%= asc.getName() %];	
+	[%}%]	
+	
+	
+	[%for (asc in aClass.getAllAssociations()) { %]
+    public List<[%=asc.getEndEntity().DTOName() %]> getCreate[%=  asc.getName() %](){ return create[%=  asc.getName() %]; };
+    public void setCreate[%= asc.getName() %](List<[%= asc.getEndEntity().DTOName() %]> create[%=  asc.getName() %]){ this.create[%=  asc.getName() %]=create[%=  asc.getName() %]; };
+    public List<[%= asc.getEndEntity().DTOName() %]> getUpdate[%=  asc.getName() %](){ return update[%=  asc.getName() %]; };
+    public void setUpdate[%= asc.getName() %](List<[%= asc.getEndEntity().DTOName() %]> update[%=  asc.getName() %]){ this.update[%=  asc.getName() %]=update[%=  asc.getName() %]; };
+    public List<[%= asc.getEndEntity().DTOName() %]> getDelete[%=  asc.getName() %](){ return delete[%=  asc.getName() %]; };
+    public void setDelete[%= asc.getName() %](List<[%= asc.getEndEntity().DTOName() %]> delete[%=  asc.getName() %]){ this.delete[%=  asc.getName() %]=delete[%=  asc.getName() %]; };
+    public List<[%= asc.getEndEntity().DTOName() %]> getList[%=  asc.getName() %](){ return list[%=  asc.getName() %]; };
+    public void setList[%= asc.getName() %](List<[%= asc.getEndEntity().DTOName() %]> list[%=  asc.getName() %]){ this.list[%=  asc.getName() %]=list[%=  asc.getName() %]; };	
+	[%}%]	
+	
+}
+

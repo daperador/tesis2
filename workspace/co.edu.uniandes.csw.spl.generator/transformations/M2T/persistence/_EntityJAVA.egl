@@ -1,0 +1,37 @@
+[% import "../lib/Utils.eol";  %]
+/*[%=license()%]*/
+
+package [%=aClass.basePck()%].persistence.entity;
+
+import java.util.Date;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
+public abstract class _[%=aClass.name%]Entity {
+
+ 	[% for (attr in aClass.getAllAttributes()) { %]
+	[% if (attr.name='id') {%]
+	@Id
+	@GeneratedValue(generator = "[%=aClass.name%]")
+	[%}%]
+	[%if (attr.type.name='Date') {%]
+	@Temporal(TemporalType.DATE)
+	[%}%]
+	private [%=attr.type.name%] [%=attr.name.toLowerFirst()%];
+	[%}%]
+
+ 	[% for (attr in aClass.getAllAttributes()) { %]
+	public [%=attr.type.name%] get[%=attr.name.toUpperFirst()%](){
+		return [%=attr.name.toLowerFirst()%];
+	}
+	
+	public void set[%=attr.name.toUpperFirst()%]([%=attr.type.name%] [%=attr.name.toLowerFirst()%]){
+		this.[%=attr.name.toLowerFirst()%] = [%=attr.name.toLowerFirst()%];
+	}
+	[%} %]
+}

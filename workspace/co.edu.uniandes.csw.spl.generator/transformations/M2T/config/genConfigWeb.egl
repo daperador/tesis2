@@ -1,0 +1,11 @@
+[% import "../lib/Utils.eol";  %]
+
+[%
+if(useBasicConfiguration<>'true'){
+   
+for (class in Class.all) { 
+	genFile('web/webPOM',class.name.toLowerCase()+'.web/pom.xml',class);
+}
+
+}
+%]
