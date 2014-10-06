@@ -1,4 +1,4 @@
-import "lib/Utils.eol";
+import "../M2T/lib/Utils.eol";
 
 pre init {
 	var primitiveTypes = new Set;
@@ -17,6 +17,45 @@ transform mm : MVC!MVCModel to um : UML!Model{
 	
 	for (_model in mm->models){
 		um.packagedElement.add(_model.rootEntity.equivalent());
+		
+		//Crear las asociaciones
+		for (a in _model.associations){
+			var p = new UML!Property;
+			p.name = a.name;
+			p.type ::= a.target;
+			
+			p.lowerValue = new UML!LiteralInteger;
+			p.lowerValue.value = a.lowerBound;
+			
+			p.upperValue = new UML!LiteralUnlimitedNatural;
+			p.upperValue.value = a.upperBound;
+			
+			if (a.containment)
+				p.aggregation = UML!AggregationKind#composite;
+			else if (a.upperBound = -1)
+				p.aggregation = UML!AggregationKind#shared;
+			
+			var asc = new UML!Association;
+			asc.name = p.name;
+			
+			
+			var ownedEnd = new UML!Property;
+			ownedEnd.type ::= a.source;
+			ownedEnd.name = a.source.name.toLowerFirst();
+			
+			ownedEnd.lowerValue = new UML!LiteralInteger;
+			ownedEnd.lowerValue.value = 1;
+			
+			ownedEnd.upperValue = new UML!LiteralUnlimitedNatural;
+			ownedEnd.upperValue.value = 1;
+			
+			asc.memberEnd.add(ownedEnd);
+			
+			asc.ownedEnd.add(ownedEnd) ;
+			p.association =  asc;
+			um.packagedElement.add(asc);
+			_model.rootEntity.equivalent().ownedAttribute.add(p);
+		}
 	}
 	um.packagedElement.addAll(primitiveTypes);
 }
@@ -47,3 +86,4 @@ rule Attribute2Property
 	t.upperValue = new UML!LiteralUnlimitedNatural;
 	t.upperValue.value = 1;
 }
+

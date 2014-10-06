@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ASCII"?>
+<mvc:MVCModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mvc="http://co.edu.uniandes.csw.mvc/1.0" name="model" version="1.0">
+  <models name="User">
+    <rootEntity name="User">
+      <attributes name="id" type="Long"/>
+      <attributes name="userName" type="String"/>
+      <attributes name="firstName" type="String"/>
+      <attributes name="birthDate" type="Date"/>
+      <attributes name="enabled" type="Boolean"/>
+    </rootEntity>
+    <associations source="//@models.0/@rootEntity" name="documentType" upperBound="1" target="//@models.1/@rootEntity"/>
+    <associations source="//@models.0/@rootEntity" name="address" containment="true" upperBound="-1" target="//@models.2/@rootEntity"/>
+    <associations source="//@models.0/@rootEntity" name="sports" upperBound="-1" target="//@models.4/@rootEntity"/>
+  </models>
+  <models name="DocumentType">
+    <rootEntity name="DocumentType">
+      <attributes name="id" type="Long"/>
+      <attributes name="name" type="String"/>
+    </rootEntity>
+  </models>
+  <models name="Address">
+    <rootEntity name="Address">
+      <attributes name="id" type="Long"/>
+      <attributes name="street" type="String"/>
+    </rootEntity>
+    <associations source="//@models.2/@rootEntity" name="city" lowerBound="1" upperBound="1" target="//@models.3/@rootEntity"/>
+  </models>
+  <models name="City">
+    <rootEntity name="City">
+      <attributes name="id" type="Long"/>
+      <attributes name="name" type="String"/>
+    </rootEntity>
+  </models>
+  <models name="Sport">
+    <rootEntity name="Sport">
+      <attributes name="id" type="Long"/>
+      <attributes name="name" type="String"/>
+    </rootEntity>
+  </models>
+</mvc:MVCModel>
