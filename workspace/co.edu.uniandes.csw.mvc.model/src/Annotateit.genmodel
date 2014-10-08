@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/co.edu.uniandes.csw.mvc.model/src" modelPluginID="co.edu.uniandes.csw.mvc.model"
+    modelName="Annotateit" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>Annotateit.ecore</foreignModel>
+  <genPackages prefix="Annotate" disposableProviderFactory="true" ecorePackage="Annotateit.ecore#/">
+    <genClasses image="false" ecoreClass="Annotateit.ecore#//Annotable">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Annotateit.ecore#//Annotable/annotations"/>
+    </genClasses>
+    <genClasses ecoreClass="Annotateit.ecore#//Annotation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Annotateit.ecore#//Annotation/annotationType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Annotateit.ecore#//Annotation/attributes"/>
+    </genClasses>
+    <genClasses ecoreClass="Annotateit.ecore#//Package">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Annotateit.ecore#//Package/types"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Annotateit.ecore#//Package/annotationTypes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Annotateit.ecore#//Package/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Annotateit.ecore#//AnnotationTypeAttribute">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Annotateit.ecore#//AnnotationTypeAttribute/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Annotateit.ecore#//AnnotationTypeAttribute/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Annotateit.ecore#//Type">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Annotateit.ecore#//Type/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Annotateit.ecore#//Type/attributes"/>
+    </genClasses>
+    <genClasses ecoreClass="Annotateit.ecore#//AnnotationType">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Annotateit.ecore#//AnnotationType/package"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Annotateit.ecore#//AnnotationType/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Annotateit.ecore#//AnnotationType/attributes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Annotateit.ecore#//AnnotationType/context"/>
+    </genClasses>
+    <genClasses ecoreClass="Annotateit.ecore#//AnnotationAttribute">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Annotateit.ecore#//AnnotationAttribute/attribute"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Annotateit.ecore#//AnnotationAttribute/value"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Annotateit.ecore#//AnnotationAttributeValue"/>
+    <genClasses ecoreClass="Annotateit.ecore#//SimpleValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Annotateit.ecore#//SimpleValue/value"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Annotateit.ecore#//ComplexValue"/>
+  </genPackages>
+</genmodel:GenModel>

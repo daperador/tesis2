@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated MVC -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="mvc.presentation.MvcModelWizardID"
+            name="%_UI_MvcModelWizard_label"
+            class="mvc.presentation.MvcModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/MvcModelFile.gif">
+         <description>%_UI_MvcModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated MVC -->
+      <editor
+            id="mvc.presentation.MvcEditorID"
+            name="%_UI_MvcEditor_label"
+            icon="icons/full/obj16/MvcModelFile.gif"
+            extensions="mvc"
+            class="mvc.presentation.MvcEditor"
+            contributorClass="mvc.presentation.MvcActionBarContributor">
+      </editor>
+   </extension>
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated Annotateit -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="annotate.presentation.AnnotateModelWizardID"
+            name="%_UI_AnnotateModelWizard_label"
+            class="annotate.presentation.AnnotateModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/AnnotateModelFile.gif">
+         <description>%_UI_AnnotateModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated Annotateit -->
+      <editor
+            id="annotate.presentation.AnnotateEditorID"
+            name="%_UI_AnnotateEditor_label"
+            icon="icons/full/obj16/AnnotateModelFile.gif"
+            extensions="annotate"
+            class="annotate.presentation.AnnotateEditor"
+            contributorClass="annotate.presentation.AnnotateActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
