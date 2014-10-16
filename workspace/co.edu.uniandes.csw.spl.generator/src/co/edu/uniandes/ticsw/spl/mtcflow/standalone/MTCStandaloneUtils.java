@@ -42,6 +42,7 @@ import com.mtcflow.engine.core.TransformationExecutorFactory;
 import com.mtcflow.engine.eclipse.EclipseConsole;
 import com.mtcflow.engine.egl.EGLTechnologyManager;
 import com.mtcflow.engine.eol.EOLTechnologyManager;
+import com.mtcflow.engine.etl.ETLTechnologyManager;
 import com.mtcflow.engine.mtc.MTCTechnologyManager;
 import com.mtcflow.model.mtc.MTC;
 import com.mtcflow.model.mtc.Model;
@@ -63,6 +64,7 @@ public class MTCStandaloneUtils {
 		MTCFlow.TechnologyManagerRegistry.INSTANCE.put("eol", new EOLTechnologyManager());
 		MTCFlow.TechnologyManagerRegistry.INSTANCE.put("emtl", new ACCELEOTechnologyManager());
 		MTCFlow.TechnologyManagerRegistry.INSTANCE.put("egl", new EGLTechnologyManager());
+		MTCFlow.TechnologyManagerRegistry.INSTANCE.put("etl", new ETLTechnologyManager());
 	}
 
 	public static MTC loadModel(String path) {

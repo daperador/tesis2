@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_GARKUFSHEeStSIMk55062w" name="model">
+  <packagedElement xmi:type="uml:Class" xmi:id="_GARKUVSHEeStSIMk55062w" name="User">
+    <ownedAttribute xmi:id="_GARxZFSHEeStSIMk55062w" name="id" type="_GATmkFSHEeStSIMk55062w">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GAUNoFSHEeStSIMk55062w" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GAU0sFSHEeStSIMk55062w" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_GARxZVSHEeStSIMk55062w" name="userName" type="_GAU0sVSHEeStSIMk55062w">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GAU0slSHEeStSIMk55062w" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GAU0s1SHEeStSIMk55062w" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_GARxZlSHEeStSIMk55062w" name="firstName" type="_GAU0sVSHEeStSIMk55062w">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GAZGIFSHEeStSIMk55062w" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GAZGIVSHEeStSIMk55062w" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_GARxZ1SHEeStSIMk55062w" name="birthDate" type="_GAZtMFSHEeStSIMk55062w">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GAZtMVSHEeStSIMk55062w" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GAZtMlSHEeStSIMk55062w" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_GARxaFSHEeStSIMk55062w" name="enabled" type="_GAZtM1SHEeStSIMk55062w">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GAaUQFSHEeStSIMk55062w" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GAaUQVSHEeStSIMk55062w" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_GAksUFSHEeStSIMk55062w" name="documentType" type="_GARxYFSHEeStSIMk55062w" association="_GAl6c1SHEeStSIMk55062w">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GAl6cVSHEeStSIMk55062w"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GAl6clSHEeStSIMk55062w" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_GAnvoFSHEeStSIMk55062w" name="address" type="_GARxYVSHEeStSIMk55062w" aggregation="composite" association="_GA1LAFSHEeStSIMk55062w">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GA0j8FSHEeStSIMk55062w"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GA0j8VSHEeStSIMk55062w" value="*"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_GA41YFSHEeStSIMk55062w" name="sports" type="_GARxY1SHEeStSIMk55062w" aggregation="shared" association="_GA7RoFSHEeStSIMk55062w">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GA6qkFSHEeStSIMk55062w"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GA6qkVSHEeStSIMk55062w" value="*"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_GAl6c1SHEeStSIMk55062w" name="documentType" memberEnd="_GAl6dFSHEeStSIMk55062w _GAksUFSHEeStSIMk55062w">
+    <ownedEnd xmi:id="_GAl6dFSHEeStSIMk55062w" name="user" type="_GARKUVSHEeStSIMk55062w" association="_GAl6c1SHEeStSIMk55062w">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GAmhgFSHEeStSIMk55062w" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GAnIkFSHEeStSIMk55062w" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_GA1LAFSHEeStSIMk55062w" name="address" memberEnd="_GA1LAVSHEeStSIMk55062w _GAnvoFSHEeStSIMk55062w">
+    <ownedEnd xmi:id="_GA1LAVSHEeStSIMk55062w" name="user" type="_GARKUVSHEeStSIMk55062w" association="_GA1LAFSHEeStSIMk55062w">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GA1yEFSHEeStSIMk55062w" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GA1yEVSHEeStSIMk55062w" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_GA7RoFSHEeStSIMk55062w" name="sports" memberEnd="_GA7RoVSHEeStSIMk55062w _GA41YFSHEeStSIMk55062w">
+    <ownedEnd xmi:id="_GA7RoVSHEeStSIMk55062w" name="user" type="_GARKUVSHEeStSIMk55062w" association="_GA7RoFSHEeStSIMk55062w">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GA7RolSHEeStSIMk55062w" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GA74sFSHEeStSIMk55062w" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_GARxYFSHEeStSIMk55062w" name="DocumentType">
+    <ownedAttribute xmi:id="_GARxaVSHEeStSIMk55062w" name="id" type="_GATmkFSHEeStSIMk55062w">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GAlTYFSHEeStSIMk55062w" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GAlTYVSHEeStSIMk55062w" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_GARxalSHEeStSIMk55062w" name="name" type="_GAU0sVSHEeStSIMk55062w">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GAlTYlSHEeStSIMk55062w" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GAl6cFSHEeStSIMk55062w" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_GARxYVSHEeStSIMk55062w" name="Address">
+    <ownedAttribute xmi:id="_GARxa1SHEeStSIMk55062w" name="id" type="_GATmkFSHEeStSIMk55062w">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GAoWsFSHEeStSIMk55062w" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GAoWsVSHEeStSIMk55062w" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_GARxbFSHEeStSIMk55062w" name="street" type="_GAU0sVSHEeStSIMk55062w">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GApk0FSHEeStSIMk55062w" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GAqL4FSHEeStSIMk55062w" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_GA9G0FSHEeStSIMk55062w" name="city" type="_GARxYlSHEeStSIMk55062w" association="_GA-U8lSHEeStSIMk55062w">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GA-U8FSHEeStSIMk55062w" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GA-U8VSHEeStSIMk55062w" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_GA-U8lSHEeStSIMk55062w" name="city" memberEnd="_GA-U81SHEeStSIMk55062w _GA9G0FSHEeStSIMk55062w">
+    <ownedEnd xmi:id="_GA-U81SHEeStSIMk55062w" name="address" type="_GARxYVSHEeStSIMk55062w" association="_GA-U8lSHEeStSIMk55062w">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GA-8AFSHEeStSIMk55062w" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GA-8AVSHEeStSIMk55062w" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_GARxYlSHEeStSIMk55062w" name="City">
+    <ownedAttribute xmi:id="_GARxbVSHEeStSIMk55062w" name="id" type="_GATmkFSHEeStSIMk55062w">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GA9t4FSHEeStSIMk55062w" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GA9t4VSHEeStSIMk55062w" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_GARxblSHEeStSIMk55062w" name="name" type="_GAU0sVSHEeStSIMk55062w">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GA9t4lSHEeStSIMk55062w" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GA9t41SHEeStSIMk55062w" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_GARxY1SHEeStSIMk55062w" name="Sport">
+    <ownedAttribute xmi:id="_GARxb1SHEeStSIMk55062w" name="id" type="_GATmkFSHEeStSIMk55062w">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GA5ccFSHEeStSIMk55062w" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GA5ccVSHEeStSIMk55062w" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_GARxcFSHEeStSIMk55062w" name="name" type="_GAU0sVSHEeStSIMk55062w">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GA6DgFSHEeStSIMk55062w" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GA6DgVSHEeStSIMk55062w" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_GAZtM1SHEeStSIMk55062w" name="Boolean"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_GAU0sVSHEeStSIMk55062w" name="String"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_GAZtMFSHEeStSIMk55062w" name="Date"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_GATmkFSHEeStSIMk55062w" name="Long"/>
+</uml:Model>

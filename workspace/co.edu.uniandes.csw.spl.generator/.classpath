@@ -33,5 +33,6 @@
 	<classpathentry kind="lib" path="lib/com.mtcflow.engine.epsilon_1.2.0.201409282110.jar"/>
 	<classpathentry kind="lib" path="lib/com.mtcflow.engine.mtc_1.2.0.201409282110.jar"/>
 	<classpathentry kind="lib" path="lib/com.mtcflow.model_1.2.0.201409282110.jar"/>
+	<classpathentry kind="lib" path="lib/com.mtcflow.engine.etl_1.2.0.201410151139.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

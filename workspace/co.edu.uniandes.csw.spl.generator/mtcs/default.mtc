@@ -3,12 +3,11 @@
   <files name="Master Files" URI="master.txt"/>
   <files name="Web Files" URI="web.txt"/>
   <metamodels name="UML2" URI="" alias="UML" autoregister="false" metamodelURI="http://www.eclipse.org/uml2/4.0.0/UML"/>
-  <metamodels name="mvc" URI="MVC.ecore" alias="mvc" metamodelURI="http://co.edu.uniandes.csw.mvc/1.0"/>
-  <metamodels name="annotation" URI="Annotateit.ecore" alias="annotation" metamodelURI="http://co.edu.uniandes.csw.mvc.annotate/1.0"/>
-  <models name="Domain Model" URI="${tempModel}" metamodels="//@metamodels.0"/>
-  <models name="Input Model" URI="${tempModel}" metamodels="//@metamodels.0"/>
-  <models name="Domain Model" URI="${tempModel}" metamodels="//@metamodels.0"/>
-  <models name="mvc model" URI="prueba/usuarios.xmi" metamodels="//@metamodels.1 //@metamodels.2"/>
+  <metamodels name="mvc" URI="" alias="mvc" autoregister="false" metamodelURI="http://co.edu.uniandes.csw.mvc/1.0"/>
+  <models name="Domain Model" URI="${tempModel}.uml" metamodels="//@metamodels.0"/>
+  <models name="Input Model" URI="${tempModel}.uml" metamodels="//@metamodels.0"/>
+  <models name="Domain Model" URI="${tempModel}.uml" metamodels="//@metamodels.0"/>
+  <models name="mvc Input Model" URI="${tempModel}" metamodels="//@metamodels.1"/>
   <inputModels model="//@models.0" transformation="//@transformations.0"/>
   <inputModels model="//@models.0" transformation="//@transformations.1"/>
   <inputModels model="//@models.0" transformation="//@transformations.3"/>
@@ -18,7 +17,8 @@
   <inputModels model="//@models.2" transformation="//@transformations.6"/>
   <inputModels model="//@models.2" modelAlias="INOUT" transformation="//@transformations.2"/>
   <inputModels model="//@models.2" transformation="//@transformations.8"/>
-  <inputModels model="//@models.3" transformation="//@transformations.5"/>
+  <inputModels model="//@models.3" modelAlias="MVC" transformation="//@transformations.9"/>
+  <inputModels model="//@models.3" modelAlias="IN2" transformation="//@transformations.5"/>
   <transformations xsi:type="com.mtcflow.model:M2TTransformation" name="Service" URI="service-rest/genService.egl" technology="" target="${output}"/>
   <transformations xsi:type="com.mtcflow.model:MTCTransformation" name="UML -> Config" URI="config.mtc" target="${output}"/>
   <transformations xsi:type="com.mtcflow.model:M2MTransformation" name="Gen Simple Model" URI="cleanModel.eol" fileDependencies="//@files.0 //@files.1"/>
@@ -28,8 +28,10 @@
   <transformations xsi:type="com.mtcflow.model:M2TTransformation" name="master" URI="master/genMaster.egl" technology="" target="${output}"/>
   <transformations xsi:type="com.mtcflow.model:M2MTransformation" name="Delete Non Selected Elements" URI="configSelectedComponent.eol"/>
   <transformations xsi:type="com.mtcflow.model:M2TTransformation" name="WebProduct" URI="web-product/genWebProduct.egl" technology="" target="${output}"/>
+  <transformations xsi:type="com.mtcflow.model:M2MTransformation" name="MVC -> UML" URI="mvc2uml.etl"/>
   <outputModels modelAlias="INOUT" model="//@models.0" transformation="//@transformations.2"/>
   <outputModels modelAlias="INOUT" model="//@models.2" transformation="//@transformations.7"/>
+  <outputModels modelAlias="UML" model="//@models.1" transformation="//@transformations.9"/>
   <configurations>
     <variables name="model" defaultValue="model.uml"/>
     <variables name="output" defaultValue="src-gen"/>

@@ -1,8 +1,6 @@
 [% import "../lib/Utils.eol";  %]
 
 [%
-'pruebaxxxx'.println();
-MVCModel.all.println();
 for (class in Class.all) { 
 	genFile('component/ComponentJS',class.client_web_dir()+'/src/component/'+class.jsFileName()+'Component.js',class);
 	genFile('component/ConfigJSON',class.client_web_dir()+'/src/component/config/'+class.jsFileName()+'Config.json',class);

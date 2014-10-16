@@ -6,13 +6,14 @@
 	operation Property validation(){
 %]	
 	//prueba validacion [%=self.name%]-[%=self.owner.name%]
-	[%for(entity in Entity.all->select(en|en.name=self.owner.name)){%]
-	[%for(ann in entity.attributes->select(at|at.name=self.name)){%]
+	[%for(entity in IN2!Entity.all->select(en|en.name=self.owner.name)){%]
+	[%for(attr in entity.attributes->select(at|at.name=self.name)){%]
+  	 	[%for(ann in attr.annotations){%]
   	 	[%='//'+ann.annotationType.name%]
-		[%if(ann.annotationType.name=='required'){%]
+		[%if(ann.annotationType.name=='Required'){%]
 	[%=self.required(ann)%]
     	[%}%]
-	 [%}}%]
+	 [%}}}%]
 [%	
 	}
 	@template

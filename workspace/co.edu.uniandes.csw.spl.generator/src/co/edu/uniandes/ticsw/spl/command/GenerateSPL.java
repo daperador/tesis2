@@ -70,7 +70,7 @@ public class GenerateSPL implements IHandler {
 		final File originalModelFile = new File(ecoreResource.getLocation()
 				.toOSString());
 		try {
-			tempFile = File.createTempFile("spl", ".uml");
+			tempFile = File.createTempFile("spl", ".mvc");
 			FileUtils.copyFile(originalModelFile, tempFile);
 		} catch (IOException e) {
 			MessageDialog.openError(Display.getDefault().getActiveShell(), "Error", "An error has occurred while creating temp file of the model");
@@ -90,6 +90,7 @@ public class GenerateSPL implements IHandler {
 					resource.load(null);
 				} catch (IOException e) {
 					MessageDialog.openError(Display.getDefault().getActiveShell(), "Error", "An error has occurred while reading model UML file");
+					e.printStackTrace();
 					throw new RuntimeException("An error has occurred while reading model UML file");
 				}
 				ComponentSelectionManager manager = new ComponentSelectionManager(
@@ -232,8 +233,8 @@ public class GenerateSPL implements IHandler {
 						choreographer.getConsole().logException("Error copying the crudmaker.web dir", e);
 					}
 					choreographer.start();
-					choreographer.modelReady("Input Model", null);
-					choreographer.modelReady("mvc model", null);
+					//choreographer.modelReady("Input Model", null);
+					choreographer.modelReady("mvc Input Model", null);
 				}
 				try {
 					ecoreResource.getProject().refreshLocal(

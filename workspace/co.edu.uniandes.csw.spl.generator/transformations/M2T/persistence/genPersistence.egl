@@ -17,7 +17,7 @@ for (class in Class.all) {
 	genFile('PersistenceXML',class.subsystem_rsc_dir()+'/META-INF/persistence.xml',class);
 	genFile('_PersistenceXML',class.subsystem_rsc_dir()+'/META-INF/_persistence.xml',class);
 	-- Test Generation
-	--genFile('test/PersistenceTestJAVA',class.subsystem_test_src_dir()+'/'+class.basePckPath()+'/persistence/'+class.name()+'PersistenceTest.java',class);
-	--genFile('test/_TestUtilJAVA',class.subsystem_test_src_dir()+'/'+getBasePackagePath()+'/util/_TestUtil.java',class);
+	genFile('test/PersistenceTestJAVA',class.subsystem_test_src_dir()+'/'+class.basePckPath()+'/persistence/'+class.name()+'PersistenceTest.java',class);
+	genFile('test/_TestUtilJAVA',class.subsystem_test_src_dir()+'/'+getBasePackagePath()+'/util/_TestUtil.java',class);
 }
 %]

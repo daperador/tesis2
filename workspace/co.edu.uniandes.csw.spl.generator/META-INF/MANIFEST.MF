@@ -37,6 +37,7 @@ Bundle-ClassPath: .,
  lib/com.mtcflow.engine.eol_1.2.0.201409282110.jar,
  lib/com.mtcflow.engine.epsilon_1.2.0.201409282110.jar,
  lib/com.mtcflow.engine.mtc_1.2.0.201409282110.jar,
- lib/com.mtcflow.model_1.2.0.201409282110.jar
+ lib/com.mtcflow.model_1.2.0.201409282110.jar,
+ lib/com.mtcflow.engine.etl_1.2.0.201410151139.jar
 Bundle-ActivationPolicy: lazy
 

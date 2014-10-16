@@ -11,7 +11,7 @@
                      <and>
                         <instanceof value="org.eclipse.core.resources.IResource">
                         </instanceof>
-                        <test property="org.eclipse.core.resources.extension" value="uml">
+                        <test property="org.eclipse.core.resources.extension" value="mvc">
                         </test>
                      </and>
                   </iterate>
@@ -34,7 +34,7 @@
                               </instanceof>
                               <test
                                     property="org.eclipse.core.resources.extension"
-                                    value="uml">
+                                    value="mvc">
                               </test>
                            </and>
                         </iterate>
@@ -60,7 +60,7 @@
                               </instanceof>
                               <test
                                     property="org.eclipse.core.resources.extension"
-                                    value="uml">
+                                    value="mvc">
                               </test>
                            </and>
                         </iterate>
@@ -115,7 +115,7 @@
                               </instanceof>
                               <test
                                     property="org.eclipse.core.resources.extension"
-                                    value="uml">
+                                    value="mvc">
                               </test>
                            </and>
                         </iterate>

@@ -1,14 +1,14 @@
 // Remove non selected Classes
 for(cls in Class.all.clone){
 	if(not selectedClasses.contains(cls.name) and not cls.getAppliedStereotypes()->exists(s|s.name = 'Mandatory')){
-	  cls.destroy();
+	  //cls.destroy();
 	}
 }
 
 // Remove non selected Associations
 for(asc in Association.all.clone){
 	if(not selectedAssociations.contains(asc.name) and not asc.getAppliedStereotypes()->exists(s|s.name = 'Mandatory')){
-	  asc.destroy();
+	  //asc.destroy();
 	}
 }
 
@@ -22,6 +22,6 @@ for(pkc in Package.all){
 // Remove invalid attributes
 for(attr in Property.all.clone()){
  if(not attr.type.isDefined()){
-   attr.destroy();
+   //attr.destroy();
  }
 }
