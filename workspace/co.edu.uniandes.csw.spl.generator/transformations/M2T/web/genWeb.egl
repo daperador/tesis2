@@ -1,6 +1,16 @@
 [% import "../lib/Utils.eol";  %]
 
 [%
+'prueba'.println();
+IN2!MVCModel.all.println();
+for(mvc in IN2!MVCModel.all){
+	mvc.println();
+	mvc.components.println();
+	for(component in mvc.components){
+		component.println();
+		component.name.println();
+	}
+}
 for (class in Class.all) { 
 	genFile('component/ComponentJS',class.client_web_dir()+'/src/component/'+class.jsFileName()+'Component.js',class);
 	genFile('component/ConfigJSON',class.client_web_dir()+'/src/component/config/'+class.jsFileName()+'Config.json',class);
